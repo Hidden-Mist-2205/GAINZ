@@ -1,4 +1,6 @@
 .DS_store
+bundle.js
+bundle.js.map
 
 # Logs
 logs
@@ -81,8 +83,6 @@ typings/
 .next
 
 # Nuxt.js build / generate output
-.nuxt
-dist
 
 # Gatsby files
 .cache/
