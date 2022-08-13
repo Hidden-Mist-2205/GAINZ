@@ -13,7 +13,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'import/extensions': 0,
     'react/prop-types': 0,
     'arrow-parens': 0,
   },
