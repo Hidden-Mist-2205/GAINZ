@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const controllers = require('../database/controllers');
 
 const app = express();
 
@@ -26,8 +27,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+app.get('/getExercises', authenticateToken, async (req, res) => {
+  try {
+    const userData = await controllers.getExercises();
+    res.json(userData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
 app.get('*', (req, res) => {
-  res.sendfile(path.join(__dirname, '../client/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 app.listen(process.env.PORT, () => {
