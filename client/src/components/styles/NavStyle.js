@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink as Link } from 'react-router-dom';
 
 const Nav = {
   Container: styled.div`
@@ -24,20 +25,22 @@ const Nav = {
     width: 60%;
     justify-content: space-evenly;
     align-items: center;
-    position: relative;
-    left: 7%;
+    position: absolute;
+    left: 20%;
     font-size: 10px;
   `,
-  MenuItem: styled.div`
+  MenuItem: styled(Link)`
     text-transform: uppercase;
+    text-decoration: unset;
+    color: #ffffff;
     &:hover {
       text-decoration: underline;
       cursor: pointer;
     }
   `,
   UserIcon: styled.div`
-    position: relative;
-    left: 20%;
+    position: absolute;
+    left: 90%;
     width: 46px;
     height: 46px;
     border-radius: 50%;
