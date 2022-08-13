@@ -10,4 +10,13 @@ module.exports = {
       `;
     return userData[0];
   },
+  async getExercises() {
+    const workouts = await sql`
+      SELECT
+      *
+      FROM "Exercises"
+      ORDER BY "ExerciseID" ASC
+    `;
+    return workouts;
+  },
 };
