@@ -15,6 +15,5 @@ module.exports = {
   rules: {
     'react/prop-types': 0,
     'arrow-parens': 0,
-    'import/extensions': 0,
   },
 };
