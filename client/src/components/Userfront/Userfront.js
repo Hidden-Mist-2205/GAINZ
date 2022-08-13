@@ -1,26 +1,26 @@
 import Userfront from '@userfront/react';
 
-Userfront.init('XXX');
+Userfront.init('rbvr4mqb');
 
 const SignupForm = Userfront.build({
-  toolId: 'XX'
+  toolId: 'onrbao',
 });
 
 const LoginForm = Userfront.build({
-  toolId: 'XX'
+  toolId: 'dbkodk',
 });
 
 const PasswordResetForm = Userfront.build({
-  toolId: 'XX'
+  toolId: 'bkaomn',
 });
 
 const LogoutButton = Userfront.build({
-  toolId: 'XX'
+  toolId: 'rdakmd',
 });
 
 export {
   SignupForm,
   LoginForm,
   PasswordResetForm,
-  LogoutButton
+  LogoutButton,
 };
