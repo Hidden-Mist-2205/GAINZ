@@ -1,6 +1,8 @@
 .DS_store
-bundle.js
-bundle.js.map
+
+dist
+!index.html
+!styles.css
 
 # Logs
 logs
