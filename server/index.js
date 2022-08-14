@@ -29,7 +29,17 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/getExercises', authenticateToken, async (req, res) => {
   try {
-    const userData = await controllers.getExercises();
+    const exercises = await controllers.getExercises();
+    res.json(exercises);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.get('/getUserInfo', async (req, res) => {
+  try {
+    const userData = await controllers.getUserData(req.query.userID);
     res.json(userData);
   } catch (error) {
     console.error(error);
