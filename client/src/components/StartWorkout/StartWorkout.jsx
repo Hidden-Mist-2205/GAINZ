@@ -7,22 +7,22 @@ import GS from '../styles/GeneralStyles';
 Userfront.init('rbvr4mqb');
 
 export default function StartWorkout() {
-  // const getExcercises = () => {
-  //   axios({
-  //     method: 'GET',
-  //     url: `${process.env.URL}/getExercises`,
-  //     headers: {
-  //       ContentType: 'application/json',
-  //       authorization: `Bearer ${Userfront.tokens.accessToken}`,
-  //     },
-  //   })
-  //     .then((exercisesData) => console.log('get exercises: ', exercisesData))
-  //     .catch((err) => console.error(err));
-  // };
+  const getExcercises = () => {
+    axios({
+      method: 'GET',
+      url: `${process.env.URL}/getAllExercises`,
+      headers: {
+        ContentType: 'application/json',
+        // authorization: `Bearer ${Userfront.tokens.accessToken}`,
+      },
+    })
+      .then((exercisesData) => console.log('get exercises: ', exercisesData))
+      .catch((err) => console.error(err));
+  };
 
-  // useEffect(() => {
-  //   getExcercises();
-  // }, []);
+  useEffect(() => {
+    getExcercises();
+  }, []);
 
   return (
     <>
@@ -31,7 +31,17 @@ export default function StartWorkout() {
         <GS.Button>End Session</GS.Button>
       </SW.FlexDiv>
       <SW.Container>
+        <SW.WorkoutName>Workout Name</SW.WorkoutName>
         <SW.Description>Description</SW.Description>
+        <SW.FlexContainer>
+          <SW.InnerContainer>Video/GIF</SW.InnerContainer>
+          <SW.InnerContainer>Instructions</SW.InnerContainer>
+          <SW.ExerciseSelection>
+            <div>Exercise 1</div>
+            <div>Exercise 2</div>
+            <div>Exercise 3</div>
+          </SW.ExerciseSelection>
+        </SW.FlexContainer>
       </SW.Container>
     </>
   );
