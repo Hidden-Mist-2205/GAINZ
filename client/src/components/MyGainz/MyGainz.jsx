@@ -38,6 +38,7 @@ export default function MyGainz() {
       <Workout />
       <MG.NavBtn>
         <MG.Previous onClick={handlePrevious}>{'<'}</MG.Previous>
+        <MG.Page>{page.page}</MG.Page>
         <MG.Next onClick={handleNext}>{'>'}</MG.Next>
       </MG.NavBtn>
     </MG.Body>

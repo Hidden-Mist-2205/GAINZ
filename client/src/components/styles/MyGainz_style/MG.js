@@ -142,7 +142,7 @@ const MG = {
     background: #272727;
     padding: 5px 32px 5px 32px;
     border-radius: 10%;
-    margin-right: 60px;
+    margin-right: 10px;
     display: inline;
     font-weight:bold;
     cursor: pointer;
@@ -166,6 +166,10 @@ const MG = {
     &:hover {
       text-shadow: 0 0 3px gold;
     }
+  `,
+  Page: styled.span`
+    display: inline;
+    margin-right: 10px;
   `,
 };
 
