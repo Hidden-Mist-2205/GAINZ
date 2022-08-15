@@ -27,7 +27,7 @@ export default function SignupForm() {
     });
 
     const converted = await toBase64(imageFile);
-    const apiRequest = await Axios({
+    await Axios({
       method: 'post',
       url: 'https://api.cloudinary.com/v1_1/alpinefec/image/upload',
       data: {
@@ -35,42 +35,50 @@ export default function SignupForm() {
         upload_preset: 'lfcpuaaw',
       },
     });
-    return apiRequest;
   }
 
   async function createAccount(e) {
     e.preventDefault();
-
+    const picture = await uploadImageHandler(avatar);
     const signup = await Userfront.signup({
       method: 'password',
+      name: username,
       email: email,
       password: password,
     });
-
-    console.log(signup);
   }
 
   return (
     <SU.WrapperDiv>
       <h1>Sign Up for Gainz</h1>
-      <form onSubmit={(e) => { createAccount(e); }}>
-        <label htmlFor="username">Username</label>
-        <SU.TextInput id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
-        <label htmlFor="email">Email</label>
-        <SU.TextInput id="email" type="email" value={email} onChange={((e) => setEmail(e.target.value))} />
-        <label htmlFor="password">Password</label>
-        <SU.TextInput id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
-        <label htmlFor="zipCode">Zipcode</label>
-        <SU.TextInput id="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
-        <label htmlFor="phoneNum">Phone Number</label>
-        <SU.TextInput id="phoneNum" type="tel" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
-        <label htmlFor="fitnessGoal">Fitness Goal</label>
-        <SU.TextInput id="fitnessGoal" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
-        <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
-        <label htmlFor="avatar">Upload Profile Picture</label>
-        <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+      <SU.Form onSubmit={(e) => { createAccount(e); }}>
+        <SU.InputDiv>
+          <SU.TextInput id="username" placeholder="Username" value={username} onChange={((e) => setUsername(e.target.value))} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <SU.TextInput id="email" type="email" placeholder="email" value={email} onChange={((e) => setEmail(e.target.value))} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <SU.TextInput id="password" type="password" placeholder="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <SU.TextInput id="zipcode" placeholder="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <SU.TextInput id="phoneNum" type="tel" placeholder="Phone Number" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <SU.TextInput id="fitnessGoal" type="textarea" placeholder="Your fitness goal" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <h3>Upload Your Profile Picture:</h3>
+          <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+        </SU.InputDiv>
         <GS.Button type="submit">Submit</GS.Button>
-      </form>
+      </SU.Form>
     </SU.WrapperDiv>
   );
 }
@@ -86,22 +94,49 @@ function AvailableDays({ daysAvailable, setDaysAvailable }) {
   }
   return (
     <>
-      <input id="Monday" type="checkbox" value="Monday" onChange={e => handleChange(e)} />
-      <input id="Tuesday" type="checkbox" value="Tuesday" onChange={e => handleChange(e)} />
-      <input id="Wednesday" type="checkbox" value="Wednesday" onChange={e => handleChange(e)} />
-      <input id="Thursday" type="checkbox" value="Thursday" onChange={e => handleChange(e)} />
-      <input id="Friday" type="checkbox" value="Friday" onChange={e => handleChange(e)} />
-      <input id="Saturday" type="checkbox" value="Saturday" onChange={e => handleChange(e)} />
-      <input id="Sunday" type="checkbox" value="Sunday" onChange={e => handleChange(e)} />
+      <h3> Days Available: </h3>
+      <SU.CheckBoxDiv>
+        <label htmlFor="Monday">
+          <input id="Monday" type="checkbox" value="Monday" onChange={e => handleChange(e)} />
+          Monday
+        </label>
+      </SU.CheckBoxDiv>
+      <SU.CheckBoxDiv>
+        <label htmlFor="Tuesday">
+          <input id="Tuesday" type="checkbox" value="Tuesday" onChange={e => handleChange(e)} />
+          Tuesday
+        </label>
+      </SU.CheckBoxDiv>
+      <SU.CheckBoxDiv>
+        <label htmlFor="Wednesday">
+          <input id="Wednesday" type="checkbox" value="Wednesday" onChange={e => handleChange(e)} />
+          Wednesday
+        </label>
+      </SU.CheckBoxDiv>
+      <SU.CheckBoxDiv>
+        <label htmlFor="Thursday">
+          <input id="Thursday" type="checkbox" value="Thursday" onChange={e => handleChange(e)} />
+          Thursday
+        </label>
+      </SU.CheckBoxDiv>
+      <SU.CheckBoxDiv>
+        <label htmlFor="Friday">
+          <input id="Friday" type="checkbox" value="Friday" onChange={e => handleChange(e)} />
+          Friday
+        </label>
+      </SU.CheckBoxDiv>
+      <SU.CheckBoxDiv>
+        <label htmlFor="Saturday">
+          <input id="Saturday" type="checkbox" value="Saturday" onChange={e => handleChange(e)} />
+          Saturday
+        </label>
+      </SU.CheckBoxDiv>
+      <SU.CheckBoxDiv>
+        <label htmlFor="Sunday">
+          <input id="Sunday" type="checkbox" value="Sunday" onChange={e => handleChange(e)} />
+          Sunday
+        </label>
+      </SU.CheckBoxDiv>
     </>
   );
 }
-
-// userId: 'string', required
-// userName: 'string', required
-// email: 'string', required
-// zipcode: 'string', required?
-// phoneNum: 'string', required?
-// avatarURL: 'string', not required
-// fitnessGoal: 'string', not required?
-// availableDays: 'array' required
