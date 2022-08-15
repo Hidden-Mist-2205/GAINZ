@@ -15,7 +15,8 @@ const FindWorkoutBuddy = lazy(() => import('./FindWorkoutBuddy/FindWorkoutBuddy'
 const MyGainz = lazy(() => import('./MyGainz/MyGainz'));
 const MyProfile = lazy(() => import('./MyProfile/MyProfile'));
 const StartWorkout = lazy(() => import('./StartWorkout/StartWorkout'));
-const UserLibrary = lazy(() => import('./UserLibrary/UserLibrary'));
+const ExerciseLibraryPage = lazy(() => import('./UserLibrary/ExerciseLibraryPage'));
+const WorkoutLibraryPage = lazy(() => import('./UserLibrary/WorkoutLibraryPage'));
 
 export default function GAINZ() {
   return (
@@ -28,7 +29,8 @@ export default function GAINZ() {
           <Route path="/MyGainz" element={<MyGainz />} />
           <Route path="/MyProfile" element={<MyProfile />} />
           <Route path="/StartWorkout" element={<StartWorkout />} />
-          <Route path="/UserLibrary" element={<UserLibrary />} />
+          <Route path="/UserExerciseLibrary" element={<ExerciseLibraryPage />} />
+          <Route path="/UserWorkoutLibrary" element={<WorkoutLibraryPage />} />
         </Routes>
       </React.Suspense>
       {/* <LogoutButton /> */}
