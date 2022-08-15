@@ -10,17 +10,21 @@ const DB = {
     top: 108px;
   `,
   WOBody: styled.div`
-    padding-top: 0.1%;
     width: 100%;
     background: rgba(217, 217, 217, 0.15);
-    height: 680px;
-    overflow: hidden;
+    max-height: 700px;
+    border-radius:8px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: #272727;
+        border: none;
+    }
   `,
   Header: styled.h1`
     width: 750px;
     height: 10%;
     margin-left: 1%;
-    margin-top: 50px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
@@ -32,52 +36,44 @@ const DB = {
     width: 484px;
     height: 52px;
     margin-left: 35px;
-    margin-top: 35px;
+    margin-bottom: 0;
+    padding-top:60px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
-    line-height: 36px;
     letter-spacing: -0.015em;
   `,
-  CreateWOBtn: styled.button`
-    min-width: 125px;
-    height: 3%;
-    display: flex;
-    font-family: 'Montserrat';
-    color: #cc1313;
-    font-size: 15px;
-    float: right;
-    margin-right: 5%;
-    background: none;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 10px;
-    border-color: #d31616;
-    `,
   WOPanel: styled.div`
+    width: 100%;
+    min-height: 100px;
+    `,
+  WOItem: styled.div`
     width: 95%;
-    height: 15%;
+    height: 100px;
     margin-top: 2%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: 60px;
+    border-radius:5px;
     background-color: #272727;
   `,
-  WOStar: styled.div`
+  WOStar: styled.span`
     display: inline-block;
-    width: 15px;
+    width: 20px;
     height: 36px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 30px;
     line-height: 36px;
     position: relative;
     left: 5%;
     top: 29%;
+    border:none;
+    cursor: pointer;
     &:hover {
-      cursor: pointer;
+      text-shadow: 0 0 3px gold;
     }
 `,
   WOName: styled.div`
@@ -100,7 +96,7 @@ const DB = {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 36px;
     position: relative;
     left: 17%;
@@ -119,31 +115,5 @@ const DB = {
     left: 20%;
     top: 29%;
   `,
-  WOStartBtn: styled.button`
-    display: inline-block;
-    width: 100px;
-    font-size: 15px;
-    height: 30px;
-    position: relative;
-    left: 45%;
-    border-radius: 8px;
-    color: white;
-    background: #a82525;
-    top: 29%;
-    &:hover {
-      cursor: pointer;
-    }
-  `,
-
-  WOExercise: styled.div`
-    width: 638px;
-    height: 155px;
-    margin-bottom: 5%;
-    margin-left: 8%;
-    left: 173px;
-    top: 393px;
-    background-color: #272727;
-  `,
 };
-
 export default DB;
