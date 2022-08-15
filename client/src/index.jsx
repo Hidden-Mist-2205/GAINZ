@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,22 +20,24 @@ const root = createRoot(document.getElementById('root'));
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="*"
-          element={(
-            <RequireAuth>
-              <GAINZ />
-            </RequireAuth>
-          )}
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/password-reset" element={<PasswordReset />} />
+    <RecoilRoot>
+      <Router>
+        <Routes>
+          <Route
+            path="*"
+            element={(
+              <RequireAuth>
+                <GAINZ />
+              </RequireAuth>
+            )}
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </RecoilRoot>
   );
 }
 
