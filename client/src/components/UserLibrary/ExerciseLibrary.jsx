@@ -32,7 +32,8 @@ const exercises = [
   },
 ];
 
-export default function ExerciseLibraryContainer() {
+export default function ExerciseLibraryPage() {
+  const [searchInput, setSearchInput] = useState('');
   return (
     <>
       <PageHeader page="Exercises" />
