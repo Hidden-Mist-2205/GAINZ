@@ -12,32 +12,32 @@ export default function Dashboard() {
   const handleModal = () => (
     showModal ? setShowModal(false) : setShowModal(true)
   );
-  const handleType = () => (
-    type === 'Workout' ? setType('Exercise') : setType('Workout')
+  const handleType = (e) => (
+    e.target.name === 'Workout' ? setType('Workout') : setType('Exercise')
   );
   return (
     <DB.Body>
-      <DB.Header onClick={handleType}>My Dashboard</DB.Header>
-      {type === 'Exercise'
-        && (
-          <GS.OutlinedBtn
-            style={{ float: 'right' }}
-          >
-            Add Exercise
-          </GS.OutlinedBtn>
-        )}
-      {type === 'Workout'
-        && (
-          <GS.OutlinedBtn
-            style={{ float: 'right' }}
-            onClick={handleModal}
-          >
-            Create WorkOut
-          </GS.OutlinedBtn>
-        )}
+      <DB.Header>My Dashboard</DB.Header>
       <M.Column>
-        <DB.WOHeader>Favorite Workout</DB.WOHeader>
-        <DB.WOHeader>Favorite Exercise</DB.WOHeader>
+        {type === 'Exercise'
+          && (
+            <GS.OutlinedBtn
+              style={{ float: 'right' }}
+            >
+              Add Exercise
+            </GS.OutlinedBtn>
+          )}
+        {type === 'Workout'
+          && (
+            <GS.OutlinedBtn
+              style={{ float: 'right' }}
+              onClick={handleModal}
+            >
+              Create WorkOut
+            </GS.OutlinedBtn>
+          )}
+        <DB.Tabs name="Workout" onClick={handleType} style={{ 'border-right': 'solid black' }}>Favorite Workout</DB.Tabs>
+        <DB.Tabs name="Exercise" onClick={handleType}>Favorite Exercise</DB.Tabs>
       </M.Column>
       {type === 'Workout' && <Workout />}
       {type === 'Exercise' && <Exercise handleModal={handleModal} />}

@@ -13,8 +13,10 @@ const M = {
     align-items: center;
   `,
   PopUp: styled.div`
-    width: 1000px;
-    height: 700px;
+    max-width: 1000px;
+    max-height: 700px;
+    width: 50%;
+    height: 80%;
     box-shadow: 0 5px 16pxrgba(0,0,0,0.2);
     background: #272727;
     color: #000;
@@ -23,10 +25,13 @@ const M = {
     z-index: 1000;
     border-radius: 5px;
     overflow: auto;
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: #272727;
+        border: none;
+    }
   `,
   Form: styled.form`
-    width: 1200px;
-    height: 700px;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
