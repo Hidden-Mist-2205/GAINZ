@@ -2,11 +2,11 @@ import React from 'react';
 import Nav from './styles/NavStyle';
 
 export default function NavBar() {
-// something here to route to each section;
+// UserIcon dropdown and route to myProfile & logout
 
   return (
     <Nav.Container>
-      <Nav.Logo> ⚛︎ Gainz</Nav.Logo>
+      <Nav.Logo> ⚛︎ GAINZ</Nav.Logo>
 
       <Nav.Sections>
         <Nav.MenuItem to="/Dashboard">
@@ -21,6 +21,14 @@ export default function NavBar() {
         <Nav.MenuItem to="/FindWorkoutBuddy">
           Find Workout Buddy
         </Nav.MenuItem>
+
+        <Nav.MenuItem to="/StartWorkout">
+          Start Workout
+        </Nav.MenuItem>
+        <Nav.MenuItem to="/MyProfile">
+          My Profile
+        </Nav.MenuItem>
+
       </Nav.Sections>
 
       <Nav.UserIcon />

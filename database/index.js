@@ -1,4 +1,4 @@
-const postgres = require("postgres");
+const postgres = require('postgres');
 
 const sql = postgres({
   host: process.env.PGHOST,
