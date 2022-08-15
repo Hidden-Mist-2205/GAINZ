@@ -5,6 +5,8 @@ const SU = {
   width: 80%;
   padding: 12px 20px;
   margin: 5px;
+  border-radius: 3px;
+  border: 0px;
   `,
   Form: styled.form`
   width: 100%;
@@ -21,8 +23,9 @@ const SU = {
   WrapperDiv: styled.div`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   color: white;
-  width: 60vw;
+  width: 40vw;
   margin: auto;
+  margin-top: 50px;
   padding: 20px;
   background-color: white;
   display: flex;
@@ -30,11 +33,11 @@ const SU = {
   align-items: center;
   justify-content: center;
   background-color: #272727;
+  border-radius: 5px;
   `,
   CheckBoxDiv: styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   `,
 };
 

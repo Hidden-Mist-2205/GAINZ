@@ -14,6 +14,7 @@ export default function SignupForm() {
   const [avatar, setAvatarUrl] = useState('');
   const [password, setPassword] = useState('');
   const [fitnessGoal, setFitnessGoal] = useState('');
+  const [zoomLink, setZoomLink] = useState('');
   const [daysAvailable, setDaysAvailable] = useState([]);
 
   async function uploadImageHandler(imageFile) {
@@ -85,6 +86,9 @@ export default function SignupForm() {
         </SU.InputDiv>
         <SU.InputDiv>
           <SU.TextInput id="fitnessGoal" type="textarea" placeholder="Your fitness goal" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+        </SU.InputDiv>
+        <SU.InputDiv>
+          <SU.TextInput id="zoomLink" placeholder="Personal Zoom Link" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
         </SU.InputDiv>
         <SU.InputDiv>
           <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
