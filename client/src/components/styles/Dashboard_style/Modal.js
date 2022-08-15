@@ -25,6 +25,11 @@ const M = {
     z-index: 1000;
     border-radius: 5px;
     overflow: auto;
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: #272727;
+        border: none;
+    }
   `,
   Form: styled.form`
     display: flex;

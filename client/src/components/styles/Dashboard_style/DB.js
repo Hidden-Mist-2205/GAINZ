@@ -63,13 +63,14 @@ const DB = {
     justify-content: space-evenly;
   `,
   WOStar: styled.span`
-    width: 20px;
+    width: 25px;
     height: 36px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 36px;
+    color: #F6BE00;
     border:none;
     cursor: pointer;
     &:hover {
