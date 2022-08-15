@@ -7,9 +7,11 @@ import {
   Route,
 } from 'react-router-dom';
 
+import Signup from './components/Userfront/customSignup';
+
 import {
   Login,
-  Signup,
+  // Signup,
   PasswordReset,
   RequireAuth,
 } from './components/Userfront/UserfrontComponents';
