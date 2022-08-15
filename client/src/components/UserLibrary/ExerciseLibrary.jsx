@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import {
-  PageHeader,
-  PageList,
-} from './lib_index';
-
-const exercises = [
-  {
-    id: 1,
-    name: 'Exercise Name',
-    description: 'Exercise Description',
-    gifUrl: '#',
-    category: 'Exercise Category',
-    favorited: 'false',
-  },
-  {
-    id: 2,
-    name: 'Exercise Name',
-    description: 'Exercise Description',
-    gifUrl: '#',
-    category: 'Exercise Category',
-    favorited: 'false',
-  },
-  {
-    id: 3,
-    name: 'Exercise Name',
-    description: 'Exercise Description',
-    gifUrl: '#',
-    category: 'Exercise Category',
-    favorited: 'false',
-  },
-];
+import PageHeader from './LibComponents/PageHeader';
+import PageList from './LibComponents/PageList';
 
 export default function ExerciseLibraryPage() {
-  const [searchInput, setSearchInput] = useState('');
+  const exercises = [
+    {
+      id: 1,
+      name: 'Exercise Name',
+      description: 'Exercise Description',
+      gifUrl: '#',
+      category: 'Exercise Category',
+      favorited: 'false',
+    },
+    {
+      id: 2,
+      name: 'Exercise Name',
+      description: 'Exercise Description',
+      gifUrl: '#',
+      category: 'Exercise Category',
+      favorited: 'false',
+    },
+    {
+      id: 3,
+      name: 'Exercise Name',
+      description: 'Exercise Description',
+      gifUrl: '#',
+      category: 'Exercise Category',
+      favorited: 'false',
+    },
+  ];
   return (
     <>
       <PageHeader page="Exercises" />

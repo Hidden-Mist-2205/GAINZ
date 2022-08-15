@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function SearchButton() {
+import GS from '../../styles/GeneralStyles';
+
+export default function SearchButton({ handleClick }) {
   return (
-    <div>SearchButton</div>
+    <GS.Button onClick={handleClick}>Search</GS.Button>
   );
 }
