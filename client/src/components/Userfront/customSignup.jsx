@@ -17,7 +17,7 @@ export default function SignupForm() {
   const [daysAvailable, setDaysAvailable] = useState([]);
 
   async function uploadImageHandler(imageFile) {
-    const img = URL.createObjectURL(imageFile);
+    // const img = URL.createObjectURL(imageFile);
     const reader = new FileReader();
 
     const toBase64 = (file) => new Promise((resolve, reject) => {
@@ -39,13 +39,29 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
-    const picture = await uploadImageHandler(avatar);
-    const signup = await Userfront.signup({
-      method: 'password',
-      name: username,
-      email: email,
-      password: password,
-    });
+
+    try {
+      const picture = await uploadImageHandler(avatar);
+    } catch (err) {
+      console.log('There was an error uploading picture: ', err);
+    }
+
+    try {
+      const signup = await Userfront.signup({
+        method: 'password',
+        name: username,
+        email: email,
+        password: password,
+      });
+    } catch (err) {
+      console.log('There was an error uploading to Userbase: ', err);
+    }
+
+    try {
+      //Upload to the DB here
+    } catch {
+      //Catch error here
+    }
   }
 
   return (
