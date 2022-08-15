@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const WOEx = {
   Body: styled.div`
-    width: 680px;
+    max-width: 50%;
+    min-width: 555px;
     min-height: 155px;
     margin-left: 8%;
     left: 173px;

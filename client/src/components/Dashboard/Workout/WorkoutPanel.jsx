@@ -15,12 +15,13 @@ export default function WorkoutPanel() {
   return (
     <DB.WOPanel>
       <DB.WOItem>
-        <DB.WOStar onClick={handleFav}>{toggleFav === false ? 'X' : 'O'}</DB.WOStar>
+        {toggleFav ? <DB.WOStar>&#9734;</DB.WOStar> : <DB.WOStar>&#9733;</DB.WOStar>}
+        {/* <DB.WOStar onClick={handleFav}>{toggleFav === false ? 'X' : 'O'}</DB.WOStar> */}
         <DB.WOName onClick={handleEPanel}>Workout Name</DB.WOName>
         <DB.WOCategory>Category</DB.WOCategory>
         <DB.WODescription>Description</DB.WODescription>
         <GS.Button
-          style={{ position: 'relative', top: '25%', left: '42%' }}
+        // style={{ position: 'relative', top: '25%', left: '42%' }}
         >
           START
         </GS.Button>
