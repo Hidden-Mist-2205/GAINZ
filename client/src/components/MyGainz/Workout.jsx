@@ -9,10 +9,6 @@ export default function Workout() {
       <WorkoutPanel />
       <WorkoutPanel />
       <WorkoutPanel />
-      <MG.NavBtn>
-        <MG.Previous>{'<'}</MG.Previous>
-        <MG.Previous>{'>'}</MG.Previous>
-      </MG.NavBtn>
     </MG.WOBody>
   );
 }

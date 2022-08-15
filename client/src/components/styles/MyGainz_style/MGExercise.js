@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 const MGEx = {
   Body: styled.div`
-    width: 680px;
+    max-width: 50%;
+    min-width: 555px;
     min-height: 155px;
-    margin-left: 8%;
+    margin-left: 5%;
     left: 173px;
     top: 393px;
+    border-radius: 8px;
     background-color: #272727;
   `,
   Item: styled.div`

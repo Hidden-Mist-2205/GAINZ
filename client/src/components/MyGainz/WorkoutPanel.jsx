@@ -19,20 +19,16 @@ export default function WorkoutPanel() {
 
   return (
     <MG.WOPanel>
-      <MG.WOItem onClick={handleExercisePanel}>
-        <MG.WOStar onClick={handleFavorite}>
-          {favorite ? <span>&#9734;</span> : <span>&#9733;</span>}
-        </MG.WOStar>
-        <MG.WOName>Workout Name</MG.WOName>
-        <MG.WOCategory>Completed x times</MG.WOCategory>
-        <MG.WODescription>Last completed on: MM/DD/YY 00:00 AM</MG.WODescription>
-        <GS.Button
-          style={{ position: 'relative', top: '25%', left: '32%' }}
-        >
-          START
-        </GS.Button>
-        {showExercises && <ExercisePanel />}
+      <MG.WOItem>
+        {favorite
+          ? <MG.WOStar onClick={handleFavorite}>&#9734;</MG.WOStar>
+          : <MG.WOStar onClick={handleFavorite}>&#9733;</MG.WOStar>}
+        <MG.WOName onClick={handleExercisePanel}>Workout Name</MG.WOName>
+        <MG.WOTimesCompleted>Completed x times</MG.WOTimesCompleted>
+        <MG.WOLastCompleted>Last completed on: MM/DD/YY 00:00 AM</MG.WOLastCompleted>
+        <GS.Button>START</GS.Button>
       </MG.WOItem>
+      {showExercises && <ExercisePanel />}
     </MG.WOPanel>
   );
 }

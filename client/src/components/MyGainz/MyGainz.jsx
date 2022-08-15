@@ -8,6 +8,10 @@ export default function MyGainz() {
       <MG.Header>My Gainz</MG.Header>
       <MG.WOHeader>Completed Workouts</MG.WOHeader>
       <Workout />
+      <MG.NavBtn>
+        <MG.Previous>{'<'}</MG.Previous>
+        <MG.Next>{'>'}</MG.Next>
+      </MG.NavBtn>
     </MG.Body>
   );
 }
