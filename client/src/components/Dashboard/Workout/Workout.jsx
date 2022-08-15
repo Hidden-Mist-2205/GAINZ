@@ -1,33 +1,14 @@
 import React, { useState } from 'react';
 import DB from '../../styles/Dashboard_style/DB';
-import GS from '../../styles/GeneralStyles';
+import WorkoutPanel from './WorkoutPanel';
 
 export default function Workout() {
-  const [showEPanel, setEPanel] = useState(false);
-  const [toggleFav, setToggleFav] = useState(false);
-  const handleEPanel = () => (
-    showEPanel ? setEPanel(false) : setEPanel(true)
-  );
-  const handleFav = () => (
-    toggleFav ? setToggleFav(false) : setToggleFav(true)
-  );
   return (
     <DB.WOBody>
-      <DB.WOPanel>
-        <DB.WOStar onClick={handleFav}>{toggleFav === false ? 'X' : 'O'}</DB.WOStar>
-        <DB.WOName onClick={handleEPanel}>Workout Name</DB.WOName>
-        <DB.WOCategory>Category</DB.WOCategory>
-        <DB.WODescription>Description</DB.WODescription>
-        <GS.Button
-          style={{ position: 'relative', top: '25%', left: '42%' }}
-        >
-          START
-        </GS.Button>
-      </DB.WOPanel>
-      {showEPanel && <DB.WOExercise> Exercise 1</DB.WOExercise>}
-      <DB.WOPanel />
-      <DB.WOPanel />
-      <DB.WOPanel />
+      <WorkoutPanel />
+      <WorkoutPanel />
+      <WorkoutPanel />
+      <WorkoutPanel />
     </DB.WOBody>
   );
 }
