@@ -1,6 +1,5 @@
 import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { LogoutButton } from './Userfront/Userfront';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import GS from './styles/GeneralStyles';

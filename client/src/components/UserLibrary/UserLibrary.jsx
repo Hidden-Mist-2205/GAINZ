@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { ExerciseLibraryContainer, WorkoutLibraryContainer } from './lib_index';
 
 export default function UserLibrary() {
-  return (
-    <div> User Library Page</div>
+  const [page, setPage] = useState('exercises');
+
+  return page === 'exercises' ? (
+    <ExerciseLibraryPage />
+  ) : (
+    <WorkoutLibraryPage />
   );
 }
