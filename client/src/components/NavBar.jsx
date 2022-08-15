@@ -21,6 +21,14 @@ export default function NavBar() {
         <Nav.MenuItem to="/FindWorkoutBuddy">
           Find Workout Buddy
         </Nav.MenuItem>
+
+        <Nav.MenuItem to="/StartWorkout">
+          Start Workout
+        </Nav.MenuItem>
+        <Nav.MenuItem to="/MyProfile">
+          My Profile
+        </Nav.MenuItem>
+
       </Nav.Sections>
 
       <Nav.UserIcon />
