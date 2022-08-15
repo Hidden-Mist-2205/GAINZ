@@ -18,7 +18,7 @@ export default function Dashboard() {
   return (
     <DB.Body>
       <DB.Header>My Dashboard</DB.Header>
-      <M.Column>
+      <M.Column style={{ width: '80%', margin: 'auto' }}>
         {type === 'Exercise'
           && (
             <GS.OutlinedBtn

@@ -8,11 +8,12 @@ const DB = {
     margin-left: auto;
   `,
   WOBody: styled.div`
-    width: 100%;
+    width: 80%;
     border-top: solid #121212;
     background: rgba(217, 217, 217, 0.15);
     max-height: 700px;
     min-height:500px;
+    margin: auto;
     border-radius:0 8px 8px 8px;
     overflow: auto;
     &::-webkit-scrollbar {
@@ -31,6 +32,8 @@ const DB = {
     font-size: 48px;
     line-height: 72px;
     letter-spacing: -0.015em;
+    padding-bottom: 50px;
+    padding-left: 100px;
   `,
 
   Tabs: styled(GS.OutlinedBtn)`
