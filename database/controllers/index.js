@@ -18,7 +18,7 @@ module.exports = {
     userData[0].daysAvailable = extractedDays;
     return userData[0];
   },
-  async getExercises() {
+  async getAllExercises() {
     const workouts = await sql`
       SELECT
       *
@@ -26,5 +26,47 @@ module.exports = {
       ORDER BY "ExerciseID" ASC
     `;
     return workouts;
+  },
+  async getFavoritedExercises(/* INFO */) {
+    // TODO
+  },
+  async addFavoritedExercise(/* INFO */) {
+    // TODO
+  },
+  async removeFavoritedExercise(/* INFO */) {
+    // TODO
+  },
+  async getAllWorkouts() {
+    // TODO
+  },
+  async addNewWorkout(/* INFO */) {
+    // TODO
+  },
+  async deleteWorkout(/* INFO */) {
+    // TODO
+    // Make sure workout to delete is created by logged-in user
+  },
+  async getFavoritedWorkouts(/* INFO */) {
+    // TODO
+  },
+  async addFavoritedWorkout(/* INFO */) {
+    // TODO
+  },
+  async removeFavoritedWorkout(/* INFO */) {
+    // TODO
+  },
+  async updateWorkoutCompletion(/* INFO */) {
+    // TODO
+  },
+  async getAvailableBuddies(/* INFO */) {
+    // TODO
+  },
+  async addAvailableDays(/* INFO */) {
+    // TODO
+    // Can probanly check if it is an update for an existing user
+  },
+  // Stretch?
+  async addNewExercise(/* INFO */) {
+    // TODO
   },
 };
