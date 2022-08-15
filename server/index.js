@@ -7,6 +7,7 @@ const controllers = require('../database/controllers');
 const app = express();
 
 // auth middleware for Userfront
+// eslint-disable-next-line consistent-return
 function authenticateToken(req, res, next) {
   // eslint-disable-next-line dot-notation
   const authHeader = req.headers['authorization'];
@@ -27,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/getAllExercises', /* authenticateToken, */ async (req, res) => {
+app.get('/getAllExercises', authenticateToken, async (req, res) => {
   try {
     const exercises = await controllers.getAllExercises();
     res.json(exercises);
