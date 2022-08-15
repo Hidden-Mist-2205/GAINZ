@@ -37,7 +37,6 @@ const Nav = {
   MenuItem: styled(Link)`
     text-transform: uppercase;
     text-decoration: unset;
-    /* color: #ffffff; */
     color: rgb(244 243 243 / 90%);
     &:hover {
       cursor: pointer;
