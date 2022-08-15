@@ -104,4 +104,4 @@ function AvailableDays({ daysAvailable, setDaysAvailable }) {
 // phoneNum: 'string', required?
 // avatarURL: 'string', not required
 // fitnessGoal: 'string', not required?
-// daysAvailable: 'array' required
+// availableDays: 'array' required
