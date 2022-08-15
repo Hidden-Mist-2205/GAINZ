@@ -19,6 +19,11 @@ const Nav = {
     border-color: 1px solid grey;
     color: #AE3139;
     cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   `,
   Sections: styled.div`
     display: flex;
@@ -32,10 +37,11 @@ const Nav = {
   MenuItem: styled(Link)`
     text-transform: uppercase;
     text-decoration: unset;
-    color: #ffffff;
+    color: rgb(244 243 243 / 90%);
     &:hover {
-      text-decoration: underline;
       cursor: pointer;
+      text-decoration: underline;
+      opacity: 0.8;
     }
   `,
   UserIcon: styled.div`
