@@ -2,11 +2,11 @@ import React from 'react';
 import Nav from './styles/NavStyle';
 
 export default function NavBar() {
-// something here to route to each section;
+// UserIcon dropdown and route to myProfile & logout
 
   return (
     <Nav.Container>
-      <Nav.Logo> ⚛︎ Gainz</Nav.Logo>
+      <Nav.Logo> ⚛︎ GAINZ</Nav.Logo>
 
       <Nav.Sections>
         <Nav.MenuItem to="/Dashboard">

@@ -4,7 +4,7 @@ const GS = {
   Background: styled.div`
     width: 100vw;
     height: 100vh;
-    max-width: 1680px;
+    /* max-width: 1680px; */
     font-family: "Roboto","Helvetica","Arial",sans-serif;
     z-index: 0;
     background-color: #121212;
