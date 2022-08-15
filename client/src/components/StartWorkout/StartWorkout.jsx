@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Userfront from '@userfront/react';
 import SW from '../styles/StartWorkout_style/SW';
@@ -7,21 +7,26 @@ import GS from '../styles/GeneralStyles';
 Userfront.init('rbvr4mqb');
 
 export default function StartWorkout() {
-  const getExcercises = () => {
+  const [workout, setWorkout] = useState({});
+
+  const getWorkout = () => {
     axios({
       method: 'GET',
-      url: `${process.env.URL}/getAllExercises`,
+      url: `${process.env.URL}/getWorkout`,
       headers: {
         ContentType: 'application/json',
         // authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
+      params: {
+        workoutId: 1,
+      },
     })
-      .then((exercisesData) => console.log('get exercises: ', exercisesData))
+      .then((exercisesData) => setWorkout(exercisesData.data))
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    getExcercises();
+    getWorkout();
   }, []);
 
   return (
