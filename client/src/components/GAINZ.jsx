@@ -22,9 +22,9 @@ export default function GAINZ() {
         <Route path="/StartWorkout" element={<StartWorkout />} />
         <Route path="/UserLibrary" element={<UserLibrary />} />
       </Routes>
-      {/* <GS.Button>button</GS.Button>
+      <GS.Button>button</GS.Button>
       <GS.OutlinedBtn> outlined </GS.OutlinedBtn>
-      <LogoutButton /> */}
+      <LogoutButton />
     </GS.Background>
   );
 }
