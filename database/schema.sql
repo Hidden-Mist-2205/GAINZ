@@ -1,98 +1,92 @@
-CREATE TABLE "Users"(
-    "UserID" INTEGER NOT NULL,
-    "Name" TEXT NOT NULL,
-    "Email" TEXT NOT NULL,
-    "ZipCode" TEXT NOT NULL,
-    "PhoneNum" TEXT NOT NULL,
-    "AvatarURL" TEXT NULL
+CREATE TABLE "users"(
+    "user_id" INTEGER NOT NULL,
+    "user_name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "zip_code" TEXT NULL,
+    "phone_num" TEXT NULL,
+    "avatar_url" TEXT NULL,
+    "fitness_goal" TEXT NULL
 );
-CREATE INDEX "users_userid_index" ON
-    "Users"("UserID");
+CREATE INDEX "users_user_id_index" ON
+    "users"("user_id");
 ALTER TABLE
-    "Users" ADD PRIMARY KEY("UserID");
-CREATE TABLE "Workouts"(
-    "WorkoutID" INTEGER NOT NULL,
-    "Name" TEXT NOT NULL,
-    "Description" TEXT NOT NULL,
-    "VideoURL" TEXT NULL,
-    "CreatedBy" INTEGER NOT NULL,
-    "MainArea" TEXT NOT NULL,
-    "SecondaryArea" TEXT NULL
+    "users" ADD PRIMARY KEY("user_id");
+CREATE TABLE "workouts"(
+    "workout_id" SERIAL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "video_url" TEXT NULL,
+    "created_by" INTEGER NOT NULL,
+    "main_area" TEXT NOT NULL,
+    "secondary_area" TEXT NULL
 );
-CREATE INDEX "workouts_mainarea_index" ON
-    "Workouts"("MainArea");
-ALTER TABLE
-    "Workouts" ADD PRIMARY KEY("WorkoutID");
-CREATE TABLE "Exercises"(
-    "ExerciseID" INTEGER NOT NULL,
-    "Instruction" TEXT NULL,
-    "Area" TEXT NOT NULL,
-    "GIFURL" TEXT NULL,
-    "Equipment" TEXT NOT NULL
+CREATE INDEX "workouts_main_area_index" ON
+    "workouts"("main_area");
+CREATE INDEX "workouts_workout_id_index" ON
+    "workouts"("workout_id");
+CREATE TABLE "exercises"(
+    "exercise_id" SERIAL PRIMARY KEY,
+    "name" TEXT NOT NULL,
+    "area" TEXT NOT NULL,
+    "gif_url" TEXT NULL,
+    "equipment" TEXT NULL
 );
-CREATE INDEX "exercises_exerciseid_index" ON
-    "Exercises"("ExerciseID");
-ALTER TABLE
-    "Exercises" ADD PRIMARY KEY("ExerciseID");
-CREATE TABLE "User/Workout"(
-    "JoinID" INTEGER NOT NULL,
-    "UserID" INTEGER NOT NULL,
-    "WorkoutID" INTEGER NOT NULL,
-    "TimesCompleted" INTEGER NOT NULL,
-    "LastCompletion" TEXT NULL,
-    "Favorited" BOOLEAN NOT NULL
+CREATE INDEX "exercises_exercise_id_index" ON
+    "exercises"("exercise_id");
+CREATE TABLE "user_workout"(
+    "join_id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER NOT NULL,
+    "workout_id" INTEGER NOT NULL,
+    "times_completed" INTEGER NOT NULL,
+    "last_completion" TEXT NULL,
+    "is_favorited" BOOLEAN NOT NULL,
+    UNIQUE ("user_id", "workout_id")
 );
-CREATE INDEX "user/workout_userid_index" ON
-    "User/Workout"("UserID");
-ALTER TABLE
-    "User/Workout" ADD PRIMARY KEY("JoinID");
-CREATE TABLE "Steps"(
-    "StepID" INTEGER NOT NULL,
-    "StepNum" INTEGER NOT NULL,
-    "WorkoutID" INTEGER NOT NULL,
-    "ExerciseID" INTEGER NOT NULL,
-    "Reps" INTEGER NULL,
-    "Duration" INTEGER NULL,
-    "Unit" TEXT NOT NULL,
-    "Weight" INTEGER NULL,
-    "Distance" INTEGER NULL
+CREATE INDEX "user_workout_user_id_index" ON
+    "user_workout"("user_id");
+CREATE TABLE "steps"(
+    "step_id" SERIAL PRIMARY KEY,
+    "step_num" INTEGER NOT NULL,
+    "workout_id" INTEGER NOT NULL,
+    "exercise_id" INTEGER NOT NULL,
+    "reps" INTEGER NULL,
+    "duration" INTEGER NULL,
+    "unit" TEXT NULL,
+    "weight" INTEGER NULL,
+    "distance" INTEGER NULL
 );
-CREATE INDEX "steps_workoutid_index" ON
-    "Steps"("WorkoutID");
-ALTER TABLE
-    "Steps" ADD PRIMARY KEY("StepID");
-CREATE TABLE "AvailableDays"(
-    "id" INTEGER NOT NULL,
-    "UserID" INTEGER NOT NULL,
-    "Day" TEXT NOT NULL
+CREATE INDEX "steps_workout_id_index" ON
+    "steps"("workout_id");
+CREATE TABLE "available_days"(
+    "join_id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER NOT NULL,
+    "day" TEXT NOT NULL,
+    UNIQUE ("user_id", "day")
 );
-CREATE INDEX "availabledays_userid_index" ON
-    "AvailableDays"("UserID");
-ALTER TABLE
-    "AvailableDays" ADD PRIMARY KEY("id");
-CREATE TABLE "Users/Exercises"(
-    "JoinID" INTEGER NOT NULL,
-    "UserID" INTEGER NOT NULL,
-    "ExerciseID" INTEGER NOT NULL,
-    "Favorited" BOOLEAN NOT NULL
+CREATE INDEX "available_days_user_id_index" ON
+    "available_days"("user_id");
+CREATE TABLE "users_exercises"(
+    "join_id" SERIAL PRIMARY KEY,
+    "user_id" INTEGER NOT NULL,
+    "exercise_id" INTEGER NOT NULL,
+    "is_favorited" BOOLEAN NOT NULL,
+    UNIQUE ("user_id", "exercise_id")
 );
-CREATE INDEX "users/exercises_userid_index" ON
-    "Users/Exercises"("UserID");
+CREATE INDEX "users_exercises_user_id_index" ON
+    "users_exercises"("user_id");
 ALTER TABLE
-    "Users/Exercises" ADD PRIMARY KEY("JoinID");
+    "workouts" ADD CONSTRAINT "workouts_created_by_foreign" FOREIGN KEY("created_by") REFERENCES "users"("user_id");
 ALTER TABLE
-    "User/Workout" ADD CONSTRAINT "user/workout_userid_foreign" FOREIGN KEY("UserID") REFERENCES "Users"("UserID");
+    "steps" ADD CONSTRAINT "steps_exercise_id_foreign" FOREIGN KEY("exercise_id") REFERENCES "exercises"("exercise_id");
 ALTER TABLE
-    "AvailableDays" ADD CONSTRAINT "availabledays_userid_foreign" FOREIGN KEY("UserID") REFERENCES "Users"("UserID");
+    "user_workout" ADD CONSTRAINT "user_workout_user_id_foreign" FOREIGN KEY("user_id") REFERENCES "users"("user_id");
 ALTER TABLE
-    "Workouts" ADD CONSTRAINT "workouts_createdby_foreign" FOREIGN KEY("CreatedBy") REFERENCES "Users"("UserID");
+    "user_workout" ADD CONSTRAINT "user_workout_workout_id_foreign" FOREIGN KEY("workout_id") REFERENCES "workouts"("workout_id");
 ALTER TABLE
-    "Steps" ADD CONSTRAINT "steps_exerciseid_foreign" FOREIGN KEY("ExerciseID") REFERENCES "Exercises"("ExerciseID");
+    "steps" ADD CONSTRAINT "steps_workout_id_foreign" FOREIGN KEY("workout_id") REFERENCES "workouts"("workout_id");
 ALTER TABLE
-    "User/Workout" ADD CONSTRAINT "user/workout_workoutid_foreign" FOREIGN KEY("WorkoutID") REFERENCES "Workouts"("WorkoutID");
+    "available_days" ADD CONSTRAINT "available_days_user_id_foreign" FOREIGN KEY("user_id") REFERENCES "users"("user_id");
 ALTER TABLE
-    "Steps" ADD CONSTRAINT "steps_workoutid_foreign" FOREIGN KEY("WorkoutID") REFERENCES "Workouts"("WorkoutID");
+    "users_exercises" ADD CONSTRAINT "users_exercises_user_id_foreign" FOREIGN KEY("user_id") REFERENCES "users"("user_id");
 ALTER TABLE
-    "Users/Exercises" ADD CONSTRAINT "users/exercises_userid_foreign" FOREIGN KEY("UserID") REFERENCES "Users"("UserID");
-ALTER TABLE
-    "Users/Exercises" ADD CONSTRAINT "users/exercises_exerciseid_foreign" FOREIGN KEY("ExerciseID") REFERENCES "Exercises"("ExerciseID");
+    "users_exercises" ADD CONSTRAINT "users_exercises_exercise_id_foreign" FOREIGN KEY("exercise_id") REFERENCES "exercises"("exercise_id");
