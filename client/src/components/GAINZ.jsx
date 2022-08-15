@@ -11,7 +11,7 @@ import GS from './styles/GeneralStyles';
 // import StartWorkout from './StartWorkout/StartWorkout';
 // import UserLibrary from './UserLibrary/UserLibrary';
 
-const SamplePage = lazy(() => import('./Dashboard/SamplePage'));
+const Dashboard = lazy(() => import('./Dashboard/Dashboard'));
 const FindWorkoutBuddy = lazy(() => import('./FindWorkoutBuddy/FindWorkoutBuddy'));
 const MyGainz = lazy(() => import('./MyGainz/MyGainz'));
 const MyProfile = lazy(() => import('./MyProfile/MyProfile'));
@@ -24,7 +24,7 @@ export default function GAINZ() {
       <NavBar />
       <React.Suspense fallback={<span>Loading...</span>}>
         <Routes>
-          <Route path="/Dashboard" element={<SamplePage />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/FindWorkoutBuddy" element={<FindWorkoutBuddy />} />
           <Route path="/MyGainz" element={<MyGainz />} />
           <Route path="/MyProfile" element={<MyProfile />} />
@@ -32,9 +32,7 @@ export default function GAINZ() {
           <Route path="/UserLibrary" element={<UserLibrary />} />
         </Routes>
       </React.Suspense>
-      <GS.Button>button</GS.Button>
-      <GS.OutlinedBtn> outlined </GS.OutlinedBtn>
-      <LogoutButton />
+      {/* <LogoutButton /> */}
     </GS.Background>
   );
 }
