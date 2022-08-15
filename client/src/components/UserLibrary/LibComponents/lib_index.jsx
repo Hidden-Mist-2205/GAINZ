@@ -1,5 +1,3 @@
-export { default as ExerciseLibrary } from './ExerciseLibrary';
-export { default as WorkoutLibrary } from './WorkoutLibrary';
 export { default as PageHeader } from './PageHeader';
 export { default as PageHeading } from './PageHeading';
 export { default as SearchBar } from './SearchBar';

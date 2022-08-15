@@ -1,7 +1,15 @@
 import React from 'react';
 
-export default function PageList() {
+import PageListItem from './PageListItem';
+import PageListNav from './PageListNav';
+
+export default function PageList({ items }) {
   return (
-    <div>PageList</div>
+    <>
+      {items.map(exercise => (
+        <PageListItem data={exercise} key={exercise.id} />
+      ))}
+      <PageListNav />
+    </>
   );
 }
