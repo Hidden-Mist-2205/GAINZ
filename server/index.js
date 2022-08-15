@@ -27,6 +27,26 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
+  try {
+    const workout = await controllers.getWorkout(req.query.workoutId);
+    res.json(workout);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.get('/getAllWorkouts', /* authenticateToken, */ async (req, res) => {
+  try {
+    const workouts = await controllers.getAllWorkouts();
+    res.json(workouts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
 app.get('/getAllExercises', /* authenticateToken, */ async (req, res) => {
   try {
     const exercises = await controllers.getAllExercises();

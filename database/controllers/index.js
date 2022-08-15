@@ -4,15 +4,15 @@ module.exports = {
   async getUserData(userID) {
     const userData = await sql`
       SELECT
-      u."Name",
+      u.user_name,
       (SELECT array_agg(days)
       FROM (
-        SELECT ad."Day"
-        FROM "AvailableDays" ad
-        WHERE ad."UserID" = u."UserID") AS T(days)
-      ) AS "Days"
-      FROM "Users" u
-      WHERE "UserID" = ${userID}
+        SELECT ad.day
+        FROM available_days ad
+        WHERE ad.user_id = u.user_id) AS T(days)
+      ) AS days
+      FROM users u
+      WHERE user_id = ${userID}
     `;
     return userData[0];
   },
@@ -20,8 +20,8 @@ module.exports = {
     const workouts = await sql`
       SELECT
       *
-      FROM "Exercises"
-      ORDER BY "ExerciseID" ASC
+      FROM exercises
+      ORDER BY exercise_id ASC
     `;
     return workouts;
   },
@@ -31,8 +31,69 @@ module.exports = {
   async toggleFavoritedExercise(/* INFO */) {
     // TODO
   },
+  async getWorkout(workoutId) {
+    const workout = await sql`
+      SELECT
+      w.workout_id,
+      w."name",
+      w.description,
+      w.created_by,
+      w.main_area,
+      (SELECT json_agg(steps)
+        FROM (
+          SELECT
+          s.step_num,
+          s.reps,
+          s.unit,
+          s.weight,
+          (SELECT
+            e."name"
+            FROM exercises e
+            WHERE e.exercise_id = s.exercise_id),
+          (SELECT
+            e.gif_url
+            FROM exercises e
+            WHERE e.exercise_id = s.exercise_id)
+          FROM steps s
+          WHERE s.workout_id = w.workout_id
+          ) AS steps
+        ) AS steps
+      FROM workouts w
+      WHERE w.workout_id = ${workoutId}
+    `;
+    return workout[0];
+  },
   async getAllWorkouts() {
     // TODO
+    const workouts = await sql`
+      SELECT
+      w.workout_id,
+      w."name",
+      w.description,
+      w.created_by,
+      w.main_area,
+      (SELECT json_agg(steps)
+        FROM (
+          SELECT
+          s.step_num,
+          s.reps,
+          s.unit,
+          s.weight,
+          (SELECT
+            e."name"
+            FROM exercises e
+            WHERE e.exercise_id = s.exercise_id),
+          (SELECT
+            e.gif_url
+            FROM exercises e
+            WHERE e.exercise_id = s.exercise_id)
+          FROM steps s
+          WHERE s.workout_id = w.workout_id
+          ) AS steps
+        ) AS steps
+      FROM workouts w
+    `;
+    return workouts;
   },
   async addNewWorkout(/* INFO */) {
     // TODO
