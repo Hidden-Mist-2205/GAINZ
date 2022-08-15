@@ -8,6 +8,8 @@ Userfront.init('rbvr4mqb');
 
 export default function StartWorkout() {
   const [workout, setWorkout] = useState({});
+  const [steps, setSteps] = useState([]);
+  const [currStep, setCurrStep] = useState('');
 
   const getWorkout = () => {
     axios({
@@ -21,7 +23,11 @@ export default function StartWorkout() {
         workoutId: 1,
       },
     })
-      .then((exercisesData) => setWorkout(exercisesData.data))
+      .then((exercisesData) => {
+        setWorkout(exercisesData.data);
+        setSteps(exercisesData.data.steps);
+        setCurrStep(exercisesData.data.steps[0]);
+      })
       .catch((err) => console.error(err));
   };
 
@@ -36,15 +42,35 @@ export default function StartWorkout() {
         <GS.Button>End Session</GS.Button>
       </SW.FlexDiv>
       <SW.Container>
-        <SW.WorkoutName>Workout Name</SW.WorkoutName>
-        <SW.Description>Description</SW.Description>
+        <SW.WorkoutName>
+          {workout.name}
+        </SW.WorkoutName>
+        <SW.Description>
+          Target Area: &nbsp;
+          {workout.main_area}
+          <br />
+          {workout.description}
+        </SW.Description>
         <SW.FlexContainer>
-          <SW.InnerContainer>Video/GIF</SW.InnerContainer>
-          <SW.InnerContainer>Instructions</SW.InnerContainer>
+          <SW.InnerContainer>
+            TIMER
+          </SW.InnerContainer>
+          <SW.InnerContainer>
+            <SW.StepInstruction>
+              Step &nbsp;
+              {currStep.step_num}
+              &nbsp; ➣  &nbsp;
+              {currStep.name}
+            </SW.StepInstruction>
+            <SW.GIF src={currStep.gif_url} />
+          </SW.InnerContainer>
           <SW.ExerciseSelection>
-            <div>Exercise 1</div>
-            <div>Exercise 2</div>
-            <div>Exercise 3</div>
+            {steps.map((step) => (
+              <SW.Step key={step.step_num} onClick={() => setCurrStep(step)}>
+                Step
+                {step.step_num}
+              </SW.Step>
+            ))}
           </SW.ExerciseSelection>
         </SW.FlexContainer>
       </SW.Container>

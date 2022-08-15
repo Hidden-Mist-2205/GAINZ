@@ -15,10 +15,9 @@ const SW = {
     margin: auto;
     width: 80%;
     height: 70%;
-    /* height: fit-content; */
-    /* min-height: 50%; */
     background-color: #272727;
     background: rgba(217,217,217,0.15);
+    color: rgb(244 243 243 / 90%);
     padding: 20px;
     justify-content: center;
   `,
@@ -47,6 +46,15 @@ const SW = {
     margin: 40px 20px 40px 0px;
     padding: 40px 20px;
     background-color: #272727;
+    flex-direction: column;
+  `,
+  StepInstruction: styled.div`
+    width: 90%;
+    margin-bottom: 15px;
+  `,
+  GIF: styled.img`
+    width: 60%;
+    margin: auto;
   `,
   ExerciseSelection: styled.div`
     display: flex;
@@ -56,6 +64,17 @@ const SW = {
     padding: 40px 20px;
     flex-direction: column;
     background-color: #272727;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+  `,
+  Step: styled.div`
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
   `,
 };
 
