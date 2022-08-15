@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/getAllExercises', authenticateToken, async (req, res) => {
+app.get('/getAllExercises', /* authenticateToken, */ async (req, res) => {
   try {
     const exercises = await controllers.getAllExercises();
     res.json(exercises);
@@ -37,7 +37,7 @@ app.get('/getAllExercises', authenticateToken, async (req, res) => {
   }
 });
 
-app.get('/getUserInfo', async (req, res) => {
+app.get('/getUserInfo', /* authenticateToken, */ async (req, res) => {
   try {
     const userData = await controllers.getUserData(req.query.userID);
     res.json(userData);

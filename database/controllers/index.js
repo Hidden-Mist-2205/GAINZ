@@ -4,18 +4,16 @@ module.exports = {
   async getUserData(userID) {
     const userData = await sql`
       SELECT
-      *
+      u."Name",
+      (SELECT array_agg(days)
+      FROM (
+        SELECT ad."Day"
+        FROM "AvailableDays" ad
+        WHERE ad."UserID" = u."UserID") AS T(days)
+      ) AS "Days"
       FROM "Users" u
       WHERE "UserID" = ${userID}
     `;
-    const days = await sql`
-      SELECT
-      "Day"
-      FROM "AvailableDays" ad
-      WHERE ad."UserID" = ${userID}
-    `.values();
-    const extractedDays = days.map((item) => item[0]);
-    userData[0].daysAvailable = extractedDays;
     return userData[0];
   },
   async getAllExercises() {
@@ -41,7 +39,7 @@ module.exports = {
   },
   async deleteWorkout(/* INFO */) {
     // TODO
-    // Make sure workout to delete is created by logged-in user
+    // Make sure workout to delete was created by logged-in user
   },
   async getFavoritedWorkouts(/* INFO */) {
     // TODO
@@ -55,9 +53,12 @@ module.exports = {
   async getAvailableBuddies(/* INFO */) {
     // TODO
   },
+  async getAvailableDays(/* INFO */) {
+    // TODO
+  },
   async addAvailableDays(/* INFO */) {
     // TODO
-    // Can probanly check if it is an update for an existing user
+    // Can probably check if it is an update for an existing user
   },
   // Stretch?
   async addNewExercise(/* INFO */) {
