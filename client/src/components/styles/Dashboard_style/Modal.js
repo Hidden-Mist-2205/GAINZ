@@ -50,6 +50,7 @@ const M = {
     z-index: 10;
     border:none;
     background:none;
+    font-weight:bold;
     font-size: 25px;
     color: white;
     &:hover {
@@ -103,6 +104,9 @@ const M = {
   Option: styled.option`
     color: white;
     background: grey;
+    /* background: rgba(217, 217, 217, 0.15); */
+    width:;
+    height:100%;
   `,
 };
 export default M;

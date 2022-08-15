@@ -5,7 +5,7 @@ const DB = {
     position: absolute;
     width: 75%;
     min-width: 1445px;
-    min-height: 1445px;
+    min-height: 1050px;
     left: 65px;
     top: 108px;
   `,
@@ -13,6 +13,7 @@ const DB = {
     width: 100%;
     background: rgba(217, 217, 217, 0.15);
     max-height: 700px;
+    min-height:500px;
     border-radius:8px;
     overflow: auto;
     &::-webkit-scrollbar {
@@ -22,7 +23,7 @@ const DB = {
     }
   `,
   Header: styled.h1`
-    width: 750px;
+    width: 300px;
     height: 10%;
     margin-left: 1%;
     font-family: 'Montserrat';
@@ -32,7 +33,9 @@ const DB = {
     line-height: 72px;
     letter-spacing: -0.015em;
   `,
+
   WOHeader: styled.h3`
+    display: inline;
     width: 484px;
     height: 52px;
     margin-left: 35px;
@@ -88,7 +91,24 @@ const DB = {
     position: relative;
     left: 10%;
     top: 29%;
+    cursor: pointer;
+    &:hover {
+      text-shadow: 0 0 3px gold;
+    }
   `,
+  WOExName: styled.div`
+    display: inline-block;
+    width: 188px;
+    height: 36px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    position: relative;
+    left: 10%;
+    top: 29%;
+`,
   WOCategory: styled.div`
     display: inline-block;
     width: 188px;
@@ -114,6 +134,37 @@ const DB = {
     position: relative;
     left: 20%;
     top: 29%;
+  `,
+  NavBtn: styled.div`
+    float: right;
+    padding-bottom: 10px;
+  `,
+  Previous: styled.button`
+    font-size: 20px;
+    color: white;
+    border: none;
+    background:none;
+    margin-right: 60px;
+    display: inline;
+    font-weight:bold;
+    cursor: pointer;
+    &:hover {
+      text-shadow: 0 0 3px gold;
+    }
+  `,
+  Next: styled.button`
+    font-size: 20px;
+    color: white;
+    border: none;
+    background:none;
+    margin-right: 60px;
+    margin-bottom: 10px;
+    font-weight:bold;
+    display: inline;
+    cursor: pointer;
+    &:hover {
+      text-shadow: 0 0 3px gold;
+    }
   `,
 };
 export default DB;

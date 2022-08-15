@@ -4,6 +4,7 @@ import GS from '../styles/GeneralStyles';
 import Workout from './Workout/Workout';
 import Exercise from './Exercise/Exercise';
 import CreateWorkoutModal from './CreateWorkoutModal/CreateWorkoutModal';
+import M from '../styles/Dashboard_style/Modal';
 
 export default function Dashboard() {
   const [type, setType] = useState('Workout');
@@ -34,9 +35,12 @@ export default function Dashboard() {
             Create WorkOut
           </GS.OutlinedBtn>
         )}
-      <DB.WOHeader>Favorite Workout</DB.WOHeader>
+      <M.Column>
+        <DB.WOHeader>Favorite Workout</DB.WOHeader>
+        <DB.WOHeader>Favorite Exercise</DB.WOHeader>
+      </M.Column>
       {type === 'Workout' && <Workout />}
-      {type === 'Exercise' && <Exercise />}
+      {type === 'Exercise' && <Exercise handleModal={handleModal} />}
       {showModal && <CreateWorkoutModal handleModal={handleModal} />}
     </DB.Body>
   );

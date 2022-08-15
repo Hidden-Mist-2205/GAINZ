@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LogoutButton } from './Userfront/Userfront';
 import NavBar from './NavBar';
 import GS from './styles/GeneralStyles';
-import SamplePage from './Dashboard/SamplePage';
+import Dashboard from './Dashboard/Dashboard';
 import FindWorkoutBuddy from './FindWorkoutBuddy/FindWorkoutBuddy';
 import MyGainz from './MyGainz/MyGainz';
 import MyProfile from './MyProfile/MyProfile';
@@ -15,7 +15,7 @@ export default function GAINZ() {
     <GS.Background>
       <NavBar />
       <Routes>
-        <Route path="/Dashboard" element={<SamplePage />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/FindWorkoutBuddy" element={<FindWorkoutBuddy />} />
         <Route path="/MyGainz" element={<MyGainz />} />
         <Route path="/MyProfile" element={<MyProfile />} />

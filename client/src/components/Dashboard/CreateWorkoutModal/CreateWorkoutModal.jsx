@@ -1,24 +1,31 @@
 import React from 'react';
 import M from '../../styles/Dashboard_style/Modal';
+import DB from '../../styles/Dashboard_style/DB';
 import GS from '../../styles/GeneralStyles';
 
-export default function Dashboard({handleModal}) {
+export default function Dashboard({ handleModal }) {
   return (
     <M.Background>
       <M.PopUp>
         <M.Form>
+          <DB.Header style={{
+            color: 'white', 'padding-bottom': '20px', 'text-align': 'center', 'margin-top': '0px'
+          }}
+          >
+            Create Workout
+          </DB.Header>
           <M.Column>
             <M.Label>Category</M.Label>
             <M.Category
               name="Category"
             >
               <M.Option />
-              <M.Option>Butt Stuff</M.Option>
-              <M.Option>Chest</M.Option>
-              <M.Option>Back</M.Option>
-              <M.Option>Full Body</M.Option>
-              <M.Option>Upper Body</M.Option>
-              <M.Option>Leg</M.Option>
+              <M.Option>Butt  Stuff</M.Option>
+              <M.Option>Chest Stuff</M.Option>
+              <M.Option>Back Stuff</M.Option>
+              <M.Option>Full Body Stuff</M.Option>
+              <M.Option>Upper Body Stuff</M.Option>
+              <M.Option>Leg Stuff</M.Option>
             </M.Category>
           </M.Column>
           <M.Column>
