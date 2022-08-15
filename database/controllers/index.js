@@ -30,10 +30,7 @@ module.exports = {
   async getFavoritedExercises(/* INFO */) {
     // TODO
   },
-  async addFavoritedExercise(/* INFO */) {
-    // TODO
-  },
-  async removeFavoritedExercise(/* INFO */) {
+  async toggleFavoritedExercise(/* INFO */) {
     // TODO
   },
   async getAllWorkouts() {
@@ -49,10 +46,7 @@ module.exports = {
   async getFavoritedWorkouts(/* INFO */) {
     // TODO
   },
-  async addFavoritedWorkout(/* INFO */) {
-    // TODO
-  },
-  async removeFavoritedWorkout(/* INFO */) {
+  async toggleFavoritedWorkout(/* INFO */) {
     // TODO
   },
   async updateWorkoutCompletion(/* INFO */) {
