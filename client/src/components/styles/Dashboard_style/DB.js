@@ -1,20 +1,19 @@
 import styled from 'styled-components';
+import GS from '../GeneralStyles';
 
 const DB = {
   Body: styled.div`
-    position: absolute;
-    width: 75%;
-    min-width: 1445px;
-    min-height: 1050px;
-    left: 65px;
-    top: 108px;
+    margin-right: auto;
+    max-width: 1500px;
+    margin-left: auto;
   `,
   WOBody: styled.div`
     width: 100%;
+    border-top: solid #121212;
     background: rgba(217, 217, 217, 0.15);
     max-height: 700px;
     min-height:500px;
-    border-radius:8px;
+    border-radius:0 8px 8px 8px;
     overflow: auto;
     &::-webkit-scrollbar {
         width: 10px;
@@ -34,45 +33,44 @@ const DB = {
     letter-spacing: -0.015em;
   `,
 
-  WOHeader: styled.h3`
-    display: inline;
-    width: 484px;
-    height: 52px;
-    margin-left: 35px;
-    margin-bottom: 0;
-    padding-top:60px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    letter-spacing: -0.015em;
+  Tabs: styled(GS.OutlinedBtn)`
+    background: rgba(217, 217, 217, 0.15);
+    color: white;
+    min-width: 25%;
+    min-height: 70px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px 5px 0px 0px;
   `,
   WOPanel: styled.div`
     width: 100%;
     min-height: 100px;
     `,
   WOItem: styled.div`
+    display: flex;
     width: 95%;
     height: 100px;
     margin-top: 2%;
     margin-bottom: 2%;
     margin-right: auto;
-    margin-left: 60px;
-    border-radius:5px;
+    margin-left: auto;
+    border-radius: 5px;
     background-color: #272727;
+    -webkit-box-pack: start;
+    justify-content: center;
+    -webkit-align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
   `,
   WOStar: styled.span`
-    display: inline-block;
-    width: 20px;
+    width: 25px;
     height: 36px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 36px;
-    position: relative;
-    left: 5%;
-    top: 29%;
+    color: #F6BE00;
     border:none;
     cursor: pointer;
     &:hover {
@@ -80,7 +78,6 @@ const DB = {
     }
 `,
   WOName: styled.div`
-    display: inline-block;
     width: 188px;
     height: 36px;
     font-family: 'Montserrat';
@@ -88,16 +85,12 @@ const DB = {
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
-    position: relative;
-    left: 10%;
-    top: 29%;
     cursor: pointer;
     &:hover {
       text-shadow: 0 0 3px gold;
     }
   `,
   WOExName: styled.div`
-    display: inline-block;
     width: 188px;
     height: 36px;
     font-family: 'Montserrat';
@@ -105,12 +98,8 @@ const DB = {
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
-    position: relative;
-    left: 10%;
-    top: 29%;
 `,
   WOCategory: styled.div`
-    display: inline-block;
     width: 188px;
     height: 36px;
     font-family: 'Montserrat';
@@ -118,12 +107,8 @@ const DB = {
     font-weight: 700;
     font-size: 15px;
     line-height: 36px;
-    position: relative;
-    left: 17%;
-    top: 29%;
   `,
   WODescription: styled.div`
-    display: inline-block;
     width: 188px;
     height: 36px;
     font-family: 'Montserrat';
@@ -131,9 +116,6 @@ const DB = {
     font-weight: 700;
     font-size: 15px;
     line-height: 36px;
-    position: relative;
-    left: 20%;
-    top: 29%;
   `,
   NavBtn: styled.div`
     float: right;
