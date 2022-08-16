@@ -18,18 +18,6 @@ const MG = {
     padding-bottom: 10px;
     height: fit-content;
   `,
-  Header: styled.h1`
-    width: 300px;
-    height: 10%;
-    margin-left: 3%;
-    margin-top: 19px;
-    margin-bottom: 19px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 72px;
-    letter-spacing: -0.015em;
-  `,
   WOHeader: styled.h3`
   display: inline;
   width: 484px;

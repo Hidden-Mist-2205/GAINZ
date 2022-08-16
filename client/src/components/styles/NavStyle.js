@@ -7,6 +7,10 @@ const Nav = {
     height: 60px;
     background-color: #272727;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    border-bottom: 5px solid #121212;
   `,
   Logo: styled.div`
     position: relative;

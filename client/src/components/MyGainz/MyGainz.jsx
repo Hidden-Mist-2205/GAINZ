@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import Userfront from '@userfront/core';
 import axios from 'axios';
 import { pageState, completedWorkoutsState } from './workoutsAtom';
 import MG from '../styles/MyGainz_style/MG';
+import GS from '../styles/GeneralStyles';
 import Workout from './Workout';
 
 export default function MyGainz() {
@@ -10,8 +12,7 @@ export default function MyGainz() {
   const [completedWorkouts, setCompletedWorkouts] = useRecoilState(completedWorkoutsState);
 
   useEffect(() => {
-    const userID = 7;
-    axios.get(`getCompletedWorkouts?userID=${userID}`)
+    axios.get(`getCompletedWorkouts?userID=${Userfront.user.userId}`)
       .then((res) => {
         setCompletedWorkouts(res.data);
       })
@@ -45,7 +46,7 @@ export default function MyGainz() {
 
   return (
     <MG.Body>
-      <MG.Header>My Gainz</MG.Header>
+      <GS.PageHeader>My Gainz</GS.PageHeader>
       <MG.WOHeader>Completed Workouts</MG.WOHeader>
       <Workout />
       <MG.NavBtn>
