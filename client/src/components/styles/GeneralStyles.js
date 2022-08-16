@@ -12,7 +12,7 @@ const GS = {
   Button: styled.button`
     width: 12%;
     height: 52px;
-    min-width: 64px;
+    min-width: 120px;
     background-color: #AE3139;
     color: #ffffff;
     display: inline-flex;

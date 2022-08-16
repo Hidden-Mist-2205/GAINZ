@@ -17,7 +17,7 @@ module.exports = {
       FROM users u
       WHERE user_id = ${userID}
     `;
-    sql.end();
+    // sql.end();
     return userData[0];
   },
   async getAllExercises() {
@@ -27,7 +27,7 @@ module.exports = {
       FROM exercises
       ORDER BY exercise_id ASC
     `;
-    sql.end();
+    // sql.end();
     return workouts;
   },
   async getFavoritedExercises(/* INFO */) {
@@ -85,7 +85,7 @@ module.exports = {
     FROM workouts w
     WHERE w.workout_id = ${workoutId}
     `;
-    sql.end();
+    // sql.end();
     return workout[0];
   },
   async getAllWorkouts(userId) {
@@ -136,7 +136,7 @@ module.exports = {
         ) AS steps
       FROM workouts w
     `;
-    sql.end();
+    // sql.end();
     return workouts;
   },
   async addNewWorkout(/* INFO */) {
