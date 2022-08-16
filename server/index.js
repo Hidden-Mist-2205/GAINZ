@@ -68,6 +68,16 @@ app.get('/getUserInfo', /* authenticateToken, */ async (req, res) => {
   }
 });
 
+app.get('/getCompletedWorkouts', /* authenticateToken, */ async (req, res) => {
+  try {
+    const completedWorkouts = await controllers.getCompletedWorkouts(req.query.userID);
+    res.json(completedWorkouts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching completed workouts');
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
