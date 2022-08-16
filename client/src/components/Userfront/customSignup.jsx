@@ -67,35 +67,58 @@ export default function SignupForm() {
 
   return (
     <SU.WrapperDiv>
-      <h1>Sign Up for Gainz</h1>
+      <h1>Sign Up</h1>
       <SU.Form onSubmit={(e) => { createAccount(e); }}>
         <SU.InputDiv>
-          <SU.TextInput id="username" placeholder="Username" value={username} onChange={((e) => setUsername(e.target.value))} />
+          <label htmlFor="username">
+            Username
+            <SU.TextInput id="username" /*placeholder="Username"*/ value={username} onChange={((e) => setUsername(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="email" type="email" placeholder="email" value={email} onChange={((e) => setEmail(e.target.value))} />
+          <label htmlFor="email">
+            Email
+            <SU.TextInput id="email" type="email" /*placeholder="email"*/ value={email} onChange={((e) => setEmail(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="password" type="password" placeholder="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+          <label htmlFor="password">
+            Password
+            <SU.TextInput id="password" type="password" /*placeholder="password"*/ value={password} onChange={((e) => setPassword(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="zipcode" placeholder="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+          <label htmlFor="zipcode">
+            Zipcode
+            <SU.TextInput id="zipcode" /*placeholder="zipcode"*/ value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="phoneNum" type="tel" placeholder="Phone Number" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+          <label htmlFor="phoneNumber">
+            Phone Number
+            <SU.TextInput id="phoneNumber" type="tel" /*placeholder="Phone Number"*/ value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="fitnessGoal" type="textarea" placeholder="Your fitness goal" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+          <label htmlFor="fitnessGoal">
+            Your Fitness Goal
+            <SU.TextInput id="fitnessGoal" type="textarea" /*placeholder="Your fitness goal"*/ value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="zoomLink" placeholder="Personal Zoom Link" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
+          <label htmlFor="zoomLink">
+            Upload your Zoom Link
+            <SU.TextInput id="zoomLink" /*placeholder="Personal Zoom Link"*/ value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
         </SU.InputDiv>
         <SU.InputDiv>
-          <h3>Upload Your Profile Picture:</h3>
-          <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+          <label htmlFor="avatar">
+            Upload Your Profile Picture
+            <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+          </label>
         </SU.InputDiv>
         <GS.Button type="submit">Submit</GS.Button>
       </SU.Form>
