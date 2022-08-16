@@ -150,7 +150,31 @@ module.exports = {
     // TODO
   },
   async toggleFavoritedWorkout(/* INFO */) {
-    // TODO
+    //
+  },
+  async getCompletedWorkouts(userID) {
+    const completedWorkouts = await sql`
+      SELECT json_agg(json_build_object(
+        'user_id', uw.user_id,
+        'workout_id', uw.workout_id,
+        'favorited', uw.is_favorited,
+        'times_completed', uw.times_completed,
+        'last_completed', uw.last_completion,
+        'workout_name', (SELECT name FROM workouts WHERE workouts.workout_id = uw.workout_id),
+        'exercises', (
+          SELECT json_agg(json_build_object(
+            'name', (SELECT name FROM exercises e WHERE e.exercise_id = s.exercise_id),
+            'exercise_id', s.exercise_id,
+            'reps', s.reps,
+            'sets', s.sets
+          ))
+          FROM steps s
+          WHERE s.workout_id = uw.workout_id)
+      ))
+      FROM user_workout uw
+      WHERE uw.user_id = ${userID} AND times_completed > 0;
+    `;
+    return completedWorkouts[0].json_agg;
   },
   async updateWorkoutCompletion(/* INFO */) {
     // TODO

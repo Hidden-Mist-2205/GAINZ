@@ -3,22 +3,26 @@ import styled from 'styled-components';
 const MG = {
   Body: styled.div`
     margin-right: auto;
+    width: 90%
     max-width: 1500px;
     margin-left: auto;
   `,
   WOBody: styled.div`
-    width: 100%;
+    width: 85%;
+    min-width: 585px;
+    margin: 0 auto;
     border-top: solid #121212;
     background: rgba(217, 217, 217, 0.15);
-    height: 550px;
+    height: 525px;
     border-radius: 8px;
     overflow: scroll;
   `,
   Header: styled.h1`
     width: 300px;
     height: 10%;
-    margin-left: 1%;
-    font-family: 'Montserrat';
+    margin-left: 3%;
+    margin-top: 19px;
+    margin-bottom: 19px;
     font-style: normal;
     font-weight: 400;
     font-size: 48px;
@@ -29,10 +33,8 @@ const MG = {
   display: inline;
   width: 484px;
   height: 5%;
-  margin-left: 15px;
+  margin-left: 7.5%;
   margin-bottom: 0;
-  padding-top:60px;
-  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -61,7 +63,6 @@ const MG = {
   WOStar: styled.span`
     width: 25px;
     height: 36px;
-    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
@@ -74,9 +75,8 @@ const MG = {
     }
   `,
   WOName: styled.div`
-  width: 188px;
+  width: 27%;
   height: 36px;
-  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -85,33 +85,50 @@ const MG = {
   &:hover {
     text-shadow: 0 0 3px gold;
   }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   `,
-  WOExName: styled.div`
-    width: 188px;
-    height: 36px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 36px;
+  NoWorkouts: styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 36px;
+  padding-top: 225px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 36px;
+  `,
+  LibraryLink: styled.a`
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      text-shadow: 0 0 3px gold;
+    }
   `,
   WOTimesCompleted: styled.div`
-    width: 188px;
+    width: 18%;
     height: 36px;
-    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 17px;
     line-height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `,
   WOLastCompleted: styled.div`
-    width: 288px;
+    width: 26%;
     height: 36px;
-    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
     line-height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `,
   NavBtn: styled.div`
     float: right;
@@ -123,9 +140,9 @@ const MG = {
     color: white;
     border: none;
     background: #272727;
-    padding: 6px 32px 6px 32px;
+    padding: 5px 32px 5px 32px;
     border-radius: 10%;
-    margin-right: 60px;
+    margin-right: 10px;
     display: inline;
     font-weight:bold;
     cursor: pointer;
@@ -138,9 +155,9 @@ const MG = {
     color: white;
     border: none;
     background:none;
-    margin-right: 60px;
+    margin-right: 140px;
     background: #272727;
-    padding: 6px 32px 6px 32px;
+    padding: 5px 32px 5px 32px;
     border-radius: 10%;
     margin-bottom: 10px;
     font-weight:bold;
@@ -149,6 +166,10 @@ const MG = {
     &:hover {
       text-shadow: 0 0 3px gold;
     }
+  `,
+  Page: styled.span`
+    display: inline;
+    margin-right: 10px;
   `,
 };
 
