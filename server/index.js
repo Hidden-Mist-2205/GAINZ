@@ -14,7 +14,9 @@ function authenticateToken(req, res, next) {
   const token = authHeader && authHeader.split(' ')[1];
   if (token == null) return res.sendStatus(401);
 
-  const USERFRONT_PUBLIC_KEY = atob(process.env.USERFRONT_PUBLIC_KEY_B64);
+  // const USERFRONT_PUBLIC_KEY = atob(process.env.USERFRONT_PUBLIC_KEY_B64);
+  const buffer = new Buffer(process.env.USERFRONT_PUBLIC_KEY_B64, 'base64');
+  const USERFRONT_PUBLIC_KEY = buffer.toString('ascii');
   // eslint-disable-next-line consistent-return
   jwt.verify(token, USERFRONT_PUBLIC_KEY, (err, auth) => {
     if (err) return res.sendStatus(403);
@@ -58,7 +60,7 @@ app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getAllWorkouts', /* authenticateToken, */ async (req, res) => {
+app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
   try {
     const workouts = await controllers.getAllWorkouts(req.query.userId);
     res.json(workouts);
@@ -68,9 +70,11 @@ app.get('/getAllWorkouts', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getAllExercises', /* authenticateToken, */ async (req, res) => {
+app.get('/getAllExercises', authenticateToken, async (req, res) => {
   try {
-    const exercises = await controllers.getAllExercises();
+    const { count, limit } = req.query;
+    console.log(count, limit);
+    const exercises = await controllers.getAllExercises(count, limit);
     res.json(exercises);
   } catch (error) {
     console.error(error);
@@ -78,7 +82,7 @@ app.get('/getAllExercises', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getUserInfo', /* authenticateToken, */ async (req, res) => {
+app.get('/getUserInfo', authenticateToken, async (req, res) => {
   try {
     const userData = await controllers.getUserData(req.query.userID);
     res.json(userData);
@@ -87,8 +91,57 @@ app.get('/getUserInfo', /* authenticateToken, */ async (req, res) => {
     res.status(500).send('Error fetching data');
   }
 });
+app.get('/favoritedWorkouts', async (req, res) => {
+  try {
+    const favoriteData = await controllers.getFavoritedWorkouts(req.query);
+    res.json(favoriteData);
+  } catch (error) {
+    console.error(error);
+  }
+});
+app.post('/addNewWorkout', async (req, res) => {
+  // console.log(req.body);
+  try {
+    const createWorkout = await controllers.addNewWorkout(req.body);
+    const workoutId = createWorkout[0].workout_id;
+    const createUserWorkout = await controllers.addUserWorkout(req.body, workoutId);
+    req.body.steps.forEach(async (step, index) => {
+      const createSteps = await controllers.addSteps(step, workoutId, index);
+    });
+    res.status(201).send();
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error Posting Data');
+  }
+});
+app.delete('/deleteWorkout', async (req, res) => {
+  try {
+    const deleteWorkout = await controllers.deleteWorkout(req.query);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error Deleting Data');
+  }
+});
+app.put('/favoriteWorkout', async (req, res) => {
+  try {
+    const favorited = await controllers.toggleFavoritedWorkout(req.query);
+    res.status(204).send('Favorited');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error updating data');
+  }
+});
+app.put('/favoriteExercise', async (req, res) => {
+  try {
+    const favorited = await controllers.toggleFavoritedExercise(req.query);
+    res.status(204).send('Favorited');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error updating data');
+  }
+});
 
-app.get('/getCompletedWorkouts', /* authenticateToken, */ async (req, res) => {
+app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
   try {
     const completedWorkouts = await controllers.getCompletedWorkouts(req.query.userID);
     res.json(completedWorkouts);

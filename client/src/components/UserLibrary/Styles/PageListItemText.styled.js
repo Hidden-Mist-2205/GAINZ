@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const PageListItemText = styled.div`
-    width: 188px;
-    height: 36px;
 `;
 
 export const ListItemText = styled.p`

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 Userfront.init('rbvr4mqb');
 
-// Headers needed for Userfront to work
 async function getWorkouts() {
   const data = await axios.get('/getAllWorkouts', {
     headers: {
@@ -11,19 +10,17 @@ async function getWorkouts() {
       authorization: `Bearer ${Userfront.tokens.accessToken}`,
     },
   });
-
   return data;
 }
 
-async function otherRequest() {
-  const data = await axios.get('/getAllWorkouts', {
+async function getExercises() {
+  const data = await axios.get('/getAllExercises', {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${Userfront.tokens.accessToken}`,
     },
   });
-
   return data;
 }
 
-export { getWorkouts, otherRequest };
+export { getWorkouts, getExercises };
