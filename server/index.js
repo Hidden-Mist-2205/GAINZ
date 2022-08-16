@@ -14,7 +14,9 @@ function authenticateToken(req, res, next) {
   const token = authHeader && authHeader.split(' ')[1];
   if (token == null) return res.sendStatus(401);
 
-  const USERFRONT_PUBLIC_KEY = atob(process.env.USERFRONT_PUBLIC_KEY_B64);
+  // const USERFRONT_PUBLIC_KEY = atob(process.env.USERFRONT_PUBLIC_KEY_B64);
+  const buffer = new Buffer(process.env.USERFRONT_PUBLIC_KEY_B64, 'base64');
+  const USERFRONT_PUBLIC_KEY = buffer.toString('ascii');
   // eslint-disable-next-line consistent-return
   jwt.verify(token, USERFRONT_PUBLIC_KEY, (err, auth) => {
     if (err) return res.sendStatus(403);
@@ -28,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
+app.get('/getWorkout', authenticateToken, async (req, res) => {
   try {
     const workout = await controllers.getWorkout(req.query.workoutId, req.query.userId);
     res.json(workout);
@@ -38,7 +40,7 @@ app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getAllWorkouts', /* authenticateToken, */ async (req, res) => {
+app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
   try {
     const workouts = await controllers.getAllWorkouts(req.query.userId);
     res.json(workouts);
@@ -48,7 +50,7 @@ app.get('/getAllWorkouts', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getAllExercises', /* authenticateToken, */ async (req, res) => {
+app.get('/getAllExercises', authenticateToken, async (req, res) => {
   try {
     const exercises = await controllers.getAllExercises();
     res.json(exercises);
@@ -58,7 +60,7 @@ app.get('/getAllExercises', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getUserInfo', /* authenticateToken, */ async (req, res) => {
+app.get('/getUserInfo', authenticateToken, async (req, res) => {
   try {
     const userData = await controllers.getUserData(req.query.userID);
     res.json(userData);
@@ -68,7 +70,7 @@ app.get('/getUserInfo', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getCompletedWorkouts', /* authenticateToken, */ async (req, res) => {
+app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
   try {
     const completedWorkouts = await controllers.getCompletedWorkouts(req.query.userID);
     res.json(completedWorkouts);
