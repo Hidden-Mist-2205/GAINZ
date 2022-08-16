@@ -5,6 +5,7 @@ import SW from '../styles/StartWorkout_style/SW';
 import GS from '../styles/GeneralStyles';
 import CountDownTimer from './CountDownTimer';
 import StepsInstruction from './StepsInstruction';
+import currentWorkoutIDState from '../currentWorkoutAtom';
 
 Userfront.init('rbvr4mqb');
 
@@ -35,6 +36,7 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
+    console.log('currworkoutID: ', currentWorkoutIDState);
     getWorkout();
   }, []);
 
