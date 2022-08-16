@@ -1,8 +1,20 @@
 const { sql } = require('..');
 
 module.exports = {
-  async addNewUser(/* INFO */) {
-    // TODO
+  async addNewUser(usr) {
+    const user = await sql`
+    insert into users
+      (user_id, user_name, email, zip_code, phone_num, avatar_url, fitness_goal, zoom_profile)
+    values
+      (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.avatar}, ${usr.goal}, ${usr.zoom})
+    returning user_id
+  `;
+    await usr.days.forEach(async (day) => {
+      await sql`
+
+      `;
+    });
+    return user;
   },
   async getUserData(userID) {
     const userData = await sql`

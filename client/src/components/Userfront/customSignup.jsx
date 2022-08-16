@@ -41,28 +41,31 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
-
     try {
       const picture = await uploadImageHandler(avatar);
-    } catch (err) {
-      console.log('There was an error uploading picture: ', err);
-    }
-
-    try {
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
         email: email,
         password: password,
       });
+      await Axios({
+        method: 'POST',
+        url: '/postUser',
+        data: {
+          userId: signup.userId,
+          username: username,
+          email: email,
+          zip: zipcode,
+          phoneNumber: phoneNum,
+          avatar: picture,
+          goal: fitnessGoal,
+          zoom: zoomLink,
+          days: daysAvailable,
+        },
+      });
     } catch (err) {
-      console.log('There was an error uploading to Userbase: ', err);
-    }
-
-    try {
-      //Upload to the DB here
-    } catch {
-      //Catch error here
+      console.log('There was an error posting to the db: ', err);
     }
   }
 
@@ -131,6 +134,7 @@ export default function SignupForm() {
   );
 }
 
+// Creates array of available days
 function AvailableDays({ daysAvailable, setDaysAvailable }) {
   function handleChange(e) {
     if (e.target.checked) {
