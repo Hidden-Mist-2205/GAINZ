@@ -42,9 +42,9 @@ const SW = {
   InnerContainer: styled.div`
     display: flex;
     width: 40%;
-    height: 65%;
+    height: 75%;
     margin: 40px 20px 40px 0px;
-    padding: 40px 20px;
+    padding: 20px 20px;
     background-color: #272727;
     flex-direction: column;
   `,

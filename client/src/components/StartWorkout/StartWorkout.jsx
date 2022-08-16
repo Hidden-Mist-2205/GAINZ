@@ -54,6 +54,7 @@ export default function StartWorkout() {
         <SW.FlexContainer>
           <SW.InnerContainer>
             TIMER
+            <GS.Button>Next</GS.Button>
           </SW.InnerContainer>
           <SW.InnerContainer>
             <SW.StepInstruction>
@@ -61,6 +62,9 @@ export default function StartWorkout() {
               {currStep.step_num}
               &nbsp; ➣  &nbsp;
               {currStep.name}
+              <br />
+              Reps: &nbsp;
+              {currStep.reps}
             </SW.StepInstruction>
             <SW.GIF src={currStep.gif_url} />
           </SW.InnerContainer>
