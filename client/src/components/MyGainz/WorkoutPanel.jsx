@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 import MG from '../styles/MyGainz_style/MG';
 import GS from '../styles/GeneralStyles';
 import ExercisePanel from './ExercisePanel';
+import currentWorkoutIDState from '../currentWorkoutAtom';
 
 export default function WorkoutPanel({ workout }) {
   const [favorite, setFavorite] = useState(workout.favorited);
   const [showExercises, setShowExercises] = useState(false);
+  const setCurrentWorkoutID = useSetRecoilState(currentWorkoutIDState);
 
   const handleFavorite = (e) => {
     e.preventDefault();
@@ -21,8 +24,8 @@ export default function WorkoutPanel({ workout }) {
 
   const navigate = useNavigate();
   const routeChange = () => {
-    // change path to add workout ID
     const path = '/StartWorkout';
+    setCurrentWorkoutID(workout.workout_id);
     navigate(path);
   };
 
