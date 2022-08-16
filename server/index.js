@@ -71,7 +71,6 @@ app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
 });
 
 app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
-  console.log(req)
   try {
     const workouts = await controllers.getAllWorkouts(req.query.userId);
     res.json(workouts);
