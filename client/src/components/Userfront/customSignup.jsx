@@ -29,7 +29,7 @@ export default function SignupForm() {
     });
 
     const converted = await toBase64(imageFile);
-    await Axios({
+    return Axios({
       method: 'post',
       url: 'https://api.cloudinary.com/v1_1/alpinefec/image/upload',
       data: {
@@ -41,8 +41,15 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
+    let picture;
     try {
-      const picture = await uploadImageHandler(avatar);
+      picture = await uploadImageHandler(avatar);
+      console.log('This is pictures....', picture);
+    } catch (err) {
+      console.log('There was an error uploading a picture: ', err);
+    }
+    try {
+      console.log('pictures inside next try catch', picture);
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
@@ -65,7 +72,7 @@ export default function SignupForm() {
         },
       });
     } catch (err) {
-      console.log('There was an error posting to the db: ', err);
+      console.log('There was an error with usefront or your server: ', err);
     }
   }
 
