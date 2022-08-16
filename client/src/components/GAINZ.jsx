@@ -14,7 +14,7 @@ import GS from './styles/GeneralStyles';
 const Dashboard = lazy(() => import('./Dashboard/Dashboard'));
 const FindWorkoutBuddy = lazy(() => import('./FindWorkoutBuddy/FindWorkoutBuddy'));
 const MyGainz = lazy(() => import('./MyGainz/MyGainz'));
-const MyProfile = lazy(() => import('./MyProfile/MyProfile'));
+const Profile = lazy(() => import('./Profile/Profile'));
 const StartWorkout = lazy(() => import('./StartWorkout/StartWorkout'));
 const ExerciseLibrary = lazy(() => import('./UserLibrary/ExerciseLibrary'));
 const WorkoutLibrary = lazy(() => import('./UserLibrary/WorkoutLibrary'));
@@ -28,7 +28,7 @@ export default function GAINZ() {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/FindWorkoutBuddy" element={<FindWorkoutBuddy />} />
           <Route path="/MyGainz" element={<MyGainz />} />
-          <Route path="/MyProfile" element={<MyProfile />} />
+          <Route path="/Profile" element={<Profile />} />
           <Route path="/StartWorkout" element={<StartWorkout />} />
           <Route path="/ExerciseLibrary" element={<ExerciseLibrary />} />
           <Route path="/WorkoutLibrary" element={<WorkoutLibrary />} />

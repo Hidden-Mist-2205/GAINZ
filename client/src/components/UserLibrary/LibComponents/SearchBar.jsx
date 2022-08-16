@@ -1,17 +1,13 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
 
-import { exerciseSearchState } from '../atoms';
-
-export default function SearchBar() {
-  const [searchInput, setSearchInput] = useRecoilState(exerciseSearchState);
+export default function SearchBar({ controlledValue, changeHandler }) {
   return (
     <input
       type="text"
       placeholder="Search"
       className="searchBar"
-      value={searchInput}
-      onChange={(e) => setSearchInput(e.target.value)}
+      value={controlledValue}
+      onChange={(e) => changeHandler(e.target.value)}
     />
   );
 }
