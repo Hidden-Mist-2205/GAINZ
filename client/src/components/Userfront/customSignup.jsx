@@ -41,15 +41,14 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
-    let picture;
+    // let picture;
+    // try {
+    //   picture = await uploadImageHandler(avatar);
+    //   console.log('This is pictures....', picture);
+    // } catch (err) {
+    //   console.log('There was an error uploading a picture: ', err);
+    // }
     try {
-      picture = await uploadImageHandler(avatar);
-      console.log('This is pictures....', picture);
-    } catch (err) {
-      console.log('There was an error uploading a picture: ', err);
-    }
-    try {
-      console.log('pictures inside next try catch', picture);
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
@@ -65,7 +64,7 @@ export default function SignupForm() {
           email: email,
           zip: zipcode,
           phoneNumber: phoneNum,
-          avatar: picture,
+          // avatar: picture,
           goal: fitnessGoal,
           zoom: zoomLink,
           days: daysAvailable,
