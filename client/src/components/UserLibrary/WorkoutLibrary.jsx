@@ -18,9 +18,11 @@ export default function WorkoutLibrary() {
   const searchWorkouts = (searchInput) => { console.log(searchInput); };
 
   return (
-    <PageContainer>
+    <>
       <PageHeader page="Workout Library" searchFunction={searchWorkouts} />
-      <PageList items={workouts} actionButton="Start Workout" />
-    </PageContainer>
+      <PageContainer>
+        <PageList items={workouts} actionButton="Start Workout" />
+      </PageContainer>
+    </>
   );
 }
