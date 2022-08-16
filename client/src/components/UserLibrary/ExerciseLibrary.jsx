@@ -46,9 +46,11 @@ export default function ExerciseLibraryPage() {
   const searchExercises = (searchInput) => { console.log(searchInput); };
 
   return (
-    <PageContainer>
+    <>
       <PageHeader page="Exercise Library" searchFunction={searchExercises} />
-      <PageList items={exercises} actionButton={null} />
-    </PageContainer>
+      <PageContainer>
+        <PageList items={exercises} actionButton={null} />
+      </PageContainer>
+    </>
   );
 }

@@ -18,9 +18,11 @@ export default function FindWorkoutBuddy() {
   const searchBuddies = (searchInput) => { console.log(searchInput); };
 
   return (
-    <PageContainer>
+    <>
       <PageHeader page="Find Workout Buddy" searchFunction={searchBuddies} />
-      <PageList items={buddies} actionButton="Request Info" />
-    </PageContainer>
+      <PageContainer>
+        <PageList items={buddies} actionButton="Request Info" />
+      </PageContainer>
+    </>
   );
 }

@@ -3,6 +3,8 @@ import React from 'react';
 import PageListItem from './PageListItem';
 import PageListNav from './PageListNav';
 
+import MG from '../../styles/MyGainz_style/MG';
+
 export default function PageList({ items, actionButton }) {
   return (
     <>
