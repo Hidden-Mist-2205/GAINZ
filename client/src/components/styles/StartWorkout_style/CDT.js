@@ -7,6 +7,7 @@ const CDT = {
     justify-content: space-between;
   `,
   TimerContainer: styled.div`
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
   `,

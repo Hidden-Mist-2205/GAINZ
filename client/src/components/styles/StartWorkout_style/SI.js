@@ -4,7 +4,7 @@ const SI = {
   Header: styled.h4`
     display: flex;
     width: 100%;
-    margin: 0 0 15px 0;
+    margin: 0 0 30px 0;
     color: #aaa;
     align-items: center;
     justify-content: space-between;

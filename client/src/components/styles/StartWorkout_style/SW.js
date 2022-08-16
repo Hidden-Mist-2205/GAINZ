@@ -25,13 +25,15 @@ const SW = {
     width: 90%;
     color: #ffffff;
   `,
-  Description: styled.div`
+  Description: styled.h4`
     display: flex;
     margin: auto;
     width: 90%;
     height: 10%;
-    padding: 40px 20px;
+    padding: 20px 20px;
     background-color: #272727;
+    align-items: center;
+    justify-content: center;
   `,
   FlexContainer: styled.div`
     display: flex;
@@ -42,7 +44,7 @@ const SW = {
   InnerContainer: styled.div`
     display: flex;
     width: 40%;
-    height: 75%;
+    height: 85%;
     margin: 40px 20px 40px 0px;
     padding: 20px 20px;
     background-color: #272727;
@@ -59,7 +61,7 @@ const SW = {
   ExerciseSelection: styled.div`
     display: flex;
     width: 10%;
-    height: 65%;
+    height: 75%;
     margin: 40px 0 40px 0;
     padding: 40px 20px;
     flex-direction: column;
