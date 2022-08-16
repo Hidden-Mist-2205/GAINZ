@@ -4,7 +4,7 @@ import SI from '../styles/StartWorkout_style/SI';
 export default function StepsInstruction({ currStep }) {
   return (
     <>
-      <SI.Instruction>
+      <SI.Header>
         <SI.H4>
           Step &nbsp;
           {currStep.step_num}
@@ -13,7 +13,7 @@ export default function StepsInstruction({ currStep }) {
           &nbsp; ✕ &nbsp;
           {currStep.reps}
         </SI.H4>
-      </SI.Instruction>
+      </SI.Header>
       <SI.GIF src={currStep.gif_url} />
     </>
   );

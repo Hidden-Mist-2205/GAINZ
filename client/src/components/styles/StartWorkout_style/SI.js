@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
 const SI = {
-  Instruction: styled.div`
+  Header: styled.h4`
     display: flex;
     width: 100%;
-    margin-bottom: 15px;
+    margin: 0 0 15px 0;
+    color: #aaa;
+    align-items: center;
+    justify-content: space-between;
   `,
   H4: styled.h4`
     margin-block: 0;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.7
+    }
   `,
   GIF: styled.img`
     width: 60%;
