@@ -118,7 +118,7 @@ export default function SignupForm() {
         <SU.InputDiv>
           <label htmlFor="avatar">
             Upload Your Profile Picture
-            <SU.TextInput required id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+            <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
           </label>
         </SU.InputDiv>
         <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
