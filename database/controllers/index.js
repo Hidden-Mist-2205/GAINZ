@@ -30,12 +30,6 @@ module.exports = {
     // sql.end();
     return workouts;
   },
-  async getFavoritedExercises(/* INFO */) {
-    // TODO
-  },
-  async toggleFavoritedExercise(/* INFO */) {
-    // TODO
-  },
   async getWorkout(workoutId, userId) {
     const workout = await sql`
     SELECT
@@ -256,8 +250,19 @@ module.exports = {
     SET is_favorited = ${info.toggle}
     `;
   },
-  async toggleFavoritedExercise(/* INFO */) {
-    //
+  async toggleFavoritedExercise(info) {
+    const toggleFav = await sql`
+    INSERT INTO users_exercises (
+      user_id,
+      exercise_id,
+      is_favorited
+    ) VALUES (
+      ${info.userId},
+      ${info.exerciseId},
+      true
+    ) ON CONFLICT (user_id, exercise_id) DO UPDATE
+    SET is_favorited = ${info.toggle}
+    `;
   },
   async getCompletedWorkouts(userID) {
     const completedWorkouts = await sql`
