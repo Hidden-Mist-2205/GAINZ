@@ -4,16 +4,21 @@ const GS = {
   Background: styled.div`
     width: 100vw;
     height: 100vh;
-    /* max-width: 1680px; */
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-family: "Trebuchet MS","Roboto","Arial",sans-serif;
     z-index: 0;
     background-color: #121212;
+    color: #ffffff;
+  `,
+  PageHeader: styled.h1`
+    margin: 20px 0;
+    padding: 30px 7%;
+    font-size: 40px;
     color: #ffffff;
   `,
   Button: styled.button`
     width: 12%;
     height: 52px;
-    min-width: 64px;
+    min-width: 120px;
     background-color: #AE3139;
     color: #ffffff;
     display: inline-flex;

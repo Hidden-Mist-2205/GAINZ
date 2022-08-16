@@ -6,8 +6,10 @@ import {
   useLocation,
 } from 'react-router-dom';
 
+import SignupForm from './customSignup';
+
 import {
-  SignupForm,
+  // SignupForm,
   LoginForm,
   PasswordResetForm,
 } from './Userfront.js';

@@ -7,6 +7,7 @@ const controllers = require('../database/controllers');
 const app = express();
 
 // auth middleware for Userfront
+// eslint-disable-next-line consistent-return
 function authenticateToken(req, res, next) {
   // eslint-disable-next-line dot-notation
   const authHeader = req.headers['authorization'];
@@ -29,7 +30,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
   try {
-    const workout = await controllers.getWorkout(req.query.workoutId);
+    const workout = await controllers.getWorkout(req.query.workoutId, req.query.userId);
     res.json(workout);
   } catch (error) {
     console.error(error);
@@ -39,7 +40,7 @@ app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
 
 app.get('/getAllWorkouts', /* authenticateToken, */ async (req, res) => {
   try {
-    const workouts = await controllers.getAllWorkouts();
+    const workouts = await controllers.getAllWorkouts(req.query.userId);
     res.json(workouts);
   } catch (error) {
     console.error(error);
@@ -115,6 +116,16 @@ app.put('/favoriteExercise', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Error updating data');
+  }
+});
+
+app.get('/getCompletedWorkouts', /* authenticateToken, */ async (req, res) => {
+  try {
+    const completedWorkouts = await controllers.getCompletedWorkouts(req.query.userID);
+    res.json(completedWorkouts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching completed workouts');
   }
 });
 

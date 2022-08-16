@@ -6,6 +6,10 @@
   "author": "Team Hidden Mist",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@userfront/core": "^0.4.4",
     "@userfront/react": "^0.3.1",
     "axios": "^0.24.0",
@@ -17,6 +21,7 @@
     "pg-hstore": "^2.3.4",
     "postgres": "^3.2.4",
     "react": "^18.2.0",
+    "react-countdown-circle-timer": "^3.0.9",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.5",

@@ -1,18 +1,26 @@
 import Userfront from '@userfront/react';
 import axios from 'axios';
 
-Userfront.init('XXX');
+Userfront.init('rbvr4mqb');
 
-// Headers needed for Userfront to work
-async function sampleReq() {
-  const res = await axios.get('/endpoint', {
+async function getWorkouts() {
+  const data = await axios.get('/getAllWorkouts', {
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${Userfront.tokens.accessToken}`,
     },
   });
-
-  console.log(res);
+  return data;
 }
 
-export { sampleReq };
+async function getExercises() {
+  const data = await axios.get('/getAllExercises', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${Userfront.tokens.accessToken}`,
+    },
+  });
+  return data;
+}
+
+export { getWorkouts, getExercises };
