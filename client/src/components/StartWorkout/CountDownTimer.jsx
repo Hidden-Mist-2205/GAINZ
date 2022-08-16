@@ -6,10 +6,10 @@ import GS from '../styles/GeneralStyles';
 import SI from '../styles/StartWorkout_style/SI';
 import CDT from '../styles/StartWorkout_style/CDT';
 
-export default function CountDownTimer({ currStep, setCurrStep, totalSteps }) {
+export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [countDownTime, setCountDownTime] = useState(90);
-  const [key, setKey] = useState(0)
+  const [key, setKey] = useState(0);
 
   const formatRemainingTime = (time) => {
     const minutes = Math.floor((time % 3600) / 60);
@@ -33,8 +33,9 @@ export default function CountDownTimer({ currStep, setCurrStep, totalSteps }) {
   };
 
   const OnClickNextStep = () => {
-    if (currStep < totalSteps) {
-      setCurrStep(currStep + 1);
+    const totalSteps = steps.length;
+    if (currStepNum < totalSteps) {
+      setCurrStep(steps[currStepNum]);
     }
   };
 

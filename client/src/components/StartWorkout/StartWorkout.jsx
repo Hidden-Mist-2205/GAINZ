@@ -58,9 +58,9 @@ export default function StartWorkout() {
         <SW.FlexContainer>
           <SW.InnerContainer>
             <CountDownTimer
-              currStep={currStep}
+              currStepNum={currStep.step_num}
               setCurrStep={setCurrStep}
-              totalSteps={steps.length}
+              steps={steps}
             />
           </SW.InnerContainer>
           <SW.InnerContainer>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const SI = {
-  Header: styled.h4`
+  Header: styled.div`
     display: flex;
     width: 100%;
     margin: 0 0 30px 0;
