@@ -98,7 +98,7 @@ const MG = {
   padding-top: 225px;
   font-style: normal;
   font-weight: 500;
-  font-size: 34px;
+  font-size: 32px;
   line-height: 36px;
   `,
   LibraryLink: styled.a`

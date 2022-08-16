@@ -1,13 +1,24 @@
-import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import axios from 'axios';
 import { pageState, completedWorkoutsState } from './workoutsAtom';
 import MG from '../styles/MyGainz_style/MG';
 import Workout from './Workout';
 
 export default function MyGainz() {
   const [page, setPage] = useRecoilState(pageState);
-  // Query for all completed workouts for a given user, and set to recoil state below
-  const completedWorkouts = useRecoilValue(completedWorkoutsState);
+  const [completedWorkouts, setCompletedWorkouts] = useRecoilState(completedWorkoutsState);
+  useEffect(() => {
+    const userID = 1;
+    axios.get(`getCompletedWorkouts?userID=${userID}`)
+      .then((res) => {
+        setCompletedWorkouts(res.data);
+      })
+      .catch((err) => {
+        console.error('error getting workouts: ', err);
+      });
+  }, []);
+
   const handlePrevious = (e) => {
     e.preventDefault();
     if (page.page === 1) {

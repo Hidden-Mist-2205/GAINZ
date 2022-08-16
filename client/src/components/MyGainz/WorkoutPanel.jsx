@@ -32,16 +32,16 @@ export default function WorkoutPanel({ workout }) {
         {favorite
           ? <MG.WOStar onClick={handleFavorite}>&#9734;</MG.WOStar>
           : <MG.WOStar onClick={handleFavorite}>&#9733;</MG.WOStar>}
-        <MG.WOName onClick={handleExercisePanel}>{workout.Name}</MG.WOName>
+        <MG.WOName onClick={handleExercisePanel}>{workout.workout_name}</MG.WOName>
         <MG.WOTimesCompleted>
-          {workout.TimesCompleted === 1
-            ? `Completed ${workout.TimesCompleted} time`
-            : `Completed ${workout.TimesCompleted} times`}
+          {workout.times_completed === 1
+            ? `Completed ${workout.times_completed} time`
+            : `Completed ${workout.times_completed} times`}
         </MG.WOTimesCompleted>
-        <MG.WOLastCompleted>{`Last completed on: ${workout.LastCompleted}`}</MG.WOLastCompleted>
+        <MG.WOLastCompleted>{`Last completed on: ${workout.last_completed}`}</MG.WOLastCompleted>
         <GS.Button onClick={routeChange}>START</GS.Button>
       </MG.WOItem>
-      {showExercises && <ExercisePanel />}
+      {showExercises && <ExercisePanel exercises={workout.exercises} />}
     </MG.WOPanel>
   );
 }
