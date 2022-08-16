@@ -23,7 +23,7 @@ export default function StartWorkout() {
       },
       params: {
         userId: 1,
-        workoutId: 1,
+        workoutId: 2,
       },
     })
       .then((exercisesData) => {
