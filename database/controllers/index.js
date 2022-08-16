@@ -67,7 +67,7 @@ module.exports = {
     // TODO
     const workouts = await sql`
       SELECT
-      w.workout_id,
+      w.workout_id as id,
       w."name",
       w.description,
       w.created_by,
