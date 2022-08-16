@@ -2,8 +2,8 @@ import React from 'react';
 
 import GS from '../../styles/GeneralStyles';
 
-export default function StartWorkoutButton() {
+export default function ActionButton({ text }) {
   return (
-    <GS.Button>Start</GS.Button>
+    <GS.Button>{text}</GS.Button>
   );
 }
