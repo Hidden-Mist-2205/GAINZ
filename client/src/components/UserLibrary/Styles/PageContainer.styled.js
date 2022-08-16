@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const PageContainer = styled.div`
-    margin-right: auto;
-    max-width: 1500px;
-    margin-left: auto;
+    background-color: rgba(217,217,217,0.15);
+    border-radius: 10px;
+    padding: 16px
 `;
 
 export default PageContainer;
