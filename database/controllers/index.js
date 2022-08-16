@@ -1,6 +1,9 @@
 const { sql } = require('..');
 
 module.exports = {
+  async addNewUser(/* INFO */) {
+    // TODO
+  },
   async getUserData(userID) {
     const userData = await sql`
       SELECT
@@ -14,6 +17,7 @@ module.exports = {
       FROM users u
       WHERE user_id = ${userID}
     `;
+    sql.end();
     return userData[0];
   },
   async getAllExercises() {
@@ -23,6 +27,7 @@ module.exports = {
       FROM exercises
       ORDER BY exercise_id ASC
     `;
+    sql.end();
     return workouts;
   },
   async getFavoritedExercises(/* INFO */) {
@@ -31,54 +36,92 @@ module.exports = {
   async toggleFavoritedExercise(/* INFO */) {
     // TODO
   },
-  async getWorkout(workoutId) {
+  async getWorkout(workoutId, userId) {
     const workout = await sql`
-      SELECT
-      w.workout_id,
-      w."name",
-      w.description,
-      w.created_by,
-      w.main_area,
-      (SELECT json_agg(steps)
-        FROM (
-          SELECT
-          s.step_num,
-          s.reps,
-          s.unit,
-          s.weight,
-          (SELECT
-            e."name"
-            FROM exercises e
-            WHERE e.exercise_id = s.exercise_id),
-          (SELECT
-            e.gif_url
-            FROM exercises e
-            WHERE e.exercise_id = s.exercise_id)
-          FROM steps s
-          WHERE s.workout_id = w.workout_id
-          ) AS steps
+    SELECT
+    w.workout_id AS id,
+    w."name",
+    w.description,
+    w.created_by,
+    w.main_area,
+    w.secondary_area,
+    (SELECT
+      uw.times_completed
+      FROM user_workout uw
+      WHERE uw.workout_id = w.workout_id
+      AND uw.user_id = ${userId}),
+    (SELECT
+      uw.last_completion
+      FROM user_workout uw
+      WHERE uw.workout_id = w.workout_id
+      AND uw.user_id = ${userId}),
+    (SELECT
+      uw.is_favorited
+      FROM user_workout uw
+      WHERE uw.workout_id = w.workout_id
+      AND uw.user_id = ${userId}),
+    (SELECT json_agg(steps)
+      FROM (
+        SELECT
+        s.step_id AS id,
+        s.step_num,
+        s.reps,
+        s.unit,
+        s.weight,
+        s.distance,
+        s.duration,
+        (SELECT
+          e."name"
+          FROM exercises e
+          WHERE e.exercise_id = s.exercise_id),
+        (SELECT
+          e.gif_url
+          FROM exercises e
+          WHERE e.exercise_id = s.exercise_id)
+        FROM steps s
+        WHERE s.workout_id = w.workout_id
         ) AS steps
-      FROM workouts w
-      WHERE w.workout_id = ${workoutId}
+      ) AS steps
+    FROM workouts w
+    WHERE w.workout_id = ${workoutId}
     `;
+    sql.end();
     return workout[0];
   },
-  async getAllWorkouts() {
-    // TODO
+  async getAllWorkouts(userId) {
     const workouts = await sql`
       SELECT
-      w.workout_id,
+      w.workout_id AS id,
       w."name",
       w.description,
       w.created_by,
       w.main_area,
+      w.secondary_area,
+      (SELECT
+        uw.times_completed
+        FROM user_workout uw
+        WHERE uw.workout_id = w.workout_id
+        AND uw.user_id = ${userId}),
+      (SELECT
+        uw.last_completion
+        FROM user_workout uw
+        WHERE uw.workout_id = w.workout_id
+        AND uw.user_id = ${userId}),
+      (SELECT
+        uw.is_favorited
+        FROM user_workout uw
+        WHERE uw.workout_id = w.workout_id
+        AND uw.user_id = ${userId}),
       (SELECT json_agg(steps)
         FROM (
           SELECT
+          s.step_id AS id,
           s.step_num,
           s.reps,
           s.unit,
           s.weight,
+          s.distance,
+          s.duration,
           (SELECT
             e."name"
             FROM exercises e
@@ -93,6 +136,7 @@ module.exports = {
         ) AS steps
       FROM workouts w
     `;
+    sql.end();
     return workouts;
   },
   async addNewWorkout(/* INFO */) {
