@@ -28,6 +28,26 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+app.get('/addAvailableDays', /* authenticateToken, */ async (req, res) => {
+  try {
+    const availableDays = await controllers.addAvailableDays(req.query.userId, JSON.parse(req.query.days));
+    res.json(availableDays);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.get('/getAvailableDays', /* authenticateToken, */ async (req, res) => {
+  try {
+    const availableDays = await controllers.getAvailableDays(req.query.userId);
+    res.json(availableDays);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
 app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
   try {
     const workout = await controllers.getWorkout(req.query.workoutId, req.query.userId);
