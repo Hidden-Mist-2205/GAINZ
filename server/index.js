@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
   try {
-    const workout = await controllers.getWorkout(req.query.workoutId);
+    const workout = await controllers.getWorkout(req.query.workoutId, req.query.userId);
     res.json(workout);
   } catch (error) {
     console.error(error);
@@ -39,7 +39,7 @@ app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
 
 app.get('/getAllWorkouts', /* authenticateToken, */ async (req, res) => {
   try {
-    const workouts = await controllers.getAllWorkouts();
+    const workouts = await controllers.getAllWorkouts(req.query.userId);
     res.json(workouts);
   } catch (error) {
     console.error(error);
