@@ -56,7 +56,6 @@ export default function StartWorkout() {
         </SW.Description>
         <SW.FlexContainer>
           <SW.InnerContainer>
-            TIMER
             <CountDownTimer />
             <GS.Button>Next</GS.Button>
           </SW.InnerContainer>

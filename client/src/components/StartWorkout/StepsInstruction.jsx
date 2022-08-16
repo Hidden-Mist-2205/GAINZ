@@ -10,8 +10,7 @@ export default function StepsInstruction({ currStep }) {
           {currStep.step_num}
           &nbsp; ➣  &nbsp;
           {currStep.name}
-          <br />
-          Reps: &nbsp;
+          &nbsp; ✕ &nbsp;
           {currStep.reps}
         </SI.H4>
       </SI.Instruction>

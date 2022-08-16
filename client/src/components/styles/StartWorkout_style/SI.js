@@ -3,9 +3,8 @@ import styled from 'styled-components';
 const SI = {
   Instruction: styled.div`
     display: flex;
-    width: 90%;
+    width: 100%;
     margin-bottom: 15px;
-    padding-left: 10%;
   `,
   H4: styled.h4`
     margin-block: 0;
