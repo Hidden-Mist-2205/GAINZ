@@ -42,7 +42,7 @@ export default function StartWorkout() {
 
   return (
     <>
-      <SW.Header>Start Workout 🥊</SW.Header>
+      <GS.PageHeader>Start Workout 🥊</GS.PageHeader>
       <SW.FlexDiv>
         <GS.Button>End Session</GS.Button>
       </SW.FlexDiv>

@@ -4,9 +4,15 @@ const GS = {
   Background: styled.div`
     width: 100vw;
     height: 100vh;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-family: "Trebuchet MS","Roboto","Arial",sans-serif;
     z-index: 0;
     background-color: #121212;
+    color: #ffffff;
+  `,
+  PageHeader: styled.h1`
+    margin: 20px 0;
+    padding: 30px 7%;
+    font-size: 40px;
     color: #ffffff;
   `,
   Button: styled.button`
