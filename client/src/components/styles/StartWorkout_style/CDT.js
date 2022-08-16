@@ -22,6 +22,7 @@ const CDT = {
   `,
   TimerValue: styled.div`
     font-size: 40px;
+    color: inherit;
   `,
   Setup: styled.div`
     display: flex;
@@ -46,6 +47,9 @@ const CDT = {
     cursor: pointer;
     padding: 10px 30px;
     font-size: 20px;
+    &:hover {
+      opacity: 0.7;
+    }
   `,
   ButtonRow: styled.div`
     display: flex;

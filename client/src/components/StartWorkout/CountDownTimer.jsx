@@ -33,6 +33,10 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
   };
 
   const OnClickNextStep = () => {
+    setIsPlaying(false);
+    setCountDownTime(countDownTime);
+    setKey(prevKey => prevKey + 1);
+
     const totalSteps = steps.length;
     if (currStepNum < totalSteps) {
       setCurrStep(steps[currStepNum]);
@@ -42,8 +46,8 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
   return (
     <>
       <SI.Header>
-        <SI.H4> Countdown Timer /</SI.H4>
-        <SI.H4 style={{ paddingRight: '20%' }}> Timer</SI.H4>
+        <SI.H4> Countdown Timer </SI.H4>
+        {/* <SI.H4 style={{ paddingRight: '20%' }}> Timer</SI.H4> */}
         <CDT.ButtonRow>
           <GS.Button
             onClick={OnClickNextStep}
@@ -53,6 +57,7 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
           </GS.Button>
         </CDT.ButtonRow>
       </SI.Header>
+
       <CDT.TimerContainer>
         <CountdownCircleTimer
           key={key}
@@ -63,7 +68,7 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
           onComplete={() => {
             setTimeout(() => setKey(prevKey => prevKey + 1), 5000);
             setIsPlaying(false);
-            return { shouldRepeat: true, delay: 5, newInitialRemainingTime: countDownTime };
+            return { shouldRepeat: true, delay: 5 };
           }}
         >
           {renderTime}
@@ -71,7 +76,6 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
       </CDT.TimerContainer>
 
       <CDT.Setup>
-
         <CDT.FlexRow>
           <CDT.TextDiv>Count Down</CDT.TextDiv>
           <CDT.TimeInput placeholder="#" onChange={(e) => setCountDownTime(e.target.value)} />
@@ -81,30 +85,28 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
         <CDT.FlexRow>
           <CDT.Controller>
             <FontAwesomeIcon
-              onClick={() => setIsPlaying(false)}
               icon={faCirclePause}
+              onClick={() => setIsPlaying(false)}
             />
           </CDT.Controller>
           <CDT.Controller>
             <FontAwesomeIcon
-              onClick={() => {
-                setIsPlaying(true);
-              }}
               icon={faPlay}
+              onClick={() => setIsPlaying(true)}
             />
           </CDT.Controller>
           <CDT.Controller>
             <FontAwesomeIcon
+              icon={faCircleStop}
               onClick={() => {
                 setIsPlaying(false);
-                setCountDownTime(0);
                 setCountDownTime(countDownTime);
                 setKey(prevKey => prevKey + 1);
               }}
-              icon={faCircleStop}
             />
           </CDT.Controller>
         </CDT.FlexRow>
+
       </CDT.Setup>
     </>
   );

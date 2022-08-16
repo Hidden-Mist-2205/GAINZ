@@ -19,6 +19,7 @@ const SI = {
   `,
   GIF: styled.img`
     width: 60%;
+    max-width: 280px;
     margin: auto;
   `,
   ExerciseSelection: styled.div`
