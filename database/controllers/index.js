@@ -95,18 +95,126 @@ module.exports = {
     `;
     return workouts;
   },
-  async addNewWorkout(/* INFO */) {
-    // TODO
+  async addNewWorkout(info) {
+    const insertWorkout = await sql`
+    INSERT INTO workouts (
+      "name",
+      description,
+      video_url,
+      created_by,
+      main_area,
+      secondary_area
+    ) VALUES (
+      ${info.name},
+      ${info.description},
+      ${info.videoUrl},
+      ${info.userId},
+      ${info.mainArea},
+      ${info.secondArea}
+    ) RETURNING workout_id`;
+    return insertWorkout;
   },
-  async deleteWorkout(/* INFO */) {
-    // TODO
-    // Make sure workout to delete was created by logged-in user
+  async addUserWorkout(info, workoutId) {
+    const insertUserWorkout = await sql`
+    INSERT INTO user_workout (
+      user_id,
+      workout_id,
+      times_completed,
+      is_favorited
+    ) VALUES (
+      ${info.userId},
+      ${workoutId},
+      0,
+      true
+    )`;
   },
-  async getFavoritedWorkouts(/* INFO */) {
-    // TODO
+  async addSteps(info, workoutId, index) {
+    const insertSteps = await sql`
+    INSERT INTO steps (
+      step_num,
+      workout_id,
+      exercise_id,
+      reps,
+      "sets"
+    ) VALUES (
+      ${index},
+      ${workoutId},
+      ${info.exerciseId},
+      ${info.reps},
+      ${info.sets}
+    )
+    `;
   },
-  async toggleFavoritedWorkout(/* INFO */) {
-    // TODO
+  async deleteWorkout(info) {
+    const workout = await sql`
+    DELETE FROM workouts WHERE workout_id = ${info.workoutId}
+    `;
+    const steps = await sql`
+    DELETE FROM steps WHERE workout_id = ${info.workoutId}
+    `;
+    const userWorkout = await sql`
+    DELETE FROM user_workout WHERE workout_id = ${info.workoutId} AND user_Id = ${info.userId}
+    `;
+  },
+  async getFavoritedWorkouts(info) {
+    const favoritedWorkout = await sql`
+    SELECT
+    w.workout_id AS workoutId,
+    w."name",
+    description,
+    created_by,
+    main_area,
+    (SELECT json_agg(step)
+    FROM (
+      SELECT
+      s.step_num,
+      s.reps,
+      s.unit,
+      s.weight,
+      (SELECT
+        e."name"
+      FROM exercises e
+      WHERE e.exercise_id = s.exercise_id),
+      (SELECT
+        e.gif_url
+      FROM exercises e
+      WHERE e.exercise_id = s.exercise_id)
+      FROM steps s
+      ) AS step
+    ) AS Steps
+  FROM
+  workouts w
+  LEFT JOIN
+  user_workout uw
+  ON w.workout_id = uw.workout_id
+  WHERE uw.is_favorited = true AND uw.user_id = ${info.userId}
+  `;
+    return favoritedWorkout;
+  },
+  async getFavoritedExercise(info) {
+    const favoritedExercise = await sql`
+
+    `;
+  },
+  async toggleFavoritedWorkout(info) {
+    const toggleFav = await sql`
+    INSERT INTO user_workout (
+      user_id,
+      workout_id,
+      times_completed,
+      is_favorited
+    ) VALUES (
+      ${info.userId},
+      ${info.workoutId},
+      0,
+      true
+    ) ON CONFLICT (user_id, workout_id) DO UPDATE
+    SET is_favorited = ${info.toggle}
+    `;
+  },
+  async toggleFavoritedExercise(info) {
+    const toggleFav = await sql`
+    `;
   },
   async updateWorkoutCompletion(/* INFO */) {
     // TODO
