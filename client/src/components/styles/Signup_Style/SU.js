@@ -20,6 +20,7 @@ const SU = {
   width: 100%;
   margin: 5px;
   display: block;
+  font-weight: 200;
   `,
   WrapperDiv: styled.div`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
@@ -39,6 +40,13 @@ const SU = {
   CheckBoxDiv: styled.div`
   display: flex;
   flex-direction: row;
+  `,
+  FormBottom: styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: center;
+  padding: 5px;
   `,
 };
 

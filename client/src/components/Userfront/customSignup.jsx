@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Userfront from '@userfront/react';
 import Axios from 'axios';
 import GS from '../styles/GeneralStyles';
@@ -72,43 +73,43 @@ export default function SignupForm() {
         <SU.InputDiv>
           <label htmlFor="username">
             Username
-            <SU.TextInput id="username" /*placeholder="Username"*/ value={username} onChange={((e) => setUsername(e.target.value))} />
+            <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
           </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <label htmlFor="email">
             Email
-            <SU.TextInput id="email" type="email" /*placeholder="email"*/ value={email} onChange={((e) => setEmail(e.target.value))} />
+            <SU.TextInput required id="email" type="email" value={email} onChange={((e) => setEmail(e.target.value))} />
           </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <label htmlFor="password">
             Password
-            <SU.TextInput id="password" type="password" /*placeholder="password"*/ value={password} onChange={((e) => setPassword(e.target.value))} />
+            <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
           </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <label htmlFor="zipcode">
             Zipcode
-            <SU.TextInput id="zipcode" /*placeholder="zipcode"*/ value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+            <SU.TextInput required id="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
           </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <label htmlFor="phoneNumber">
             Phone Number
-            <SU.TextInput id="phoneNumber" type="tel" /*placeholder="Phone Number"*/ value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+            <SU.TextInput required id="phoneNumber" type="tel" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
           </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <label htmlFor="fitnessGoal">
             Your Fitness Goal
-            <SU.TextInput id="fitnessGoal" type="textarea" /*placeholder="Your fitness goal"*/ value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+            <SU.TextInput required id="fitnessGoal" type="textarea" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
           </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <label htmlFor="zoomLink">
             Upload your Zoom Link
-            <SU.TextInput id="zoomLink" /*placeholder="Personal Zoom Link"*/ value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
+            <SU.TextInput required id="zoomLink" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
           </label>
         </SU.InputDiv>
         <SU.InputDiv>
@@ -117,11 +118,15 @@ export default function SignupForm() {
         <SU.InputDiv>
           <label htmlFor="avatar">
             Upload Your Profile Picture
-            <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+            <SU.TextInput required id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
           </label>
         </SU.InputDiv>
-        <GS.Button type="submit">Submit</GS.Button>
+        <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
       </SU.Form>
+      <SU.FormBottom>
+        <Link to="/login">Login</Link>
+        <Link to="/password-reset">Forgot Password?</Link>
+      </SU.FormBottom>
     </SU.WrapperDiv>
   );
 }
