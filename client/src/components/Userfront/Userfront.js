@@ -2,9 +2,9 @@ import Userfront from '@userfront/react';
 
 Userfront.init('rbvr4mqb');
 
-const SignupForm = Userfront.build({
-  toolId: 'onrbao',
-});
+// const SignupForm = Userfront.build({
+//   toolId: 'onrbao',
+// });
 
 const LoginForm = Userfront.build({
   toolId: 'dbkodk',
@@ -19,7 +19,7 @@ const LogoutButton = Userfront.build({
 });
 
 export {
-  SignupForm,
+  // SignupForm,
   LoginForm,
   PasswordResetForm,
   LogoutButton,
