@@ -91,7 +91,7 @@ module.exports = {
   async getAllWorkouts(userId) {
     const workouts = await sql`
       SELECT
-      w.workout_id AS id,
+      w.workout_id as id,
       w."name",
       w.description,
       w.created_by,

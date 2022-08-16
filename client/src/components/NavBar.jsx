@@ -15,8 +15,11 @@ export default function NavBar() {
         <Nav.MenuItem to="/MyGainz">
           My Gainz
         </Nav.MenuItem>
-        <Nav.MenuItem to="/UserLibrary">
-          Library
+        <Nav.MenuItem to="/ExerciseLibrary">
+          Exercise Library
+        </Nav.MenuItem>
+        <Nav.MenuItem to="/WorkoutLibrary">
+          Workout Library
         </Nav.MenuItem>
         <Nav.MenuItem to="/FindWorkoutBuddy">
           Find Workout Buddy
