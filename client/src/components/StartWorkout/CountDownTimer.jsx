@@ -47,7 +47,6 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
     <>
       <SI.Header>
         <SI.H4> Countdown Timer </SI.H4>
-        {/* <SI.H4 style={{ paddingRight: '20%' }}> Timer</SI.H4> */}
         <CDT.ButtonRow>
           <GS.Button
             onClick={OnClickNextStep}
