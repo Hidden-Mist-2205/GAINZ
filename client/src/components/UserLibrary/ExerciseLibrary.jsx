@@ -4,10 +4,10 @@ import PageHeader from './LibComponents/PageHeader';
 import PageList from './LibComponents/PageList';
 import PageContainer from './Styles/PageContainer.styled';
 
-import { getWorkouts } from '../../requests/requests.js';
+import { getWorkouts } from '../../requests/requests';
 
 export default function ExerciseLibraryPage() {
-  const exercises = [
+  const mockData = [
     {
       id: 1,
       name: 'Exercise Name',
@@ -33,10 +33,17 @@ export default function ExerciseLibraryPage() {
       favorited: 'false',
     },
   ];
+  const [exercises, setExercises] = useState([]);
+
+  useEffect(() => {
+    setExercises(mockData);
+  }, []);
+
+  const searchExercises = (searchInput) => {};
 
   return (
     <PageContainer>
-      <PageHeader page="Exercise" />
+      <PageHeader page="Exercise Library" searchFunction={searchExercises} />
       <PageList items={exercises} />
     </PageContainer>
   );
