@@ -15,7 +15,7 @@ function authenticateToken(req, res, next) {
   if (token == null) return res.sendStatus(401);
 
   // const USERFRONT_PUBLIC_KEY = atob(process.env.USERFRONT_PUBLIC_KEY_B64);
-  const buffer = new Buffer(process.env.USERFRONT_PUBLIC_KEY_B64, 'base64');
+  const buffer = Buffer.from(process.env.USERFRONT_PUBLIC_KEY_B64, 'base64');
   const USERFRONT_PUBLIC_KEY = buffer.toString('ascii');
   // eslint-disable-next-line consistent-return
   jwt.verify(token, USERFRONT_PUBLIC_KEY, (err, auth) => {
@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/getWorkout', authenticateToken, async (req, res) => {
   try {
-    const workout = await controllers.getWorkout(req.query.workoutId, req.query.userId);
+    const workout = await controllers.getWorkout(req.query.workoutId, req.auth.userId);
     res.json(workout);
   } catch (error) {
     console.error(error);
@@ -42,9 +42,9 @@ app.get('/getWorkout', authenticateToken, async (req, res) => {
 
 app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
   try {
-    const workouts = await controllers.getAllWorkouts(req.query.userId);
+    const workouts = await controllers.getAllWorkouts(req.auth.userId);
     res.json(workouts);
-  } catch (error) {
+  } catch (error) {gi
     console.error(error);
     res.status(500).send('Error fetching data');
   }
@@ -62,7 +62,7 @@ app.get('/getAllExercises', authenticateToken, async (req, res) => {
 
 app.get('/getUserInfo', authenticateToken, async (req, res) => {
   try {
-    const userData = await controllers.getUserData(req.query.userID);
+    const userData = await controllers.getUserData(req.auth.userId);
     res.json(userData);
   } catch (error) {
     console.error(error);
@@ -72,7 +72,7 @@ app.get('/getUserInfo', authenticateToken, async (req, res) => {
 
 app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
   try {
-    const completedWorkouts = await controllers.getCompletedWorkouts(req.query.userID);
+    const completedWorkouts = await controllers.getCompletedWorkouts(req.auth.userId);
     res.json(completedWorkouts);
   } catch (error) {
     console.error(error);
