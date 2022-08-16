@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import Userfront from '@userfront/core';
+import axios from 'axios';
 import MG from '../styles/MyGainz_style/MG';
 import GS from '../styles/GeneralStyles';
 import ExercisePanel from './ExercisePanel';
@@ -14,7 +16,20 @@ export default function WorkoutPanel({ workout }) {
   const handleFavorite = (e) => {
     e.preventDefault();
     // put request to update favorited value, or delete row from Users/Workouts table?
-    setFavorite(!favorite);
+    axios.put(`/favoriteWorkout?userId=${Userfront.user.userId}&workoutId=${workout.workout_id}&toggle=${workout.favorited}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
+      },
+    })
+      .then((res) => {
+        console.log('here: ', res.data);
+        setFavorite(!favorite);
+      })
+      .catch((err) => {
+        console.log('error');
+        console.error('error toggling favorite workout: ', err);
+      });
   };
 
   const handleExercisePanel = (e) => {
