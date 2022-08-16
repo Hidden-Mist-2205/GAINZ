@@ -30,7 +30,37 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/getWorkout', authenticateToken, async (req, res) => {
+app.get('/getAvailableBuddies', /* authenticateToken, */ async (req, res) => {
+  try {
+    const buddies = await controllers.getAvailableBuddies(req.query.userId);
+    res.json(buddies);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.post('/addAvailableDays', /* authenticateToken, */ async (req, res) => {
+  try {
+    const availableDays = await controllers.addAvailableDays(req.query.userId, req.body);
+    res.json(availableDays);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.get('/getAvailableDays', /* authenticateToken, */ async (req, res) => {
+  try {
+    const availableDays = await controllers.getAvailableDays(req.query.userId);
+    res.json(availableDays);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
   try {
     const workout = await controllers.getWorkout(req.query.workoutId, req.query.userId);
     res.json(workout);
@@ -80,7 +110,6 @@ app.get('/favoritedWorkouts', async (req, res) => {
   }
 });
 app.post('/addNewWorkout', async (req, res) => {
-  // console.log(req.body);
   try {
     const createWorkout = await controllers.addNewWorkout(req.body);
     const workoutId = createWorkout[0].workout_id;

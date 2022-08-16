@@ -291,15 +291,66 @@ module.exports = {
   async updateWorkoutCompletion(/* INFO */) {
     // TODO
   },
-  async getAvailableBuddies(/* INFO */) {
+  async getAvailableBuddies(userID, requestedDay, userZipcode) {
     // TODO
+    if (userZipcode) {
+      const buddies = await sql`
+        SELECT
+        ad.user_id,
+        u.user_name,
+        u.avatar_url,
+        u.zip_code,
+        u.fitness_goal
+        FROM available_days ad
+        INNER JOIN users u
+        ON ad.user_id = u.user_id
+        WHERE ad.day = ${requestedDay}
+        AND u.zip_code = ${userZipcode}
+        AND NOT ad.user_id = ${userID}
+      `;
+      return buddies;
+    }
+    const buddies = await sql`
+      SELECT
+      ad.user_id,
+      u.user_name,
+      u.avatar_url,
+      u.zip_code,
+      u.fitness_goal
+      FROM available_days ad
+      INNER JOIN users u
+      ON ad.user_id = u.user_id
+      WHERE ad.day = ${requestedDay}
+      AND NOT ad.user_id = ${userID}
+    `;
+    return buddies;
   },
-  async getAvailableDays(/* INFO */) {
+  async getAvailableDays(userID) {
     // TODO
+    const availableDays = await sql`
+    SELECT array_agg(days)
+    FROM (
+      SELECT ad.day
+      FROM available_days ad
+      WHERE ad.user_id = ${userID}) AS T(days)
+    `;
+    return availableDays[0].array_agg;
   },
-  async addAvailableDays(/* INFO */) {
+  async addAvailableDays(userID, days) {
     // TODO
     // Can probably check if it is an update for an existing user
+    await sql`
+      DELETE
+      FROM available_days ad
+      WHERE ad.user_id = ${userID}
+    `;
+    for (let i = 0; i < days.length; i++) {
+      await sql`
+        INSERT INTO available_days(user_id, day)
+        VALUES(${userID}, ${days[i]})
+      `;
+    }
+    return 'Days Added';
   },
   // Stretch?
   async addNewExercise(/* INFO */) {
