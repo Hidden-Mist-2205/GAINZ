@@ -99,9 +99,18 @@ app.delete('/deleteWorkout', async (req, res) => {
     res.status(500).send('Error Deleting Data');
   }
 });
-app.put('/favorite', async (req, res) => {
+app.put('/favoriteWorkout', async (req, res) => {
   try {
     const favorited = await controllers.toggleFavoritedWorkout(req.query);
+    res.status(204).send('Favorited');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error updating data');
+  }
+});
+app.put('/favoriteExercise', async (req, res) => {
+  try {
+    const favorited = await controllers.toggleFavoritedExercise(req.query);
     res.status(204).send('Favorited');
   } catch (error) {
     console.error(error);

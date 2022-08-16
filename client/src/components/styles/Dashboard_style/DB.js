@@ -15,7 +15,7 @@ const DB = {
     min-height:500px;
     margin: auto;
     border-radius:0 8px 8px 8px;
-    overflow: auto;
+    overflow-y: auto;
     &::-webkit-scrollbar {
         width: 10px;
         background-color: #272727;
