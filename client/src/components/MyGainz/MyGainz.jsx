@@ -12,7 +12,12 @@ export default function MyGainz() {
   const [completedWorkouts, setCompletedWorkouts] = useRecoilState(completedWorkoutsState);
 
   useEffect(() => {
-    axios.get(`getCompletedWorkouts?userID=${Userfront.user.userId}`)
+    axios.get(`getCompletedWorkouts?userID=${Userfront.user.userId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
+      },
+    })
       .then((res) => {
         setCompletedWorkouts(res.data);
       })
@@ -49,11 +54,13 @@ export default function MyGainz() {
       <GS.PageHeader>My Gainz</GS.PageHeader>
       <MG.WOHeader>Completed Workouts</MG.WOHeader>
       <Workout />
-      <MG.NavBtn>
-        <MG.Previous onClick={handlePrevious}>{'<'}</MG.Previous>
-        <MG.Page>{page.page}</MG.Page>
-        <MG.Next onClick={handleNext}>{'>'}</MG.Next>
-      </MG.NavBtn>
+      {completedWorkouts.length / 4 >= 1 ? (
+        <MG.NavBtn>
+          <MG.Previous onClick={handlePrevious}>{'<'}</MG.Previous>
+          <MG.Page>{page.page}</MG.Page>
+          <MG.Next onClick={handleNext}>{'>'}</MG.Next>
+        </MG.NavBtn>
+      ) : null}
     </MG.Body>
   );
 }

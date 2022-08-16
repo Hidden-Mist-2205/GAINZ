@@ -84,10 +84,11 @@ const MG = {
   align-items: center;
   text-align: center;
   height: 36px;
-  padding-top: 225px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   font-style: normal;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 20px;
   line-height: 36px;
   `,
   LibraryLink: styled.a`
