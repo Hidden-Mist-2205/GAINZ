@@ -8,7 +8,6 @@ export default function PageHeading({ text }) {
 }
 
 const StyledPageHeading = styled.h2`
-  font-family: 'Montserrat';
   font-weight: 400;
   font-size: 48px;
 `;

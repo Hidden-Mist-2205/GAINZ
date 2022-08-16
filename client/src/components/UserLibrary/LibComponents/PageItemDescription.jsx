@@ -1,7 +1,11 @@
 import React from 'react';
 
-export default function PageItemText() {
+import { PageListItemText, ListItemText } from '../Styles/PageListItemText.styled';
+
+export default function PageItemName({ text }) {
   return (
-    <div>PageItemText</div>
+    <PageListItemText>
+      <ListItemText>{text}</ListItemText>
+    </PageListItemText>
   );
 }

@@ -6,8 +6,8 @@ import PageListNav from './PageListNav';
 export default function PageList({ items }) {
   return (
     <>
-      {items.map(exercise => (
-        <PageListItem data={exercise} key={exercise.id} />
+      {items.map(item => (
+        <PageListItem data={item} key={item.id} />
       ))}
       <PageListNav />
     </>
