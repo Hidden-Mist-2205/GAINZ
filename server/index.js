@@ -76,7 +76,7 @@ app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
     res.json(completedWorkouts);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error fetching completed workouts');git
+    res.status(500).send('Error fetching completed workouts');
   }
 });
 
