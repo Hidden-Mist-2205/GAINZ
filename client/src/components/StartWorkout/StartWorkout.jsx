@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Userfront from '@userfront/react';
+import { useRecoilValue } from 'recoil';
+import currentWorkoutIDState from '../currentWorkoutAtom';
 import SW from '../styles/StartWorkout_style/SW';
 import GS from '../styles/GeneralStyles';
 import CountDownTimer from './CountDownTimer';
 import StepsInstruction from './StepsInstruction';
-import currentWorkoutIDState from '../currentWorkoutAtom';
 
 Userfront.init('rbvr4mqb');
 
@@ -13,6 +14,7 @@ export default function StartWorkout() {
   const [workout, setWorkout] = useState({});
   const [steps, setSteps] = useState([]);
   const [currStep, setCurrStep] = useState('');
+  const workoutID = useRecoilValue(currentWorkoutIDState);
 
   const getWorkout = () => {
     axios({
@@ -36,7 +38,7 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
-    console.log('currworkoutID: ', currentWorkoutIDState);
+    console.log('currworkoutID: ', workoutID);
     getWorkout();
   }, []);
 
