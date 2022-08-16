@@ -15,7 +15,8 @@ const MG = {
     background: rgba(217, 217, 217, 0.15);
     height: 525px;
     border-radius: 8px;
-    overflow: scroll;
+    padding-bottom: 10px;
+    height: fit-content;
   `,
   Header: styled.h1`
     width: 300px;

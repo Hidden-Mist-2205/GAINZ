@@ -8,8 +8,9 @@ import Workout from './Workout';
 export default function MyGainz() {
   const [page, setPage] = useRecoilState(pageState);
   const [completedWorkouts, setCompletedWorkouts] = useRecoilState(completedWorkoutsState);
+
   useEffect(() => {
-    const userID = 1;
+    const userID = 7;
     axios.get(`getCompletedWorkouts?userID=${userID}`)
       .then((res) => {
         setCompletedWorkouts(res.data);
