@@ -3,6 +3,8 @@ import axios from 'axios';
 import Userfront from '@userfront/react';
 import SW from '../styles/StartWorkout_style/SW';
 import GS from '../styles/GeneralStyles';
+import CountDownTimer from './CountDownTimer';
+import StepsInstruction from './StepsInstruction';
 
 Userfront.init('rbvr4mqb');
 
@@ -20,6 +22,7 @@ export default function StartWorkout() {
         // authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
       params: {
+        userId: 1,
         workoutId: 1,
       },
     })
@@ -54,19 +57,11 @@ export default function StartWorkout() {
         <SW.FlexContainer>
           <SW.InnerContainer>
             TIMER
+            <CountDownTimer />
             <GS.Button>Next</GS.Button>
           </SW.InnerContainer>
           <SW.InnerContainer>
-            <SW.StepInstruction>
-              Step &nbsp;
-              {currStep.step_num}
-              &nbsp; ➣  &nbsp;
-              {currStep.name}
-              <br />
-              Reps: &nbsp;
-              {currStep.reps}
-            </SW.StepInstruction>
-            <SW.GIF src={currStep.gif_url} />
+            <StepsInstruction currStep={currStep} />
           </SW.InnerContainer>
           <SW.ExerciseSelection>
             {steps.map((step) => (
