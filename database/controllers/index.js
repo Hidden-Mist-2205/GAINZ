@@ -256,7 +256,7 @@ module.exports = {
     SET is_favorited = ${info.toggle}
     `;
   },
-  async toggleFavoritedWorkout(/* INFO */) {
+  async toggleFavoritedExercise(/* INFO */) {
     //
   },
   async getCompletedWorkouts(userID) {
