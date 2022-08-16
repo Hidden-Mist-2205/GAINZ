@@ -15,12 +15,12 @@ export default function WorkoutLibrary() {
       .catch((err) => console.log(err));
   }, []);
 
-  const searchWorkouts = (searchInput) => {};
+  const searchWorkouts = (searchInput) => { console.log(searchInput); };
 
   return (
     <PageContainer>
       <PageHeader page="Workout Library" searchFunction={searchWorkouts} />
-      <PageList items={workouts} />
+      <PageList items={workouts} actionButton="Start Workout" />
     </PageContainer>
   );
 }
