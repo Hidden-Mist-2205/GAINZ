@@ -52,6 +52,7 @@ export default function StartWorkout() {
           Target Area: &nbsp;
           {workout.main_area}
           <br />
+          Description: &nbsp;
           {workout.description}
         </SW.Description>
         <SW.FlexContainer>

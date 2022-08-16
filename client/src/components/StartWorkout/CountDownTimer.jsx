@@ -9,6 +9,7 @@ import CDT from '../styles/StartWorkout_style/CDT';
 export default function CountDownTimer({ currStep, setCurrStep, totalSteps }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [countDownTime, setCountDownTime] = useState(90);
+  const [key, setKey] = useState(0)
 
   const formatRemainingTime = (time) => {
     const minutes = Math.floor((time % 3600) / 60);
@@ -53,10 +54,16 @@ export default function CountDownTimer({ currStep, setCurrStep, totalSteps }) {
       </SI.Header>
       <CDT.TimerContainer>
         <CountdownCircleTimer
+          key={key}
           isPlaying={isPlaying}
           duration={countDownTime}
-          colors={[['#772c00', 0.33], ['#F7B801', 0.33], ['#A30000']]}
-          onComplete={() => [true, 1000]}
+          colors={['#AE3139', '#3976e7', '#F7B801']}
+          colorsTime={[22, 15, 0]}
+          onComplete={() => {
+            setTimeout(() => setKey(prevKey => prevKey + 1), 5000);
+            setIsPlaying(false);
+            return { shouldRepeat: true, delay: 5, newInitialRemainingTime: countDownTime };
+          }}
         >
           {renderTime}
         </CountdownCircleTimer>
@@ -79,7 +86,9 @@ export default function CountDownTimer({ currStep, setCurrStep, totalSteps }) {
           </CDT.Controller>
           <CDT.Controller>
             <FontAwesomeIcon
-              onClick={() => setIsPlaying(true)}
+              onClick={() => {
+                setIsPlaying(true);
+              }}
               icon={faPlay}
             />
           </CDT.Controller>
@@ -87,7 +96,9 @@ export default function CountDownTimer({ currStep, setCurrStep, totalSteps }) {
             <FontAwesomeIcon
               onClick={() => {
                 setIsPlaying(false);
+                setCountDownTime(0);
                 setCountDownTime(countDownTime);
+                setKey(prevKey => prevKey + 1);
               }}
               icon={faCircleStop}
             />
