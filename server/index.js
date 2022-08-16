@@ -30,9 +30,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/addAvailableDays', /* authenticateToken, */ async (req, res) => {
+app.get('/getAvailableBuddies', /* authenticateToken, */ async (req, res) => {
   try {
-    const availableDays = await controllers.addAvailableDays(req.query.userId, JSON.parse(req.query.days));
+    const buddies = await controllers.getAvailableBuddies(req.query.userId);
+    res.json(buddies);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+app.post('/addAvailableDays', /* authenticateToken, */ async (req, res) => {
+  try {
+    const availableDays = await controllers.addAvailableDays(req.query.userId, req.body);
     res.json(availableDays);
   } catch (error) {
     console.error(error);
@@ -61,6 +71,7 @@ app.get('/getWorkout', /* authenticateToken, */ async (req, res) => {
 });
 
 app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
+  console.log(req)
   try {
     const workouts = await controllers.getAllWorkouts(req.query.userId);
     res.json(workouts);
@@ -100,7 +111,6 @@ app.get('/favoritedWorkouts', async (req, res) => {
   }
 });
 app.post('/addNewWorkout', async (req, res) => {
-  // console.log(req.body);
   try {
     const createWorkout = await controllers.addNewWorkout(req.body);
     const workoutId = createWorkout[0].workout_id;
