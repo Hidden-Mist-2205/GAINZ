@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import Userfront from '@userfront/core';
+import axios from 'axios';
 import MG from '../styles/MyGainz_style/MG';
 import GS from '../styles/GeneralStyles';
 import ExercisePanel from './ExercisePanel';
@@ -14,7 +16,19 @@ export default function WorkoutPanel({ workout }) {
   const handleFavorite = (e) => {
     e.preventDefault();
     // put request to update favorited value, or delete row from Users/Workouts table?
-    setFavorite(!favorite);
+    axios.put('/putFavoriteWorkout', { workoutId: workout.workout_id }, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
+      },
+    })
+      .then((res) => {
+        console.log('res: ', res);
+        setFavorite(!favorite);
+      })
+      .catch((err) => {
+        console.error('error toggling favorite workout: ', err);
+      });
   };
 
   const handleExercisePanel = (e) => {
@@ -33,8 +47,8 @@ export default function WorkoutPanel({ workout }) {
     <MG.WOPanel>
       <MG.WOItem>
         {favorite
-          ? <MG.WOStar onClick={handleFavorite}>&#9734;</MG.WOStar>
-          : <MG.WOStar onClick={handleFavorite}>&#9733;</MG.WOStar>}
+          ? <MG.WOStar onClick={handleFavorite}>&#9733;</MG.WOStar>
+          : <MG.WOStar onClick={handleFavorite}>&#9734;</MG.WOStar>}
         <MG.WOName onClick={handleExercisePanel}>{workout.workout_name}</MG.WOName>
         <MG.WOTimesCompleted>
           {workout.times_completed === 1

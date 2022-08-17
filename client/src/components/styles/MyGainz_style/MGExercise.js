@@ -25,7 +25,7 @@ const MGEx = {
   `,
   Name: styled.div`
     width: 45%;
-    font-size: 24px;
+    font-size: 20px;
     text-align: left;
   `,
   Set: styled.div`
@@ -48,7 +48,7 @@ const MGEx = {
   padding-bottom: 20px;
   font-style: normal;
   font-weight: 500;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 36px;
   `,
 };
