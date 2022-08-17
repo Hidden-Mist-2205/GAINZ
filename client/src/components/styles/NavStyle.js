@@ -48,18 +48,66 @@ const Nav = {
       opacity: 0.8;
     }
   `,
-  UserIcon: styled.div`
+  UserIconContainer: styled.div`
     position: absolute;
     left: 90%;
+    top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 80px;
+    height: ${props => props.height};
+    /* height: 150px; */
+  `,
+  UserIcon: styled.div`
     width: 46px;
     height: 46px;
     border-radius: 50%;
     border: 1px solid white;
     background-color: #E5E5E5;
+    cursor: pointer;
 
     &:hover {
       box-shadow: 0 0 10px 3px rgb(241 229 229 / 67%);
     }
+  `,
+  DropdownContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+    width: 60px;
+    height: 80px;
+    background-color: #272727;
+    font-size: 12px;
+    transition: transform .35s ease-in-out;
+    box-shadow: 0 0 10px 3px rgb(241 229 229 / 67%);
+  `,
+  DropdownRouteOption: styled(Link)`
+    color: white;
+    font-size: 12px;
+    text-decoration: unset;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  `,
+  DropdownOptions: styled.div`
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  `,
+  LibrarySelectionContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: ${props => props.marginTop};
+    width: 80px;
+    height: ${props => props.height};
   `,
 };
 
