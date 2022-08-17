@@ -19,7 +19,8 @@ export default function MyGainz() {
       },
     })
       .then((res) => {
-        setCompletedWorkouts(res.data || []);
+        const sor = [...res.data]?.sort((a, b) => (a.times_completed > b.times_completed ? -1 : 1));
+        setCompletedWorkouts(sor || []);
       })
       .catch((err) => {
         console.error('error getting workouts: ', err);
