@@ -20,7 +20,7 @@ export default function StartWorkout() {
       url: `${process.env.URL}/getWorkout`,
       headers: {
         ContentType: 'application/json',
-        // authorization: `Bearer ${Userfront.tokens.accessToken}`,
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
       params: {
         userId: 1,
