@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faCircleStop, faCirclePause } from '@fortawesome/free-solid-svg-icons';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ProfileDropdown from './ProfileDropdown';
 import Nav from './styles/NavStyle';
 
 export default function NavBar() {
-// UserIcon dropdown and route to myProfile & logout
+  const [isHovering, setIsHovering] = useState(false);
 
   return (
     <Nav.Container>
@@ -25,16 +26,17 @@ export default function NavBar() {
           Find Workout Buddy
         </Nav.MenuItem>
 
-        <Nav.MenuItem to="/StartWorkout">
-          Start Workout
-        </Nav.MenuItem>
-        <Nav.MenuItem to="/Profile">
-          My Profile
-        </Nav.MenuItem>
-
       </Nav.Sections>
 
-      <Nav.UserIcon />
+      <Nav.UserIconContainer
+        onMouseOver={() => setIsHovering(true)}
+        onMouseOut={() => setIsHovering(false)}
+      >
+        <Nav.UserIcon />
+        {isHovering && (
+          <ProfileDropdown />
+        )}
+      </Nav.UserIconContainer>
     </Nav.Container>
   );
 }
