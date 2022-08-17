@@ -10,6 +10,15 @@ module.exports = {
     returning user_id
   `;
   },
+  async getAllUserData(userID) {
+    const userData = await sql`
+      SELECT
+      *
+      FROM users
+      WHERE user_id = ${userID}
+    `;
+    return userData[0];
+  },
   async getUserData(userID) {
     const userData = await sql`
       SELECT
