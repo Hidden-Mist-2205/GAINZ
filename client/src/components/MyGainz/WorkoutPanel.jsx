@@ -16,14 +16,13 @@ export default function WorkoutPanel({ workout }) {
   const handleFavorite = (e) => {
     e.preventDefault();
     // put request to update favorited value, or delete row from Users/Workouts table?
-    axios.put(`/favoriteWorkout?userId=${Userfront.user.userId}&workoutId=${workout.workout_id}&toggle=${workout.favorited}`, {
+    axios.put(`/favoriteWorkout?userId=${Userfront.user.userId}&workoutId=${workout.workout_id}&toggle=${favorite}`, {
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
     })
-      .then((res) => {
-        console.log('here: ', res.data);
+      .then(() => {
         setFavorite(!favorite);
       })
       .catch((err) => {
@@ -48,8 +47,8 @@ export default function WorkoutPanel({ workout }) {
     <MG.WOPanel>
       <MG.WOItem>
         {favorite
-          ? <MG.WOStar onClick={handleFavorite}>&#9734;</MG.WOStar>
-          : <MG.WOStar onClick={handleFavorite}>&#9733;</MG.WOStar>}
+          ? <MG.WOStar onClick={handleFavorite}>&#9733;</MG.WOStar>
+          : <MG.WOStar onClick={handleFavorite}>&#9734;</MG.WOStar>}
         <MG.WOName onClick={handleExercisePanel}>{workout.workout_name}</MG.WOName>
         <MG.WOTimesCompleted>
           {workout.times_completed === 1
