@@ -235,9 +235,19 @@ module.exports = {
   `;
     return favoritedWorkout;
   },
-  async getFavoritedExercise(info) {
+  async getFavoritedExercise(userId) {
     const favoritedExercise = await sql`
-
+    SELECT
+    e.exercise_id AS exerciseId,
+    e."name",
+    e.area,
+    e.gif_url,
+    ue.is_favorited
+  FROM exercises e
+  LEFT JOIN
+  users_exercises ue
+  ON e.exercise_id = ue.exercise_id
+  WHERE ue.is_favorited = true AND ue.user_id = ${userId}
     `;
   },
   async toggleFavoritedWorkout(info) {
@@ -253,7 +263,7 @@ module.exports = {
       0,
       true
     ) ON CONFLICT (user_id, workout_id) DO UPDATE
-    SET is_favorited = ${info.toggle}
+    SET is_favorited = NOT is_favorited
     `;
   },
   async toggleFavoritedExercise(info) {
@@ -267,7 +277,7 @@ module.exports = {
       ${info.exerciseId},
       true
     ) ON CONFLICT (user_id, exercise_id) DO UPDATE
-    SET is_favorited = ${info.toggle}
+    SET is_favorited = NOT users_exercises.is_favorited
     `;
   },
   async getCompletedWorkouts(userID) {
