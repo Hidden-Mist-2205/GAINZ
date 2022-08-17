@@ -162,9 +162,8 @@ app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
 
 app.post('/postUser', async (req, res) => {
   try {
-    console.log('typeof: ', typeof req.body.userId);
-    console.log('Request data ===>', req.body);
     await controllers.addNewUser(req.body);
+    await controllers.addAvailableDays(req.body.userId, req.body.days);
     res.sendStatus(201);
   } catch (error) {
     console.log(error);

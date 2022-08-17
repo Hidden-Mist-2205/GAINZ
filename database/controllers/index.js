@@ -2,7 +2,7 @@ const { sql } = require('..');
 
 module.exports = {
   async addNewUser(usr) {
-    const user = await sql`
+    await sql`
     insert into users
       (user_id, user_name, email, zip_code, phone_num, fitness_goal, zoom_profile)
     values
