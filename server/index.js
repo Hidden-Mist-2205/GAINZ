@@ -173,10 +173,10 @@ app.post('/postUser', async (req, res) => {
 app.put('/updateWorkoutCompletion', authenticateToken, async (req, res) => {
   try {
     await controllers.updateWorkoutCompletion(
-      req.query.userId,
-      req.query.workoutId,
-      req.query.finishCount,
-      req.query.completeTime,
+      req.body.userId,
+      req.body.workoutId,
+      req.body.finishCount,
+      req.body.completeTime,
     );
     res.sendStatus(204);
   } catch (error) {

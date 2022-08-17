@@ -38,7 +38,7 @@ export default function EndSessionModal({ workout, setOpenModal }) {
         ContentType: 'application/json',
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
-      params: {
+      data: {
         userId,
         workoutId,
         finishCount,
