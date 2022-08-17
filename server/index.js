@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/getAvailableBuddies', authenticateToken, async (req, res) => {
   try {
-    const buddies = await controllers.getAvailableBuddies(req.query.userId);
+    const buddies = await controllers.getAvailableBuddies(req.auth.userId);
     res.json(buddies);
   } catch (error) {
     console.error(error);
@@ -40,9 +40,9 @@ app.get('/getAvailableBuddies', authenticateToken, async (req, res) => {
   }
 });
 
-app.post('/addAvailableDays', /* authenticateToken, */ async (req, res) => {
+app.post('/addAvailableDays', authenticateToken, async (req, res) => {
   try {
-    const availableDays = await controllers.addAvailableDays(req.query.userId, req.body);
+    const availableDays = await controllers.addAvailableDays(req.auth.userId, req.body);
     res.json(availableDays);
   } catch (error) {
     console.error(error);
@@ -50,9 +50,9 @@ app.post('/addAvailableDays', /* authenticateToken, */ async (req, res) => {
   }
 });
 
-app.get('/getAvailableDays', /* authenticateToken, */ async (req, res) => {
+app.get('/getAvailableDays', authenticateToken, async (req, res) => {
   try {
-    const availableDays = await controllers.getAvailableDays(req.query.userId);
+    const availableDays = await controllers.getAvailableDays(req.auth.userId);
     res.json(availableDays);
   } catch (error) {
     console.error(error);

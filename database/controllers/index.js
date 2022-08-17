@@ -1,8 +1,14 @@
 const { sql } = require('..');
 
 module.exports = {
-  async addNewUser(/* INFO */) {
-    // TODO
+  async addNewUser(usr) {
+    await sql`
+    insert into users
+      (user_id, user_name, email, zip_code, phone_num, fitness_goal, zoom_profile)
+    values
+      (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.goal}, ${usr.zoom})
+    returning user_id
+  `;
   },
   async getUserData(userID) {
     const userData = await sql`
@@ -17,7 +23,6 @@ module.exports = {
       FROM users u
       WHERE user_id = ${userID}
     `;
-    // sql.end();
     return userData[0];
   },
   async getAllExercises() {
@@ -27,7 +32,6 @@ module.exports = {
       FROM exercises
       ORDER BY exercise_id ASC
     `;
-    // sql.end();
     return workouts;
   },
   async getWorkout(workoutId, userId) {
@@ -79,7 +83,6 @@ module.exports = {
     FROM workouts w
     WHERE w.workout_id = ${workoutId}
     `;
-    // sql.end();
     return workout[0];
   },
   async getAllWorkouts(userId) {
@@ -130,10 +133,9 @@ module.exports = {
         ) AS steps
       FROM workouts w
     `;
-    // sql.end();
     return workouts;
   },
-  async addNewWorkout(info) {
+  async addNewWorkout(info, userId) {
     const insertWorkout = await sql`
     INSERT INTO workouts (
       "name",
@@ -146,28 +148,28 @@ module.exports = {
       ${info.name},
       ${info.description},
       ${info.videoUrl},
-      ${info.userId},
+      ${userId},
       ${info.mainArea},
       ${info.secondArea}
     ) RETURNING workout_id`;
     return insertWorkout;
   },
-  async addUserWorkout(info, workoutId) {
-    const insertUserWorkout = await sql`
+  async addUserWorkout(userId, workoutId) {
+    await sql`
     INSERT INTO user_workout (
       user_id,
       workout_id,
       times_completed,
       is_favorited
     ) VALUES (
-      ${info.userId},
+      ${userId},
       ${workoutId},
       0,
       true
     )`;
   },
   async addSteps(info, workoutId, index) {
-    const insertSteps = await sql`
+    await sql`
     INSERT INTO steps (
       step_num,
       workout_id,
@@ -184,17 +186,17 @@ module.exports = {
     `;
   },
   async deleteWorkout(info) {
-    const workout = await sql`
+    await sql`
     DELETE FROM workouts WHERE workout_id = ${info.workoutId}
     `;
-    const steps = await sql`
+    await sql`
     DELETE FROM steps WHERE workout_id = ${info.workoutId}
     `;
-    const userWorkout = await sql`
+    await sql`
     DELETE FROM user_workout WHERE workout_id = ${info.workoutId} AND user_Id = ${info.userId}
     `;
   },
-  async getFavoritedWorkouts(info) {
+  async getFavoritedWorkouts(userId) {
     const favoritedWorkout = await sql`
     SELECT
     w.workout_id AS workoutId,
@@ -225,43 +227,53 @@ module.exports = {
   LEFT JOIN
   user_workout uw
   ON w.workout_id = uw.workout_id
-  WHERE uw.is_favorited = true AND uw.user_id = ${info.userId}
+  WHERE uw.is_favorited = true AND uw.user_id = ${userId}
   `;
     return favoritedWorkout;
   },
-  async getFavoritedExercise(info) {
-    const favoritedExercise = await sql`
-
+  async getFavoritedExercise(userId) {
+    await sql`
+    SELECT
+    e.exercise_id AS exerciseId,
+    e."name",
+    e.area,
+    e.gif_url,
+    ue.is_favorited
+  FROM exercises e
+  LEFT JOIN
+  users_exercises ue
+  ON e.exercise_id = ue.exercise_id
+  WHERE ue.is_favorited = true AND ue.user_id = ${userId}
     `;
   },
-  async toggleFavoritedWorkout(info) {
-    const toggleFav = await sql`
+  async toggleFavoritedWorkout(workoutId, userId) {
+    await sql`
     INSERT INTO user_workout (
       user_id,
       workout_id,
       times_completed,
       is_favorited
     ) VALUES (
-      ${info.userId},
-      ${info.workoutId},
+      ${userId},
+      ${workoutId},
       0,
       true
     ) ON CONFLICT (user_id, workout_id) DO UPDATE
-    SET is_favorited = ${info.toggle}
+    SET is_favorited = NOT user_workout.is_favorited
     `;
   },
-  async toggleFavoritedExercise(info) {
-    const toggleFav = await sql`
+  async toggleFavoritedExercise(exerciseId, userId) {
+    await sql`
     INSERT INTO users_exercises (
       user_id,
       exercise_id,
       is_favorited
     ) VALUES (
-      ${info.userId},
-      ${info.exerciseId},
+      ${userId},
+      ${exerciseId},
       true
     ) ON CONFLICT (user_id, exercise_id) DO UPDATE
-    SET is_favorited = ${info.toggle}
+    SET is_favorited = NOT users_exercises.is_favorited
     `;
   },
   async getCompletedWorkouts(userID) {
@@ -288,27 +300,70 @@ module.exports = {
     `;
     return completedWorkouts[0].json_agg;
   },
-  async updateWorkoutCompletion(workoutId, userId, finishCount, completeTime) {
-    console.log('data in db: ', workoutId, userId, finishCount, completeTime)
-    const updatedWorkout = await sql`
-      UPDATE user_workout
-      SET last_completion = ${completeTime}, times_completed = ${finishCount}
-      WHERE user_id = ${userId} AND workout_id = ${workoutId};
+  async updateWorkoutCompletion(/* INFO */) {
+    // TODO
+  },
+  async getAvailableBuddies(userID, requestedDay, userZipcode) {
+    // TODO
+    if (userZipcode) {
+      const buddies = await sql`
+        SELECT
+        ad.user_id,
+        u.user_name,
+        u.avatar_url,
+        u.zip_code,
+        u.fitness_goal
+        FROM available_days ad
+        INNER JOIN users u
+        ON ad.user_id = u.user_id
+        WHERE ad.day = ${requestedDay}
+        AND u.zip_code = ${userZipcode}
+        AND NOT ad.user_id = ${userID}
+      `;
+      return buddies;
+    }
+    const buddies = await sql`
+      SELECT
+      ad.user_id,
+      u.user_name,
+      u.avatar_url,
+      u.zip_code,
+      u.fitness_goal
+      FROM available_days ad
+      INNER JOIN users u
+      ON ad.user_id = u.user_id
+      WHERE ad.day = ${requestedDay}
+      AND NOT ad.user_id = ${userID}
     `;
-    console.log('updateWorkout: ', updatedWorkout)
-    // return updatedWorkout[0];
+    return buddies;
   },
-  async getAvailableBuddies(/* INFO */) {
+  async getAvailableDays(userID) {
     // TODO
+    const availableDays = await sql`
+    SELECT array_agg(days)
+    FROM (
+      SELECT ad.day
+      FROM available_days ad
+      WHERE ad.user_id = ${userID}) AS T(days)
+    `;
+    return availableDays[0].array_agg;
   },
-  async getAvailableDays(/* INFO */) {
+  async addAvailableDays(userID, days) {
     // TODO
+    await sql`
+      DELETE
+      FROM available_days ad
+      WHERE ad.user_id = ${userID}
+    `;
+    for (let i = 0; i < days.length; i++) {
+      await sql`
+        INSERT INTO available_days(user_id, day)
+        VALUES(${userID}, ${days[i]})
+      `;
+    }
+    return 'Days Added';
   },
-  async addAvailableDays(/* INFO */) {
-    // TODO
-    // Can probably check if it is an update for an existing user
-  },
-  // Stretch?
+  // Stretch
   async addNewExercise(/* INFO */) {
     // TODO
   },
