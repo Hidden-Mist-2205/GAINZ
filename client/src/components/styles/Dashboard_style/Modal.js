@@ -70,7 +70,7 @@ const M = {
     font-size: 20px;
     color: white;
   `,
-  Exercise: styled.select`
+  Select: styled.select`
     float: right;
     margin-bottom: 20px;
     display: inline;
@@ -79,16 +79,7 @@ const M = {
     width: 300px;
     background: rgba(217, 217, 217, 0.15);
   `,
-  Category: styled.select`
-    float: right;
-    margin-bottom: 20px;
-    color: white;
-    display: inline;
-    height: 46px;
-    width: 300px;
-    background: rgba(217, 217, 217, 0.15);
-  `,
-  Url: styled.input`
+  Input: styled.input`
     float: right;
     margin-bottom: 20px;
     display: inline;
@@ -108,8 +99,8 @@ const M = {
   `,
   Option: styled.option`
     color: white;
-    background: grey;
-    /* background: rgba(217, 217, 217, 0.15); */
+    /* background: grey; */
+    background: rgba(217, 217, 217);
     width:;
     height:100%;
   `,
