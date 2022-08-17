@@ -25,6 +25,19 @@ height: 100%;
 position: absolute;
 `;
 
+const HomeOutlineButton = styled(GS.OutlinedBtn)`
+min-width: 180px;
+`;
+const HomeSolidButton = styled(GS.Button)`
+min-width: 180px;
+`;
+
+const HomeNavSection = styled(Nav.Sections)`
+width: 15%;
+right: 5%;
+left: unset;
+`;
+
 export default function Home() {
   const navigate = useNavigate();
 
@@ -32,10 +45,10 @@ export default function Home() {
     <>
       <Nav.Container>
         <Nav.Logo> ⚛︎ GAINZ</Nav.Logo>
-        <Nav.Sections>
-          <GS.OutlinedBtn onClick={() => navigate('/login')}>Login</GS.OutlinedBtn>
-          <GS.Button onClick={() => navigate('/signUp')}>Register</GS.Button>
-        </Nav.Sections>
+        <HomeNavSection>
+          <HomeOutlineButton onClick={() => navigate('/login')}>Login</HomeOutlineButton>
+          <HomeSolidButton onClick={() => navigate('/signUp')}>Register</HomeSolidButton>
+        </HomeNavSection>
       </Nav.Container>
       <HomeBackground>
         <h1>Make Major Gainz.</h1>
