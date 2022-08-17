@@ -33,7 +33,7 @@ export default function EndSessionModal({ workout, setOpenModal }) {
 
     axios({
       method: 'PUT',
-      url: `${process.env.URL}/updateWorkoutCompletion`,
+      url: '/updateWorkoutCompletion',
       headers: {
         ContentType: 'application/json',
         authorization: `Bearer ${Userfront.tokens.accessToken}`,

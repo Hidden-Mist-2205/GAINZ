@@ -21,7 +21,7 @@ export default function StartWorkout() {
   const getWorkout = () => {
     axios({
       method: 'GET',
-      url: `${process.env.URL}/getWorkout`,
+      url: `/getWorkout`,
       headers: {
         ContentType: 'application/json',
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
