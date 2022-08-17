@@ -26,6 +26,7 @@ export default function GAINZ() {
       <NavBar />
       <React.Suspense fallback={<span>Loading...</span>}>
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/FindWorkoutBuddy" element={<FindWorkoutBuddy />} />
           <Route path="/MyGainz" element={<MyGainz />} />

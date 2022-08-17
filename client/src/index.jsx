@@ -6,8 +6,9 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-
+import Userfront from '@userfront/core';
 import Signup from './components/Userfront/customSignup';
+import Home from './components/HomePage/noAuthHome';
 
 import {
   Login,
@@ -27,16 +28,17 @@ function App() {
         <Routes>
           <Route
             path="*"
-            element={(
-              <RequireAuth>
-                <GAINZ />
-              </RequireAuth>
-            )}
+            element={
+              Userfront.tokens.accessToken ? (
+                <RequireAuth>
+                  <GAINZ />
+                </RequireAuth>
+              ) : <Home />
+            }
           />
-          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/password-reset" element={<PasswordReset />} />
-
         </Routes>
       </Router>
     </RecoilRoot>
