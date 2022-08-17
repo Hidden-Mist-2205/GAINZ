@@ -43,11 +43,8 @@ export default function SignupForm() {
   async function createAccount(e) {
     e.preventDefault();
 
-    // res.data.secure_url
     try {
       const pic = await uploadImageHandler(avatar);
-      console.log('This is pictures....', pic.data.secure_url);
-
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
