@@ -59,7 +59,7 @@ const M = {
     font-size: 25px;
     color: white;
     &:hover {
-      text-shadow: 0 0 3px gold;
+      text-shadow: 0 0 5px white;
     }
   `,
   Label: styled.label`
