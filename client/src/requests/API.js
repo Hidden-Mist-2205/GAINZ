@@ -14,8 +14,10 @@ async function distanceBetween(location1, location2) {
   return data;
 }
 
-// const distance = data.distance.text;
-// const travelTime = data.duration.text;
+// const distanceInMilesString = data.distance.text; // '88.1 miles'
+// const distanceInMeters = data.distance.value; // number
+// const travelTimeString = data.duration.text; // '2 hours 0 mins'
+// const travelTimeInSeconds = data.duration.value; // number
 
 // const returnValExample = {
 //   destination_addresses: ['Huntington, NY 11743, USA'],
