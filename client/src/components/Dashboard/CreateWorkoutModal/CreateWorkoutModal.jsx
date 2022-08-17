@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import M from '../../styles/Dashboard_style/Modal';
 import DB from '../../styles/Dashboard_style/DB';
 import GS from '../../styles/GeneralStyles';
+import AddedExerciseList from './AddedExerciseList';
 
 export default function Dashboard({ handleModal }) {
+  const [exerciseToAdd, setExerciseToAdd] = useState([]);
   return (
     <M.Background>
       <M.PopUp>
         <M.Form>
           <DB.Header style={{
-            color: 'white', 'padding-bottom': '20px', 'text-align': 'center', 'margin-top': '0px'
+            color: 'white', 'padding-bottom': '20px', 'text-align': 'center',
           }}
           >
             Create Workout
           </DB.Header>
-          {<AddedExerciseList></AddedExerciseList>}
+          {exerciseToAdd.lenth && <AddedExerciseList />}
           <M.Column>
             <M.Label>Category</M.Label>
             <M.Category
