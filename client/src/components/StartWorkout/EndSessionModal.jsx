@@ -7,7 +7,7 @@ import GS from '../styles/GeneralStyles';
 export default function EndSessionModal({ workout, setOpenModal }) {
   let completeTime = workout.last_completion;
   let finishCount = workout.times_completed;
-  const userId = Userfront.user.userId;
+  const { userId } = Userfront.user;
   const workoutId = workout.id;
 
   const endSessionAndSubmit = (e) => {

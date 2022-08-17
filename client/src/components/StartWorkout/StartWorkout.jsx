@@ -14,8 +14,9 @@ export default function StartWorkout() {
   const [steps, setSteps] = useState([]);
   const [currStep, setCurrStep] = useState('');
   const [openModal, setOpenModal] = useState(false);
-  const workoutID = useRecoilValue(currentWorkoutIDState);
-  const userId = Userfront.user.userId;
+
+  const workoutId = useRecoilValue(currentWorkoutIDState);
+  const { userId } = Userfront.user;
 
   const getWorkout = () => {
     axios({
@@ -26,8 +27,8 @@ export default function StartWorkout() {
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
       params: {
-        userId: 1,
-        workoutId: 2,
+        userId,
+        workoutId,
       },
     })
       .then((exercisesData) => {
@@ -39,7 +40,7 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
-    console.log('currworkoutID: ', workoutID, 'userID: ', userId);
+    console.log('currworkoutID: ', workoutId, 'userID: ', userId);
     getWorkout();
   }, []);
 

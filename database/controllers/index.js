@@ -289,7 +289,14 @@ module.exports = {
     return completedWorkouts[0].json_agg;
   },
   async updateWorkoutCompletion(workoutId, userId, finishCount, completeTime) {
-    console.log('obj: ', finishCount, completeTime);
+    console.log('data in db: ', workoutId, userId, finishCount, completeTime)
+    const updatedWorkout = await sql`
+      UPDATE user_workout
+      SET last_completion = ${completeTime}, times_completed = ${finishCount}
+      WHERE user_id = ${userId} AND workout_id = ${workoutId};
+    `;
+    console.log('updateWorkout: ', updatedWorkout)
+    // return updatedWorkout[0];
   },
   async getAvailableBuddies(/* INFO */) {
     // TODO

@@ -9,7 +9,7 @@ const ESM = {
     padding: 10px;
     left: 0;
     top: 0;
-    background-color: rgb(0 0 0 / 26%);
+    background-color: rgb(0 0 0 / 72%);
     justify-content: center;
     align-items: center;
     z-index: 10;
