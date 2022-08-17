@@ -101,21 +101,21 @@ app.get('/getUserInfo', authenticateToken, async (req, res) => {
     res.status(500).send('Error fetching data');
   }
 });
-app.get('/favoritedWorkouts', async (req, res) => {
+app.get('/getFavoritedWorkouts', authenticateToken, async (req, res) => {
   try {
-    const favoriteData = await controllers.getFavoritedWorkouts(req.query);
+    const favoriteData = await controllers.getFavoritedWorkouts(req.auth.userId);
     res.json(favoriteData);
   } catch (error) {
     console.error(error);
   }
 });
-app.post('/addNewWorkout', async (req, res) => {
+app.post('/postNewWorkout', authenticateToken, async (req, res) => {
   try {
-    const createWorkout = await controllers.addNewWorkout(req.body);
+    const createWorkout = await controllers.addNewWorkout(req.body, req.auth.userId);
     const workoutId = createWorkout[0].workout_id;
-    const createUserWorkout = await controllers.addUserWorkout(req.body, workoutId);
+    await controllers.addUserWorkout(req.auth.userId, workoutId);
     req.body.steps.forEach(async (step, index) => {
-      const createSteps = await controllers.addSteps(step, workoutId, index);
+      await controllers.addSteps(step, workoutId, index);
     });
     res.status(201).send();
   } catch (error) {
@@ -123,33 +123,32 @@ app.post('/addNewWorkout', async (req, res) => {
     res.status(500).send('Error Posting Data');
   }
 });
-app.delete('/deleteWorkout', async (req, res) => {
+app.delete('/deleteWorkout', authenticateToken, async (req, res) => {
   try {
-    const deleteWorkout = await controllers.deleteWorkout(req.query);
+    await controllers.deleteWorkout(req.query, req.auth.userId);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error Deleting Data');
   }
 });
-app.put('/favoriteWorkout', async (req, res) => {
+app.put('/putFavoriteWorkout', authenticateToken, async (req, res) => {
   try {
-    const favorited = await controllers.toggleFavoritedWorkout(req.query);
+    await controllers.toggleFavoritedWorkout(req.query.workoutId, req.auth.userId);
     res.status(204).send('Favorited');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error updating data');
   }
 });
-app.put('/favoriteExercise', async (req, res) => {
+app.put('/putFavoriteExercise', authenticateToken, async (req, res) => {
   try {
-    const favorited = await controllers.toggleFavoritedExercise(req.query);
+    await controllers.toggleFavoritedExercise(req.query.exerciseId, req.auth.userId);
     res.status(204).send('Favorited');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error updating data');
   }
 });
-
 app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
   try {
     const completedWorkouts = await controllers.getCompletedWorkouts(req.auth.userId);
