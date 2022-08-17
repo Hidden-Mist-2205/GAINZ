@@ -16,17 +16,17 @@ export default function WorkoutPanel({ workout }) {
   const handleFavorite = (e) => {
     e.preventDefault();
     // put request to update favorited value, or delete row from Users/Workouts table?
-    axios.put(`/favoriteWorkout?userId=${Userfront.user.userId}&workoutId=${workout.workout_id}&toggle=${favorite}`, {
+    axios.put('/putFavoriteWorkout', { workoutId: workout.workout_id }, {
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
     })
-      .then(() => {
+      .then((res) => {
+        console.log('res: ', res);
         setFavorite(!favorite);
       })
       .catch((err) => {
-        console.log('error');
         console.error('error toggling favorite workout: ', err);
       });
   };

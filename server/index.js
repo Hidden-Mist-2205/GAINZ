@@ -133,7 +133,7 @@ app.delete('/deleteWorkout', authenticateToken, async (req, res) => {
 });
 app.put('/putFavoriteWorkout', authenticateToken, async (req, res) => {
   try {
-    await controllers.toggleFavoritedWorkout(req.query.workoutId, req.auth.userId);
+    await controllers.toggleFavoritedWorkout(req.body.workoutId, req.auth.userId);
     res.status(204).send('Favorited');
   } catch (error) {
     console.error(error);
@@ -142,7 +142,7 @@ app.put('/putFavoriteWorkout', authenticateToken, async (req, res) => {
 });
 app.put('/putFavoriteExercise', authenticateToken, async (req, res) => {
   try {
-    await controllers.toggleFavoritedExercise(req.query.exerciseId, req.auth.userId);
+    await controllers.toggleFavoritedExercise(req.body.exerciseId, req.auth.userId);
     res.status(204).send('Favorited');
   } catch (error) {
     console.error(error);

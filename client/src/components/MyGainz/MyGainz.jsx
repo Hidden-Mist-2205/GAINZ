@@ -12,7 +12,7 @@ export default function MyGainz() {
   const [completedWorkouts, setCompletedWorkouts] = useRecoilState(completedWorkoutsState);
 
   useEffect(() => {
-    axios.get(`getCompletedWorkouts?userID=${Userfront.user.userId}`, {
+    axios.get('/getCompletedWorkouts', {
       headers: {
         'Content-Type': 'application/json',
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
