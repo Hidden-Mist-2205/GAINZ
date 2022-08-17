@@ -6,7 +6,7 @@ import ProfileDisplay from './ProfileDisplay';
 import ActionButton from '../UserLibrary/Buttons/ActionButton';
 
 export default function Profile() {
-  const [editProfile, setEditProfile] = React.useState(true);
+  const [editProfile, setEditProfile] = React.useState(false);
 
   const handleEditButton = () => {
     setEditProfile(!editProfile);
