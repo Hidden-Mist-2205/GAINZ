@@ -3,8 +3,8 @@ import GS from '../GeneralStyles';
 
 const SU = {
   TextInput: styled.input`
-  width: 90%;
-  padding: 12px 20px;
+  width: 95%;
+  padding: 5px;
   margin: 5px;
   border-radius: 3px;
   border: 0px;
@@ -22,6 +22,7 @@ const SU = {
   margin: 5px;
   display: block;
   font-weight: 200;
+  font-size: 14px;
   `,
   WrapperDiv: styled.div`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
@@ -68,6 +69,9 @@ const SU = {
   `,
   CheckboxContainer: styled.div`
   display: flex;
+  `,
+  SubmitButton: styled(GS.Button)`
+  height: unset;
   `,
 };
 

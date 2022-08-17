@@ -76,7 +76,7 @@ export default function SignupForm() {
   return (
     <SU.PageWrapper>
       <SU.WrapperDiv>
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
         <SU.Form onSubmit={(e) => { createAccount(e); }}>
           <SU.InputDiv>
             <label htmlFor="username">
@@ -130,7 +130,7 @@ export default function SignupForm() {
               <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
             </label>
           </SU.InputDiv>
-          <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
+          <SU.SubmitButton style={{ width: '100%' }} type="submit">Create Account</SU.SubmitButton>
         </SU.Form>
         <SU.FormBottom>
           <SU.MiniButton onClick={() => navigate('/login')}>Login</SU.MiniButton>

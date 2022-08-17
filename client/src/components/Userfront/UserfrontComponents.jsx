@@ -1,7 +1,6 @@
 import React from 'react';
 import Userfront from '@userfront/react';
 import {
-  Link,
   Navigate,
   useLocation,
 } from 'react-router-dom';

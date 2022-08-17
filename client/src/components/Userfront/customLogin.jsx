@@ -38,7 +38,7 @@ export default function LoginForm() {
               <SU.TextInput required id="password" type="password" value={pswd} onChange={((e) => setPswd(e.target.value))} />
             </label>
           </SU.InputDiv>
-          <GS.Button style={{ width: '100%' }} type="submit">Login</GS.Button>
+          <SU.SubmitButton style={{ width: '100%' }} type="submit">Login</SU.SubmitButton>
         </SU.Form>
         <SU.FormBottom>
           <SU.MiniButton onClick={() => navigate('/signup')}>Sign Up</SU.MiniButton>
