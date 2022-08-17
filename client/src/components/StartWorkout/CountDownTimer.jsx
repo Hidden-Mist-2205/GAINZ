@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faCircleStop, faCirclePause } from '@fortawesome/free-solid-svg-icons';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
@@ -6,7 +6,7 @@ import GS from '../styles/GeneralStyles';
 import SI from '../styles/StartWorkout_style/SI';
 import CDT from '../styles/StartWorkout_style/CDT';
 
-export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
+export default function CountDownTimer({ currStepIndex, setCurrStep, steps }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [countDownTime, setCountDownTime] = useState(90);
   const [key, setKey] = useState(0);
@@ -38,8 +38,8 @@ export default function CountDownTimer({ currStepNum, setCurrStep, steps }) {
     setKey(prevKey => prevKey + 1);
 
     const totalSteps = steps.length;
-    if (currStepNum < totalSteps) {
-      setCurrStep(steps[currStepNum]);
+    if (currStepIndex + 1 < totalSteps) {
+      setCurrStep(steps[currStepIndex + 1]);
     }
   };
 
