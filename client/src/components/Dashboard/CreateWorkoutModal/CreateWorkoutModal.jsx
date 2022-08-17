@@ -14,6 +14,7 @@ export default function Dashboard({ handleModal }) {
           >
             Create Workout
           </DB.Header>
+          <AddedExerciseList></AddedExerciseList>
           <M.Column>
             <M.Label>Category</M.Label>
             <M.Category
