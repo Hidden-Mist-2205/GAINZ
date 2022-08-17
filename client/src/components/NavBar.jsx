@@ -28,7 +28,7 @@ export default function NavBar() {
         <Nav.MenuItem to="/StartWorkout">
           Start Workout
         </Nav.MenuItem>
-        <Nav.MenuItem to="/MyProfile">
+        <Nav.MenuItem to="/Profile">
           My Profile
         </Nav.MenuItem>
 
