@@ -72,67 +72,69 @@ export default function SignupForm() {
   }
 
   return (
-    <SU.WrapperDiv>
-      <h1>Sign Up</h1>
-      <SU.Form onSubmit={(e) => { createAccount(e); }}>
-        <SU.InputDiv>
-          <label htmlFor="username">
-            Username
-            <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="email">
-            Email
-            <SU.TextInput required id="email" type="email" value={email} onChange={((e) => setEmail(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="password">
-            Password
-            <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="zipcode">
-            Zipcode
-            <SU.TextInput required id="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="phoneNumber">
-            Phone Number
-            <SU.TextInput required id="phoneNumber" type="tel" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="fitnessGoal">
-            Your Fitness Goal
-            <SU.TextInput required id="fitnessGoal" type="textarea" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="zoomLink">
-            Upload your Zoom Link
-            <SU.TextInput required id="zoomLink" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="avatar">
-            Upload Your Profile Picture
-            <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
-          </label>
-        </SU.InputDiv>
-        <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
-      </SU.Form>
-      <SU.FormBottom>
-        <Link to="/login">Login</Link>
-        <Link to="/password-reset">Forgot Password?</Link>
-      </SU.FormBottom>
-    </SU.WrapperDiv>
+    <SU.PageWrapper>
+      <SU.WrapperDiv>
+        <h1>Sign Up</h1>
+        <SU.Form onSubmit={(e) => { createAccount(e); }}>
+          <SU.InputDiv>
+            <label htmlFor="username">
+              Username
+              <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="email">
+              Email
+              <SU.TextInput required id="email" type="email" value={email} onChange={((e) => setEmail(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="password">
+              Password
+              <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="zipcode">
+              Zipcode
+              <SU.TextInput required id="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="phoneNumber">
+              Phone Number
+              <SU.TextInput required id="phoneNumber" type="tel" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="fitnessGoal">
+              Your Fitness Goal
+              <SU.TextInput required id="fitnessGoal" type="textarea" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="zoomLink">
+              Upload your Zoom Link
+              <SU.TextInput required id="zoomLink" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="avatar">
+              Upload Your Profile Picture
+              <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+            </label>
+          </SU.InputDiv>
+          <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
+        </SU.Form>
+        <SU.FormBottom>
+          <Link to="/login">Login</Link>
+          <Link to="/password-reset">Forgot Password?</Link>
+        </SU.FormBottom>
+      </SU.WrapperDiv>
+    </SU.PageWrapper>
   );
 }
 

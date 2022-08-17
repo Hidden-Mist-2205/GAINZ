@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import GS from '../GeneralStyles';
 
 const SU = {
   TextInput: styled.input`
@@ -27,7 +28,6 @@ const SU = {
   color: white;
   width: 490px;
   margin: auto;
-  margin-top: 50px;
   padding: 20px;
   background-color: white;
   display: flex;
@@ -35,7 +35,6 @@ const SU = {
   align-items: center;
   justify-content: center;
   background-color: #272727;
-  border-radius: 5px;
   `,
   CheckBoxDiv: styled.div`
   display: flex;
@@ -47,6 +46,22 @@ const SU = {
   align-items: space-between;
   justify-content: center;
   padding: 5px;
+  width: 70%;
+  margin-top: 20px;
+  `,
+  PageWrapper: styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  `,
+  MiniButton: styled(GS.OutlinedBtn)`
+  width: 100%;
+  height: 30px;
+  font-size: 10px;
+  margin: 5px;
+  padding: unset;
   `,
 };
 
