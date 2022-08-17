@@ -29,7 +29,7 @@ export default function SignupForm() {
     });
 
     const converted = await toBase64(imageFile);
-    return Axios({
+    const picture = await Axios({
       method: 'post',
       url: 'https://api.cloudinary.com/v1_1/alpinefec/image/upload',
       data: {
@@ -37,21 +37,17 @@ export default function SignupForm() {
         upload_preset: 'lfcpuaaw',
       },
     });
+    return picture;
   }
 
   async function createAccount(e) {
     e.preventDefault();
 
     // res.data.secure_url
-
-    // let picture;
-    // try {
-    //   picture = await uploadImageHandler(avatar);
-    //   console.log('This is pictures....', picture);
-    // } catch (err) {
-    //   console.log('There was an error uploading a picture: ', err);
-    // }
     try {
+      const pic = await uploadImageHandler(avatar);
+      console.log('This is pictures....', pic.data.secure_url);
+
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
@@ -67,7 +63,7 @@ export default function SignupForm() {
           email: email,
           zip: zipcode,
           phoneNumber: phoneNum,
-          // avatar: picture,
+          avatar: pic.data.secure_url,
           goal: fitnessGoal,
           zoom: zoomLink,
           days: daysAvailable,
