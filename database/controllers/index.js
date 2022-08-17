@@ -187,13 +187,7 @@ module.exports = {
   },
   async deleteWorkout(info) {
     await sql`
-    DELETE FROM workouts WHERE workout_id = ${info.workoutId}
-    `;
-    await sql`
-    DELETE FROM steps WHERE workout_id = ${info.workoutId}
-    `;
-    await sql`
-    DELETE FROM user_workout WHERE workout_id = ${info.workoutId} AND user_Id = ${info.userId}
+    DELETE FROM workouts WHERE workout_id = ${info.workoutId} AND created_by = ${info.userId}
     `;
   },
   async getFavoritedWorkouts(userId) {
