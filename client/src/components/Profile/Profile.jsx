@@ -28,8 +28,6 @@ export default function Profile() {
       },
     })
       .then((res) => setUserInfo(res.data));
-
-    console.log(userInfo);
   }, []);
   const setEditButton = () => {
     setEditProfile(!editProfile);
