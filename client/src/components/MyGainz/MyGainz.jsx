@@ -19,7 +19,7 @@ export default function MyGainz() {
       },
     })
       .then((res) => {
-        setCompletedWorkouts(res.data);
+        setCompletedWorkouts(res.data || []);
       })
       .catch((err) => {
         console.error('error getting workouts: ', err);
