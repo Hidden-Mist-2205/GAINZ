@@ -4,7 +4,7 @@ import PageHeader from './LibComponents/PageHeader';
 import PageList from './LibComponents/PageList';
 import PageContainer from './Styles/PageContainer.styled';
 
-import { getWorkouts } from '../../requests/requests';
+import { getWorkouts } from '../../requests/server';
 
 export default function WorkoutLibrary() {
   const [workouts, setWorkouts] = useState([]);

@@ -4,7 +4,7 @@ import PageHeader from '../UserLibrary/LibComponents/PageHeader';
 import PageList from '../UserLibrary/LibComponents/PageList';
 import PageContainer from '../UserLibrary/Styles/PageContainer.styled';
 
-// import { getBuddies } from '../../requests/requests';
+// import { getBuddies } from '../../requests/server';
 
 export default function FindWorkoutBuddy() {
   const [buddies, setBuddies] = useState([]);
