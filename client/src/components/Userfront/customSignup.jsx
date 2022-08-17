@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Userfront from '@userfront/react';
 import Axios from 'axios';
 import GS from '../styles/GeneralStyles';
@@ -17,6 +17,8 @@ export default function SignupForm() {
   const [fitnessGoal, setFitnessGoal] = useState('');
   const [zoomLink, setZoomLink] = useState('');
   const [daysAvailable, setDaysAvailable] = useState([]);
+
+  const navigate = useNavigate();
 
   async function uploadImageHandler(imageFile) {
     // const img = URL.createObjectURL(imageFile);
@@ -119,19 +121,20 @@ export default function SignupForm() {
             </label>
           </SU.InputDiv>
           <SU.InputDiv>
+            <h3> Days Available: </h3>
             <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
           </SU.InputDiv>
           <SU.InputDiv>
             <label htmlFor="avatar">
-              Upload Your Profile Picture
+              <h3>Upload Your Profile Picture</h3>
               <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
             </label>
           </SU.InputDiv>
           <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
         </SU.Form>
         <SU.FormBottom>
-          <Link to="/login">Login</Link>
-          <Link to="/password-reset">Forgot Password?</Link>
+          <SU.MiniButton onClick={() => navigate('/login')}>Login</SU.MiniButton>
+          <SU.MiniButton onClick={() => navigate('/password-reset')}>Forgot Password?</SU.MiniButton>
         </SU.FormBottom>
       </SU.WrapperDiv>
     </SU.PageWrapper>
@@ -149,8 +152,7 @@ function AvailableDays({ daysAvailable, setDaysAvailable }) {
     }
   }
   return (
-    <>
-      <h3> Days Available: </h3>
+    <SU.CheckboxContainer>
       <SU.CheckBoxDiv>
         <label htmlFor="Monday">
           <input id="Monday" type="checkbox" value="Monday" onChange={e => handleChange(e)} />
@@ -193,6 +195,6 @@ function AvailableDays({ daysAvailable, setDaysAvailable }) {
           Sunday
         </label>
       </SU.CheckBoxDiv>
-    </>
+    </SU.CheckboxContainer>
   );
 }

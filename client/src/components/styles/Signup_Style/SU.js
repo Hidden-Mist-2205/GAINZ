@@ -37,8 +37,11 @@ const SU = {
   background-color: #272727;
   `,
   CheckBoxDiv: styled.div`
-  display: flex;
-  flex-direction: row;
+  text-align: center;
+  font-size: 14px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   `,
   FormBottom: styled.div`
   display: flex;
@@ -62,6 +65,9 @@ const SU = {
   font-size: 10px;
   margin: 5px;
   padding: unset;
+  `,
+  CheckboxContainer: styled.div`
+  display: flex;
   `,
 };
 
