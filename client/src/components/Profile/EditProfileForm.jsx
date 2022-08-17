@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
-export default function EditProfileForm() {
-  const [editProfileInfo, setEditProfileInfo] = useState({
-    username: '',
-    email: '',
-    zipcode: '',
-    telephone: '',
-    zoom: '',
-    fitnessGoal: '',
-  });
-  const [editDaysAvailable, setEditDaysAvailable] = useState([]);
+import { FormContainer, FormFlexColumn } from './Profile.styled';
 
+export default function EditProfileForm({
+  editProfileInfo,
+  setEditProfileInfo,
+  editDaysAvailable,
+  setEditDaysAvailable,
+}) {
   const handleChange = (e) => {
     if (e.target.checked) {
       setEditDaysAvailable([...editDaysAvailable, e.target.value]);
     } else {
       const freshArray = editDaysAvailable.filter(
-        (val) => val !== e.target.value,
+        (val) => val !== e.target.value
       );
       setEditDaysAvailable([...freshArray]);
     }
@@ -35,10 +31,12 @@ export default function EditProfileForm() {
               id="editUsername"
               className="formField"
               value={editProfileInfo.username}
-              onChange={(e) => setEditProfileInfo({
-                ...editProfileInfo,
-                username: e.target.value,
-              })}
+              onChange={(e) =>
+                setEditProfileInfo({
+                  ...editProfileInfo,
+                  username: e.target.value,
+                })
+              }
             />
           </label>
 
@@ -50,10 +48,12 @@ export default function EditProfileForm() {
               id="editEmail"
               className="formField"
               value={editProfileInfo.email}
-              onChange={(e) => setEditProfileInfo({
-                ...editProfileInfo,
-                email: e.target.value,
-              })}
+              onChange={(e) =>
+                setEditProfileInfo({
+                  ...editProfileInfo,
+                  email: e.target.value,
+                })
+              }
             />
           </label>
 
@@ -66,25 +66,29 @@ export default function EditProfileForm() {
               id="editZip"
               className="formField"
               value={editProfileInfo.zipcode}
-              onChange={(e) => setEditProfileInfo({
-                ...editProfileInfo,
-                zipcode: e.target.value,
-              })}
+              onChange={(e) =>
+                setEditProfileInfo({
+                  ...editProfileInfo,
+                  zipcode: e.target.value,
+                })
+              }
             />
           </label>
 
           <label htmlFor="editTel">
-            Telephone Number:
+            Phone Number:
             <input
               type="tel"
               required
               id="editTel"
               className="formField"
-              value={editProfileInfo.telephone}
-              onChange={(e) => setEditProfileInfo({
-                ...editProfileInfo,
-                telephone: e.target.value,
-              })}
+              value={editProfileInfo.phoneNumber}
+              onChange={(e) =>
+                setEditProfileInfo({
+                  ...editProfileInfo,
+                  phoneNumber: e.target.value,
+                })
+              }
             />
           </label>
 
@@ -96,7 +100,9 @@ export default function EditProfileForm() {
               id="editZoom"
               className="formField"
               value={editProfileInfo.zoom}
-              onChange={(e) => setEditProfileInfo({ ...editProfileInfo, zoom: e.target.value })}
+              onChange={(e) =>
+                setEditProfileInfo({ ...editProfileInfo, zoom: e.target.value })
+              }
             />
           </label>
 
@@ -108,10 +114,12 @@ export default function EditProfileForm() {
               id="editGoal"
               className="formField"
               value={editProfileInfo.goal}
-              onChange={(e) => setEditProfileInfo({
-                ...editProfileInfo,
-                fitnessGoal: e.target.value,
-              })}
+              onChange={(e) =>
+                setEditProfileInfo({
+                  ...editProfileInfo,
+                  fitnessGoal: e.target.value,
+                })
+              }
             />
           </label>
         </FormFlexColumn>
@@ -197,17 +205,3 @@ export default function EditProfileForm() {
     </form>
   );
 }
-
-const FormContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-const FormFlexColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-`;
