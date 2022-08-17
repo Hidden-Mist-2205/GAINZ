@@ -160,6 +160,17 @@ app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
   }
 });
 
+app.post('/postUser', async (req, res) => {
+  try {
+    await controllers.addNewUser(req.body);
+    await controllers.addAvailableDays(req.body.userId, req.body.days);
+    res.sendStatus(201);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error posting new user');
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
