@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Userfront from '@userfront/react';
+import { useRecoilValue } from 'recoil';
+import Userfront from '@userfront/core';
+import currentWorkoutIDState from '../currentWorkoutAtom';
 import SW from '../styles/StartWorkout_style/SW';
 import GS from '../styles/GeneralStyles';
 import CountDownTimer from './CountDownTimer';
 import StepsInstruction from './StepsInstruction';
-import currentWorkoutIDState from '../currentWorkoutAtom';
-
-Userfront.init('rbvr4mqb');
+import EndSessionModal from './EndSessionModal';
 
 export default function StartWorkout() {
   const [workout, setWorkout] = useState({});
   const [steps, setSteps] = useState([]);
   const [currStep, setCurrStep] = useState('');
+  const [openModal, setOpenModal] = useState(false);
+
+  const workoutId = useRecoilValue(currentWorkoutIDState);
+  const { userId } = Userfront.user;
 
   const getWorkout = () => {
     axios({
       method: 'GET',
-      url: `${process.env.URL}/getWorkout`,
+      url: `/getWorkout`,
       headers: {
         ContentType: 'application/json',
-        // authorization: `Bearer ${Userfront.tokens.accessToken}`,
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
       params: {
-        userId: 1,
-        workoutId: 2,
+        userId,
+        workoutId,
       },
     })
       .then((exercisesData) => {
@@ -36,7 +40,7 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
-    console.log('currworkoutID: ', currentWorkoutIDState);
+    console.log('currworkoutID: ', workoutId, 'userID: ', userId);
     getWorkout();
   }, []);
 
@@ -44,7 +48,8 @@ export default function StartWorkout() {
     <>
       <GS.PageHeader>Start Workout 🥊</GS.PageHeader>
       <SW.FlexDiv>
-        <GS.Button>End Session</GS.Button>
+        <GS.Button onClick={() => setOpenModal(true)}>End Session</GS.Button>
+        {openModal && <EndSessionModal workout={workout} setOpenModal={setOpenModal} />}
       </SW.FlexDiv>
       <SW.Container>
         <SW.WorkoutName>

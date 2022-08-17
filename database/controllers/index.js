@@ -193,51 +193,51 @@ module.exports = {
   async getFavoritedWorkouts(userId) {
     const favoritedWorkout = await sql`
     SELECT
-    w.workout_id AS workoutId,
-    w."name",
-    description,
-    created_by,
-    main_area,
-    (SELECT json_agg(step)
-    FROM (
-      SELECT
-      s.step_num,
-      s.reps,
-      s.unit,
-      s.weight,
-      (SELECT
-        e."name"
-      FROM exercises e
-      WHERE e.exercise_id = s.exercise_id),
-      (SELECT
-        e.gif_url
-      FROM exercises e
-      WHERE e.exercise_id = s.exercise_id)
-      FROM steps s
-      ) AS step
-    ) AS Steps
-  FROM
-  workouts w
-  LEFT JOIN
-  user_workout uw
-  ON w.workout_id = uw.workout_id
-  WHERE uw.is_favorited = true AND uw.user_id = ${userId}
+      w.workout_id AS workoutId,
+      w."name",
+      description,
+      created_by,
+      main_area,
+      (SELECT json_agg(step)
+      FROM (
+        SELECT
+        s.step_num,
+        s.reps,
+        s.unit,
+        s.weight,
+        (SELECT
+          e."name"
+        FROM exercises e
+        WHERE e.exercise_id = s.exercise_id),
+        (SELECT
+          e.gif_url
+        FROM exercises e
+        WHERE e.exercise_id = s.exercise_id)
+        FROM steps s
+        ) AS step
+      ) AS Steps
+    FROM
+    workouts w
+    LEFT JOIN
+    user_workout uw
+    ON w.workout_id = uw.workout_id
+    WHERE uw.is_favorited = true AND uw.user_id = ${userId}
   `;
     return favoritedWorkout;
   },
   async getFavoritedExercise(userId) {
     await sql`
     SELECT
-    e.exercise_id AS exerciseId,
-    e."name",
-    e.area,
-    e.gif_url,
-    ue.is_favorited
-  FROM exercises e
-  LEFT JOIN
-  users_exercises ue
-  ON e.exercise_id = ue.exercise_id
-  WHERE ue.is_favorited = true AND ue.user_id = ${userId}
+      e.exercise_id AS exerciseId,
+      e."name",
+      e.area,
+      e.gif_url,
+      ue.is_favorited
+    FROM exercises e
+    LEFT JOIN
+    users_exercises ue
+    ON e.exercise_id = ue.exercise_id
+    WHERE ue.is_favorited = true AND ue.user_id = ${userId}
     `;
   },
   async toggleFavoritedWorkout(workoutId, userId) {
@@ -294,8 +294,23 @@ module.exports = {
     `;
     return completedWorkouts[0].json_agg;
   },
-  async updateWorkoutCompletion(/* INFO */) {
-    // TODO
+  async updateWorkoutCompletion(userId, workoutId, finishCount, completeTime) {
+    await sql`
+      INSERT INTO user_workout (
+        user_id,
+        workout_id,
+        times_completed,
+        last_completion,
+        is_favorited
+      ) VALUES (
+        ${userId},
+        ${workoutId},
+        ${finishCount},
+        ${completeTime},
+        false
+      ) ON CONFLICT (user_id, workout_id) DO UPDATE
+      SET times_completed = ${finishCount}, last_completion = ${completeTime}
+    `;
   },
   async getAvailableBuddies(userID, requestedDay, userZipcode) {
     // TODO
