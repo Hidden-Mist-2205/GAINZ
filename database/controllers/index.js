@@ -23,7 +23,6 @@ module.exports = {
       FROM users u
       WHERE user_id = ${userID}
     `;
-    // sql.end();
     return userData[0];
   },
   async getAllExercises() {
@@ -33,7 +32,6 @@ module.exports = {
       FROM exercises
       ORDER BY exercise_id ASC
     `;
-    // sql.end();
     return workouts;
   },
   async getWorkout(workoutId, userId) {
@@ -85,7 +83,6 @@ module.exports = {
     FROM workouts w
     WHERE w.workout_id = ${workoutId}
     `;
-    // sql.end();
     return workout[0];
   },
   async getAllWorkouts(userId) {
@@ -136,7 +133,6 @@ module.exports = {
         ) AS steps
       FROM workouts w
     `;
-    // sql.end();
     return workouts;
   },
   async addNewWorkout(info, userId) {
@@ -159,7 +155,7 @@ module.exports = {
     return insertWorkout;
   },
   async addUserWorkout(userId, workoutId) {
-    const insertUserWorkout = await sql`
+    await sql`
     INSERT INTO user_workout (
       user_id,
       workout_id,
@@ -173,7 +169,7 @@ module.exports = {
     )`;
   },
   async addSteps(info, workoutId, index) {
-    const insertSteps = await sql`
+    await sql`
     INSERT INTO steps (
       step_num,
       workout_id,
@@ -190,13 +186,13 @@ module.exports = {
     `;
   },
   async deleteWorkout(info) {
-    const workout = await sql`
+    await sql`
     DELETE FROM workouts WHERE workout_id = ${info.workoutId}
     `;
-    const steps = await sql`
+    await sql`
     DELETE FROM steps WHERE workout_id = ${info.workoutId}
     `;
-    const userWorkout = await sql`
+    await sql`
     DELETE FROM user_workout WHERE workout_id = ${info.workoutId} AND user_Id = ${info.userId}
     `;
   },
@@ -236,7 +232,7 @@ module.exports = {
     return favoritedWorkout;
   },
   async getFavoritedExercise(userId) {
-    const favoritedExercise = await sql`
+    await sql`
     SELECT
     e.exercise_id AS exerciseId,
     e."name",
@@ -251,7 +247,7 @@ module.exports = {
     `;
   },
   async toggleFavoritedWorkout(workoutId, userId) {
-    const toggleFav = await sql`
+    await sql`
     INSERT INTO user_workout (
       user_id,
       workout_id,
@@ -267,7 +263,7 @@ module.exports = {
     `;
   },
   async toggleFavoritedExercise(exerciseId, userId) {
-    const toggleFav = await sql`
+    await sql`
     INSERT INTO users_exercises (
       user_id,
       exercise_id,
@@ -354,7 +350,6 @@ module.exports = {
   },
   async addAvailableDays(userID, days) {
     // TODO
-    // Can probably check if it is an update for an existing user
     await sql`
       DELETE
       FROM available_days ad
@@ -368,7 +363,7 @@ module.exports = {
     }
     return 'Days Added';
   },
-  // Stretch?
+  // Stretch
   async addNewExercise(/* INFO */) {
     // TODO
   },
