@@ -9,8 +9,35 @@ async function distanceBetween(location1, location2) {
   &origins=${location1}
   &destinations=${location2}
   `;
-  const data = await axios.get(reqUrl);
+  const res = await axios.get(reqUrl);
+  const data = res.rows[0].elements[0];
   return data;
 }
+
+// const distance = data.distance.text;
+// const travelTime = data.duration.text;
+
+// const returnValExample = {
+//   destination_addresses: ['Huntington, NY 11743, USA'],
+//   origin_addresses: ['Beacon, NY 12508, USA'],
+//   rows: [
+//     {
+//       elements: [
+//         {
+//           distance: {
+//             text: '88.1 mi',
+//             value: 141821,
+//           },
+//           duration: {
+//             text: '2 hours 0 mins',
+//             value: 7212,
+//           },
+//           status: 'OK',
+//         },
+//       ],
+//     },
+//   ],
+//   status: 'OK',
+// };
 
 export default distanceBetween;
