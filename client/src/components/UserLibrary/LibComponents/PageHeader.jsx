@@ -10,7 +10,7 @@ export default function PageHeader({ page, searchFunction }) {
     <FlexContainer>
       <PageHeading text={page} />
       <SearchBar controlledValue={searchInput} changeHandler={setSearchInput} />
-      <SearchButton handleClick={searchFunction} />
+      <SearchButton handleClick={searchFunction} searchInput={searchInput} />
     </FlexContainer>
   );
 }
