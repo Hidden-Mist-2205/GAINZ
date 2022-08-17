@@ -74,7 +74,7 @@ app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
   try {
     const workouts = await controllers.getAllWorkouts(req.auth.userId);
     res.json(workouts);
-  } catch (error) {gi
+  } catch (error) {
     console.error(error);
     res.status(500).send('Error fetching data');
   }
