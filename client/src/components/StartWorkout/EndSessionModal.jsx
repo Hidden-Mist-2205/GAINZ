@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Userfront from '@userfront/core';
 import ESM from '../styles/StartWorkout_style/ESM';
@@ -10,9 +11,17 @@ export default function EndSessionModal({ workout, setOpenModal }) {
   const { userId } = Userfront.user;
   const workoutId = workout.id;
 
+  const navigate = useNavigate();
+  const routeChange = () => {
+    const path = '/Dashboard';
+    navigate(path);
+  };
+
   const endSessionAndSubmit = (e) => {
     e.preventDefault();
+
     setOpenModal(false);
+    routeChange();
 
     if (finishCount === null) {
       finishCount = 1;
@@ -36,7 +45,7 @@ export default function EndSessionModal({ workout, setOpenModal }) {
         completeTime,
       },
     })
-      .then((updatedWorkout) => console.log('successfully updated!', updatedWorkout))
+      .then(() => console.log('successfully updated!'))
       .catch((err) => console.log(err));
   };
 
