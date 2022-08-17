@@ -41,6 +41,9 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
+
+    // res.data.secure_url
+
     // let picture;
     // try {
     //   picture = await uploadImageHandler(avatar);

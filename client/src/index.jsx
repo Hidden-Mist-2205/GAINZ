@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import Signup from './components/Userfront/customSignup';
+import Home from './components/HomePage/noAuthHome';
 
 import {
   Login,
@@ -25,6 +26,7 @@ function App() {
     <RecoilRoot>
       <Router>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route
             path="*"
             element={(
@@ -33,8 +35,8 @@ function App() {
               </RequireAuth>
             )}
           />
-          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/password-reset" element={<PasswordReset />} />
 
         </Routes>
