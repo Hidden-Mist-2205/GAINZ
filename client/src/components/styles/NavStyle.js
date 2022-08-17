@@ -57,7 +57,8 @@ const Nav = {
     justify-content: space-between;
     align-items: center;
     width: 80px;
-    height: 150px;
+    height: ${props => props.height};
+    /* height: 150px; */
   `,
   UserIcon: styled.div`
     width: 46px;
@@ -98,6 +99,15 @@ const Nav = {
     &:hover {
       text-decoration: underline;
     }
+  `,
+  LibrarySelectionContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: ${props => props.marginTop};
+    width: 80px;
+    height: ${props => props.height};
   `,
 };
 
