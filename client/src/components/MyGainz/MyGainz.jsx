@@ -1,16 +1,23 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import Userfront from '@userfront/core';
 import axios from 'axios';
 import { pageState, completedWorkoutsState } from './workoutsAtom';
 import MG from '../styles/MyGainz_style/MG';
+import GS from '../styles/GeneralStyles';
 import Workout from './Workout';
 
 export default function MyGainz() {
   const [page, setPage] = useRecoilState(pageState);
   const [completedWorkouts, setCompletedWorkouts] = useRecoilState(completedWorkoutsState);
+
   useEffect(() => {
-    const userID = 1;
-    axios.get(`getCompletedWorkouts?userID=${userID}`)
+    axios.get('/getCompletedWorkouts', {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
+      },
+    })
       .then((res) => {
         setCompletedWorkouts(res.data);
       })
@@ -44,14 +51,16 @@ export default function MyGainz() {
 
   return (
     <MG.Body>
-      <MG.Header>My Gainz</MG.Header>
+      <GS.PageHeader>My Gainz</GS.PageHeader>
       <MG.WOHeader>Completed Workouts</MG.WOHeader>
       <Workout />
-      <MG.NavBtn>
-        <MG.Previous onClick={handlePrevious}>{'<'}</MG.Previous>
-        <MG.Page>{page.page}</MG.Page>
-        <MG.Next onClick={handleNext}>{'>'}</MG.Next>
-      </MG.NavBtn>
+      {completedWorkouts.length / 4 >= 1 ? (
+        <MG.NavBtn>
+          <MG.Previous onClick={handlePrevious}>{'<'}</MG.Previous>
+          <MG.Page>{page.page}</MG.Page>
+          <MG.Next onClick={handleNext}>{'>'}</MG.Next>
+        </MG.NavBtn>
+      ) : null}
     </MG.Body>
   );
 }

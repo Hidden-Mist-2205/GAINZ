@@ -5,7 +5,8 @@ CREATE TABLE "users"(
     "zip_code" TEXT NULL,
     "phone_num" TEXT NULL,
     "avatar_url" TEXT NULL,
-    "fitness_goal" TEXT NULL
+    "fitness_goal" TEXT NULL,
+    "zoom_profile" TEXT NULL
 );
 CREATE INDEX "users_user_id_index" ON
     "users"("user_id");
@@ -81,9 +82,9 @@ ALTER TABLE
 ALTER TABLE
     "user_workout" ADD CONSTRAINT "user_workout_user_id_foreign" FOREIGN KEY("user_id") REFERENCES "users"("user_id");
 ALTER TABLE
-    "user_workout" ADD CONSTRAINT "user_workout_workout_id_foreign" FOREIGN KEY("workout_id") REFERENCES "workouts"("workout_id");
+    "user_workout" ADD CONSTRAINT "user_workout_workout_id_foreign" FOREIGN KEY("workout_id") REFERENCES "workouts"("workout_id") ON DELETE CASCADE;
 ALTER TABLE
-    "steps" ADD CONSTRAINT "steps_workout_id_foreign" FOREIGN KEY("workout_id") REFERENCES "workouts"("workout_id");
+    "steps" ADD CONSTRAINT "steps_workout_id_foreign" FOREIGN KEY("workout_id") REFERENCES "workouts"("workout_id") ON DELETE CASCADE;
 ALTER TABLE
     "available_days" ADD CONSTRAINT "available_days_user_id_foreign" FOREIGN KEY("user_id") REFERENCES "users"("user_id");
 ALTER TABLE

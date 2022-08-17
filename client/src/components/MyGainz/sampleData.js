@@ -70,3 +70,5 @@ const sampleData = [
     LastCompleted: '8/09/22 5:41 PM',
   },
 ];
+
+export default sampleData;

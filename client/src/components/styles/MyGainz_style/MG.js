@@ -15,19 +15,8 @@ const MG = {
     background: rgba(217, 217, 217, 0.15);
     height: 525px;
     border-radius: 8px;
-    overflow: scroll;
-  `,
-  Header: styled.h1`
-    width: 300px;
-    height: 10%;
-    margin-left: 3%;
-    margin-top: 19px;
-    margin-bottom: 19px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 48px;
-    line-height: 72px;
-    letter-spacing: -0.015em;
+    padding-bottom: 10px;
+    height: fit-content;
   `,
   WOHeader: styled.h3`
   display: inline;
@@ -95,10 +84,11 @@ const MG = {
   align-items: center;
   text-align: center;
   height: 36px;
-  padding-top: 225px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   font-style: normal;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 20px;
   line-height: 36px;
   `,
   LibraryLink: styled.a`
