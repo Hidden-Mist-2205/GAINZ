@@ -301,8 +301,7 @@ module.exports = {
     return completedWorkouts[0].json_agg;
   },
   async updateWorkoutCompletion(userId, workoutId, finishCount, completeTime) {
-    console.log('data in db: ', userId, workoutId, finishCount, completeTime)
-    const updatedWorkout = await sql`
+    await sql`
       INSERT INTO user_workout (
         user_id,
         workout_id,
@@ -318,7 +317,6 @@ module.exports = {
       ) ON CONFLICT (user_id, workout_id) DO UPDATE
       SET times_completed = ${finishCount}, last_completion = ${completeTime}
     `;
-    console.log('updated workout:', updatedWorkout)
   },
   async getAvailableBuddies(userID, requestedDay, userZipcode) {
     // TODO

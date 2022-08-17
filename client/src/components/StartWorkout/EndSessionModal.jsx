@@ -20,6 +20,7 @@ export default function EndSessionModal({ workout, setOpenModal }) {
       finishCount += 1;
     }
     completeTime = new Date();
+    completeTime = JSON.stringify(completeTime).slice(1, 11);
 
     axios({
       method: 'PUT',
@@ -29,8 +30,8 @@ export default function EndSessionModal({ workout, setOpenModal }) {
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
       params: {
-        workoutId,
         userId,
+        workoutId,
         finishCount,
         completeTime,
       },

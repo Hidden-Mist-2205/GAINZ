@@ -172,13 +172,13 @@ app.post('/postUser', async (req, res) => {
 
 app.put('/updateWorkoutCompletion', authenticateToken, async (req, res) => {
   try {
-    const updatedWorkout = await controllers.updateWorkoutCompletion(
-      req.query.workoutId,
+    await controllers.updateWorkoutCompletion(
       req.query.userId,
+      req.query.workoutId,
       req.query.finishCount,
       req.query.completeTime,
     );
-    res.json(updatedWorkout);
+    res.sendStatus(204);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error fetching completed workouts');
