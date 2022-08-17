@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import Userfront from '@userfront/core';
@@ -19,8 +20,8 @@ export default function MyGainz() {
       },
     })
       .then((res) => {
-        const sor = [...res.data]?.sort((a, b) => (a.times_completed > b.times_completed ? -1 : 1));
-        setCompletedWorkouts(sor || []);
+        const sorted = [...res.data]?.sort((a, b) => (a.times_completed > b.times_completed ? -1 : 1));
+        setCompletedWorkouts(sorted || []);
       })
       .catch((err) => {
         console.error('error getting workouts: ', err);
