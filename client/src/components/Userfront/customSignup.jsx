@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Userfront from '@userfront/react';
 import Axios from 'axios';
 import GS from '../styles/GeneralStyles';
@@ -28,7 +29,7 @@ export default function SignupForm() {
     });
 
     const converted = await toBase64(imageFile);
-    await Axios({
+    return Axios({
       method: 'post',
       url: 'https://api.cloudinary.com/v1_1/alpinefec/image/upload',
       data: {
@@ -40,13 +41,13 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
-
-    try {
-      const picture = await uploadImageHandler(avatar);
-    } catch (err) {
-      console.log('There was an error uploading picture: ', err);
-    }
-
+    // let picture;
+    // try {
+    //   picture = await uploadImageHandler(avatar);
+    //   console.log('This is pictures....', picture);
+    // } catch (err) {
+    //   console.log('There was an error uploading a picture: ', err);
+    // }
     try {
       const signup = await Userfront.signup({
         method: 'password',
@@ -54,55 +55,92 @@ export default function SignupForm() {
         email: email,
         password: password,
       });
+      await Axios({
+        method: 'POST',
+        url: '/postUser',
+        data: {
+          userId: signup.userId,
+          username: username,
+          email: email,
+          zip: zipcode,
+          phoneNumber: phoneNum,
+          // avatar: picture,
+          goal: fitnessGoal,
+          zoom: zoomLink,
+          days: daysAvailable,
+        },
+      });
     } catch (err) {
-      console.log('There was an error uploading to Userbase: ', err);
-    }
-
-    try {
-      //Upload to the DB here
-    } catch {
-      //Catch error here
+      console.log('There was an error with usefront or your server: ', err);
     }
   }
 
   return (
     <SU.WrapperDiv>
-      <h1>Sign Up for Gainz</h1>
+      <h1>Sign Up</h1>
       <SU.Form onSubmit={(e) => { createAccount(e); }}>
         <SU.InputDiv>
-          <SU.TextInput id="username" placeholder="Username" value={username} onChange={((e) => setUsername(e.target.value))} />
+          <label htmlFor="username">
+            Username
+            <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="email" type="email" placeholder="email" value={email} onChange={((e) => setEmail(e.target.value))} />
+          <label htmlFor="email">
+            Email
+            <SU.TextInput required id="email" type="email" value={email} onChange={((e) => setEmail(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="password" type="password" placeholder="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+          <label htmlFor="password">
+            Password
+            <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="zipcode" placeholder="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+          <label htmlFor="zipcode">
+            Zipcode
+            <SU.TextInput required id="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="phoneNum" type="tel" placeholder="Phone Number" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+          <label htmlFor="phoneNumber">
+            Phone Number
+            <SU.TextInput required id="phoneNumber" type="tel" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="fitnessGoal" type="textarea" placeholder="Your fitness goal" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+          <label htmlFor="fitnessGoal">
+            Your Fitness Goal
+            <SU.TextInput required id="fitnessGoal" type="textarea" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
-          <SU.TextInput id="zoomLink" placeholder="Personal Zoom Link" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
+          <label htmlFor="zoomLink">
+            Upload your Zoom Link
+            <SU.TextInput required id="zoomLink" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
+          </label>
         </SU.InputDiv>
         <SU.InputDiv>
           <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
         </SU.InputDiv>
         <SU.InputDiv>
-          <h3>Upload Your Profile Picture:</h3>
-          <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+          <label htmlFor="avatar">
+            Upload Your Profile Picture
+            <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+          </label>
         </SU.InputDiv>
-        <GS.Button type="submit">Submit</GS.Button>
+        <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
       </SU.Form>
+      <SU.FormBottom>
+        <Link to="/login">Login</Link>
+        <Link to="/password-reset">Forgot Password?</Link>
+      </SU.FormBottom>
     </SU.WrapperDiv>
   );
 }
 
+// Creates array of available days
 function AvailableDays({ daysAvailable, setDaysAvailable }) {
   function handleChange(e) {
     if (e.target.checked) {

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 const SU = {
   TextInput: styled.input`
-  width: 80%;
+  width: 90%;
   padding: 12px 20px;
   margin: 5px;
   border-radius: 3px;
   border: 0px;
+  display: block;
   `,
   Form: styled.form`
   width: 100%;
@@ -17,13 +18,14 @@ const SU = {
   `,
   InputDiv: styled.div`
   width: 100%;
-  margin: auto;
-  justify-content: center;
+  margin: 5px;
+  display: block;
+  font-weight: 200;
   `,
   WrapperDiv: styled.div`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   color: white;
-  width: 40vw;
+  width: 490px;
   margin: auto;
   margin-top: 50px;
   padding: 20px;
@@ -38,6 +40,13 @@ const SU = {
   CheckBoxDiv: styled.div`
   display: flex;
   flex-direction: row;
+  `,
+  FormBottom: styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: center;
+  padding: 5px;
   `,
 };
 

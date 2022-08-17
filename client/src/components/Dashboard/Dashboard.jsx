@@ -9,16 +9,23 @@ import M from '../styles/Dashboard_style/Modal';
 export default function Dashboard() {
   const [type, setType] = useState('Workout');
   const [showModal, setShowModal] = useState(false);
+  const [[exerciseTabLine, workoutTabLine], setShowTabLine] = useState(['none', 'solid #121212']);
   const handleModal = () => (
     showModal ? setShowModal(false) : setShowModal(true)
   );
-  const handleType = (e) => (
-    e.target.name === 'Workout' ? setType('Workout') : setType('Exercise')
-  );
+  const handleType = (e) => {
+    if (e.target.name === 'Workout') {
+      setShowTabLine(['none', 'solid #121212']);
+      setType('Workout');
+    } else {
+      setShowTabLine(['solid #121212', 'none']);
+      setType('Exercise');
+    }
+  };
   return (
     <DB.Body>
-      <DB.Header>My Dashboard</DB.Header>
-      <M.Column style={{ width: '80%', margin: 'auto' }}>
+      <GS.PageHeader>My Dashboard</GS.PageHeader>
+      <M.Column style={{ width: '90%', margin: 'auto' }}>
         {type === 'Exercise'
           && (
             <GS.OutlinedBtn
@@ -36,8 +43,20 @@ export default function Dashboard() {
               Create WorkOut
             </GS.OutlinedBtn>
           )}
-        <DB.Tabs name="Workout" onClick={handleType} style={{ 'border-right': 'solid black' }}>Favorite Workout</DB.Tabs>
-        <DB.Tabs name="Exercise" onClick={handleType}>Favorite Exercise</DB.Tabs>
+        <DB.Tabs
+          name="Workout"
+          onClick={handleType}
+          style={{ 'border-right': 'solid #121212', 'border-bottom': exerciseTabLine }}
+        >
+          Favorite Workout
+        </DB.Tabs>
+        <DB.Tabs
+          name="Exercise"
+          onClick={handleType}
+          style={{ 'border-bottom': workoutTabLine }}
+        >
+          Favorite Exercise
+        </DB.Tabs>
       </M.Column>
       {type === 'Workout' && <Workout />}
       {type === 'Exercise' && <Exercise handleModal={handleModal} />}
