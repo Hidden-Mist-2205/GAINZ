@@ -15,7 +15,7 @@ export default function StartWorkout() {
   const [currStep, setCurrStep] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const workoutID = useRecoilValue(currentWorkoutIDState);
-  const userID = Userfront.user.userId;
+  const userId = Userfront.user.userId;
 
   const getWorkout = () => {
     axios({
@@ -39,7 +39,7 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
-    console.log('currworkoutID: ', workoutID, 'userID: ', userID);
+    console.log('currworkoutID: ', workoutID, 'userID: ', userId);
     getWorkout();
   }, []);
 

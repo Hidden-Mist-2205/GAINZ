@@ -288,8 +288,8 @@ module.exports = {
     `;
     return completedWorkouts[0].json_agg;
   },
-  async updateWorkoutCompletion(/* INFO */) {
-    // TODO
+  async updateWorkoutCompletion(workoutId, userId, finishCount, completeTime) {
+    console.log('obj: ', finishCount, completeTime);
   },
   async getAvailableBuddies(/* INFO */) {
     // TODO

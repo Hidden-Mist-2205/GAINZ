@@ -131,6 +131,21 @@ app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
   }
 });
 
+app.put('/updateWorkoutCompletion', authenticateToken, async (req, res) => {
+  try {
+    const updatedWorkout = await controllers.updateWorkoutCompletion(
+      req.query.workoutId,
+      req.query.userId,
+      req.query.finishCount,
+      req.query.completeTime,
+    );
+    res.json(updatedWorkout);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching completed workouts');
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
