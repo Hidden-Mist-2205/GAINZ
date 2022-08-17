@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Userfront from '@userfront/react';
 import { useRecoilValue } from 'recoil';
+import Userfront from '@userfront/core';
 import currentWorkoutIDState from '../currentWorkoutAtom';
 import SW from '../styles/StartWorkout_style/SW';
 import GS from '../styles/GeneralStyles';
 import CountDownTimer from './CountDownTimer';
 import StepsInstruction from './StepsInstruction';
-
-Userfront.init('rbvr4mqb');
+import EndSessionModal from './EndSessionModal';
 
 export default function StartWorkout() {
   const [workout, setWorkout] = useState({});
   const [steps, setSteps] = useState([]);
   const [currStep, setCurrStep] = useState('');
+  const [openModal, setOpenModal] = useState(false);
   const workoutID = useRecoilValue(currentWorkoutIDState);
+  const userID = Userfront.user.userId;
 
   const getWorkout = () => {
     axios({
@@ -22,7 +23,7 @@ export default function StartWorkout() {
       url: `${process.env.URL}/getWorkout`,
       headers: {
         ContentType: 'application/json',
-        // authorization: `Bearer ${Userfront.tokens.accessToken}`,
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
       params: {
         userId: 1,
@@ -38,7 +39,7 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
-    console.log('currworkoutID: ', workoutID);
+    console.log('currworkoutID: ', workoutID, 'userID: ', userID);
     getWorkout();
   }, []);
 
@@ -46,7 +47,8 @@ export default function StartWorkout() {
     <>
       <GS.PageHeader>Start Workout 🥊</GS.PageHeader>
       <SW.FlexDiv>
-        <GS.Button>End Session</GS.Button>
+        <GS.Button onClick={() => setOpenModal(true)}>End Session</GS.Button>
+        {openModal && <EndSessionModal workout={workout} setOpenModal={setOpenModal} />}
       </SW.FlexDiv>
       <SW.Container>
         <SW.WorkoutName>
