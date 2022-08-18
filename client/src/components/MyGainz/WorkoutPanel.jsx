@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import Userfront from '@userfront/core';
 import axios from 'axios';
-import MG from '../styles/MyGainz_style/MG';
+import Container from '../styles/ContainerStyles/Container_style';
 import GS from '../styles/GeneralStyles';
 import ExercisePanel from './ExercisePanel';
 import currentWorkoutIDState from '../currentWorkoutAtom';
@@ -44,21 +44,21 @@ export default function WorkoutPanel({ workout }) {
   };
 
   return (
-    <MG.WOPanel>
-      <MG.WOItem>
+    <Container.WOPanel>
+      <Container.WOItem>
         {favorite
-          ? <MG.WOStar onClick={handleFavorite}>&#9733;</MG.WOStar>
-          : <MG.WOStar onClick={handleFavorite}>&#9734;</MG.WOStar>}
-        <MG.WOName onClick={handleExercisePanel}>{workout.workout_name}</MG.WOName>
-        <MG.WOTimesCompleted>
+          ? <Container.WOStar onClick={handleFavorite}>&#9733;</Container.WOStar>
+          : <Container.WOStar onClick={handleFavorite}>&#9734;</Container.WOStar>}
+        <Container.WOName onClick={handleExercisePanel}>{workout.workout_name}</Container.WOName>
+        <Container.WOCategory>
           {workout.times_completed === 1
             ? `Completed ${workout.times_completed} time`
             : `Completed ${workout.times_completed} times`}
-        </MG.WOTimesCompleted>
-        <MG.WOLastCompleted>{`Last completed on: ${workout.last_completed}`}</MG.WOLastCompleted>
+        </Container.WOCategory>
+        <Container.WODescription>{`Last completed on: ${workout.last_completed}`}</Container.WODescription>
         <GS.Button onClick={routeChange}>START</GS.Button>
-      </MG.WOItem>
+      </Container.WOItem>
       {showExercises && <ExercisePanel exercises={workout.exercises} />}
-    </MG.WOPanel>
+    </Container.WOPanel>
   );
 }
