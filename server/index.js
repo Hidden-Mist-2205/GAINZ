@@ -216,7 +216,6 @@ app.get('/getCompletedWorkouts', authenticateToken, async (req, res) => {
 });
 
 app.post('/postUser', async (req, res) => {
-  console.log('POST request for new user: ', req.body);
   try {
     await controllers.addNewUser(req.body);
     await controllers.addAvailableDays(req.body.userId, req.body.days);
