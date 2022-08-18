@@ -3,11 +3,10 @@ const { sql } = require('..');
 module.exports = {
   async addNewUser(usr) {
     await sql`
-    insert into users
+    INSERT INTO users
       (user_id, user_name, email, zip_code, phone_num, avatar_url, fitness_goal, zoom_profile)
-    values
+    VALUES
       (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.avatar}, ${usr.goal}, ${usr.zoom})
-    returning user_id
     ON CONFLICT user_id
     DO UPDATE
     SET user_name = ${usr.username},
