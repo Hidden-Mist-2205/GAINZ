@@ -7,6 +7,10 @@ import ExerciseList from './LibComponents/ExerciseList';
 export default function ExerciseLibrary() {
   const [exercises, setExercises] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [[start, end, pageNumber], setPoints] = useState([0, 4, 1]);
+  const page = (e) => (
+    e.target.name === 'forward' ? setPoints([start + 4, end + 4, pageNumber + 1]) : setPoints([start - 4, end - 4, pageNumber - 1])
+  );
 
   useEffect(() => {
     getExercises()
@@ -17,6 +21,7 @@ export default function ExerciseLibrary() {
   const searchExercises = (e, searchTerm) => {
     e.preventDefault();
     const filteredExercises = exercises.filter(exercise => exercise.name.includes(searchTerm));
+    setPoints([0, 4, 1]);
     setExercises(filteredExercises);
   };
 
@@ -33,9 +38,14 @@ export default function ExerciseLibrary() {
         <GS.Button onClick={(e) => searchExercises(e, searchInput)}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        {exercises && exercises.map((exercise) => (
+        {(exercises || []).slice(start, end).map((exercise) => (
           <ExerciseList data={exercise} key={exercise.exercise_id} />
         ))}
+        <Container.NavBtn>
+          <Container.Previous onClick={page}>{start !== 0 ? '<' : null}</Container.Previous>
+          <Container.PageNumber>{exercises.length >= 4 ? pageNumber : null}</Container.PageNumber>
+          <Container.Next name="forward" onClick={page}>{end <= exercises.length ? '>' : null}</Container.Next>
+        </Container.NavBtn>
       </Container.WOBody>
     </>
   );

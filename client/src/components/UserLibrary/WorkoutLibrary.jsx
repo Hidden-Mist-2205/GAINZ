@@ -9,6 +9,10 @@ import GS from '../styles/GeneralStyles';
 export default function WorkoutLibrary() {
   const [workouts, setWorkouts] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+  const [[start, end, pageNumber], setPoints] = useState([0, 4, 1]);
+  const page = (e) => (
+    e.target.name === 'forward' ? setPoints([start + 4, end + 4, pageNumber + 1]) : setPoints([start - 4, end - 4, pageNumber - 1])
+  );
 
   useEffect(() => {
     getWorkouts()
@@ -19,10 +23,9 @@ export default function WorkoutLibrary() {
   const searchWorkouts = (e, searchTerm) => {
     e.preventDefault();
     const filteredWorkouts = workouts.filter(workout => workout.name.includes(searchTerm));
+    setPoints([0, 4, 1]);
     setWorkouts(filteredWorkouts);
   };
-
-  console.log(workouts);
 
   return (
     <>
@@ -37,9 +40,14 @@ export default function WorkoutLibrary() {
         <GS.Button onClick={(e) => searchWorkouts(e, searchInput)}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        {workouts && workouts.map((workout) => (
+        {(workouts || []).slice(start, end).map((workout) => (
           <WorkoutListItem data={workout} key={workout.id} />
         ))}
+        <Container.NavBtn>
+          <Container.Previous onClick={page}>{start !== 0 ? '<' : null}</Container.Previous>
+          <Container.PageNumber>{workouts.length >= 4 ? pageNumber : null}</Container.PageNumber>
+          <Container.Next name="forward" onClick={page}>{end <= workouts.length ? '>' : null}</Container.Next>
+        </Container.NavBtn>
       </Container.WOBody>
     </>
   );

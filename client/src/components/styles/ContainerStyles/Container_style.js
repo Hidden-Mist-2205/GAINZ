@@ -110,65 +110,62 @@ const Container = {
     line-height: 36px;
   `,
   NavBtn: styled.div`
-    float: right;
-    padding-top: 10px;
     padding-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
   `,
   Previous: styled.button`
-    font-size: 20px;
+    font-size: 30px;
     color: white;
     border: none;
-    background: #272727;
-    padding: 5px 32px 5px 32px;
-    border-radius: 10%;
-    margin-right: 10px;
+    background:none;
     display: inline;
     font-weight:bold;
     cursor: pointer;
     &:hover {
-      text-shadow: 0 0 3px gold;
+      text-shadow: 0 0 10px white;
     }
   `,
   Next: styled.button`
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: bold;
     color: white;
     border: none;
     background:none;
-    margin-right: 140px;
-    background: #272727;
-    padding: 5px 32px 5px 32px;
-    border-radius: 10%;
+    margin-right: 60px;
     margin-bottom: 10px;
     font-weight:bold;
     display: inline;
     cursor: pointer;
     &:hover {
-      text-shadow: 0 0 3px gold;
+      text-shadow: 0 0 10px white;
     }
   `,
-  Page: styled.span`
+  PageNumber: styled.span`
     display: inline;
-    margin-right: 10px;
+    font-size: 25px;
+    margin: 2px 20px;
   `,
   NoWorkouts: styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 36px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 36px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
   `,
   LibraryLink: styled.a`
-  text-decoration: none;
-  color: inherit;
-  &:hover {
-    text-shadow: 0 0 3px gold;
-  }
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      text-shadow: 0 0 3px gold;
+    }
   `,
 };
 
