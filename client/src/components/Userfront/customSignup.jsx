@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Userfront from '@userfront/react';
 import Axios from 'axios';
 import GS from '../styles/GeneralStyles';
@@ -18,6 +18,8 @@ export default function SignupForm() {
   const [zoomLink, setZoomLink] = useState('');
   const [daysAvailable, setDaysAvailable] = useState([]);
 
+  const navigate = useNavigate();
+
   async function uploadImageHandler(imageFile) {
     // const img = URL.createObjectURL(imageFile);
     const reader = new FileReader();
@@ -29,7 +31,7 @@ export default function SignupForm() {
     });
 
     const converted = await toBase64(imageFile);
-    return Axios({
+    const picture = await Axios({
       method: 'post',
       url: 'https://api.cloudinary.com/v1_1/alpinefec/image/upload',
       data: {
@@ -37,21 +39,14 @@ export default function SignupForm() {
         upload_preset: 'lfcpuaaw',
       },
     });
+    return picture;
   }
 
   async function createAccount(e) {
     e.preventDefault();
 
-    // res.data.secure_url
-
-    // let picture;
-    // try {
-    //   picture = await uploadImageHandler(avatar);
-    //   console.log('This is pictures....', picture);
-    // } catch (err) {
-    //   console.log('There was an error uploading a picture: ', err);
-    // }
     try {
+      const pic = await uploadImageHandler(avatar);
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
@@ -67,7 +62,7 @@ export default function SignupForm() {
           email: email,
           zip: zipcode,
           phoneNumber: phoneNum,
-          // avatar: picture,
+          avatar: pic.data.secure_url,
           goal: fitnessGoal,
           zoom: zoomLink,
           days: daysAvailable,
@@ -79,67 +74,70 @@ export default function SignupForm() {
   }
 
   return (
-    <SU.WrapperDiv>
-      <h1>Sign Up</h1>
-      <SU.Form onSubmit={(e) => { createAccount(e); }}>
-        <SU.InputDiv>
-          <label htmlFor="username">
-            Username
-            <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="email">
-            Email
-            <SU.TextInput required id="email" type="email" value={email} onChange={((e) => setEmail(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="password">
-            Password
-            <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="zipcode">
-            Zipcode
-            <SU.TextInput required id="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="phoneNumber">
-            Phone Number
-            <SU.TextInput required id="phoneNumber" type="tel" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="fitnessGoal">
-            Your Fitness Goal
-            <SU.TextInput required id="fitnessGoal" type="textarea" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="zoomLink">
-            Upload your Zoom Link
-            <SU.TextInput required id="zoomLink" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
-          </label>
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
-        </SU.InputDiv>
-        <SU.InputDiv>
-          <label htmlFor="avatar">
-            Upload Your Profile Picture
-            <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
-          </label>
-        </SU.InputDiv>
-        <GS.Button style={{ width: '100%' }} type="submit">Create Account</GS.Button>
-      </SU.Form>
-      <SU.FormBottom>
-        <Link to="/login">Login</Link>
-        <Link to="/password-reset">Forgot Password?</Link>
-      </SU.FormBottom>
-    </SU.WrapperDiv>
+    <SU.PageWrapper>
+      <SU.WrapperDiv>
+        <h2>Sign Up</h2>
+        <SU.Form onSubmit={(e) => { createAccount(e); }}>
+          <SU.InputDiv>
+            <label htmlFor="username">
+              Username
+              <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="email">
+              Email
+              <SU.TextInput required id="email" type="email" value={email} onChange={((e) => setEmail(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="password">
+              Password
+              <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="zipcode">
+              Zipcode
+              <SU.TextInput required id="zipcode" value={zipcode} onChange={((e) => setZipcode(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="phoneNumber">
+              Phone Number
+              <SU.TextInput required id="phoneNumber" type="tel" value={phoneNum} onChange={((e) => setPhoneNum(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="fitnessGoal">
+              Your Fitness Goal
+              <SU.TextInput required id="fitnessGoal" type="textarea" value={fitnessGoal} onChange={((e) => setFitnessGoal(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="zoomLink">
+              Upload your Zoom Link
+              <SU.TextInput required id="zoomLink" value={zoomLink} onChange={((e) => setZoomLink(e.target.value))} />
+            </label>
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <h3> Days Available: </h3>
+            <AvailableDays daysAvailable={daysAvailable} setDaysAvailable={setDaysAvailable} />
+          </SU.InputDiv>
+          <SU.InputDiv>
+            <label htmlFor="avatar">
+              <h3>Upload Your Profile Picture</h3>
+              <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+            </label>
+          </SU.InputDiv>
+          <SU.SubmitButton style={{ width: '100%' }} type="submit">Create Account</SU.SubmitButton>
+        </SU.Form>
+        <SU.FormBottom>
+          <SU.MiniButton onClick={() => navigate('/login')}>Login</SU.MiniButton>
+          <SU.MiniButton onClick={() => navigate('/password-reset')}>Forgot Password?</SU.MiniButton>
+        </SU.FormBottom>
+      </SU.WrapperDiv>
+    </SU.PageWrapper>
   );
 }
 
@@ -154,8 +152,7 @@ function AvailableDays({ daysAvailable, setDaysAvailable }) {
     }
   }
   return (
-    <>
-      <h3> Days Available: </h3>
+    <SU.CheckboxContainer>
       <SU.CheckBoxDiv>
         <label htmlFor="Monday">
           <input id="Monday" type="checkbox" value="Monday" onChange={e => handleChange(e)} />
@@ -198,6 +195,6 @@ function AvailableDays({ daysAvailable, setDaysAvailable }) {
           Sunday
         </label>
       </SU.CheckBoxDiv>
-    </>
+    </SU.CheckboxContainer>
   );
 }

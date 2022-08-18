@@ -21,7 +21,7 @@ export default function StartWorkout() {
   const getWorkout = () => {
     axios({
       method: 'GET',
-      url: `/getWorkout`,
+      url: '/getWorkout',
       headers: {
         ContentType: 'application/json',
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
@@ -65,7 +65,7 @@ export default function StartWorkout() {
         <SW.FlexContainer>
           <SW.InnerContainer>
             <CountDownTimer
-              currStepNum={currStep.step_num}
+              currStepIndex={steps.indexOf(currStep)}
               setCurrStep={setCurrStep}
               steps={steps}
             />

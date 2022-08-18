@@ -36,7 +36,6 @@ export default function GAINZ() {
         </Routes>
       </React.Suspense>
       <Footer />
-      <LogoutButton />
     </GS.Background>
   );
 }
