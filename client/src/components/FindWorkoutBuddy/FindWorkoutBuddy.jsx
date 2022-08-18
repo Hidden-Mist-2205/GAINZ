@@ -29,7 +29,10 @@ export default function FindWorkoutBuddy() {
     getUserZipcode();
   }, []);
 
-  const searchBuddies = (searchInput) => { console.log(searchInput); };
+  const searchBuddies = (searchInput) => {
+    const filteredResults = buddies.filter(buddy => buddy.user_name.includes(searchInput));
+    setBuddies(filteredResults);
+  };
 
   const getFilteredBuddies = async e => {
     e.preventDefault();

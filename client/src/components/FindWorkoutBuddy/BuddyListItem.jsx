@@ -31,7 +31,6 @@ export default function BuddyListItem({ data, actionButton }) {
           authorization: `Bearer ${Userfront.tokens.accessToken}`,
         },
       });
-      console.log(response);
       return response;
     } catch (error) {
       console.error(error);
