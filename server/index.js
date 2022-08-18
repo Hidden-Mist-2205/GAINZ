@@ -126,6 +126,9 @@ app.get('/getAllExercises', authenticateToken, async (req, res) => {
 app.get('/getUserInfo', authenticateToken, async (req, res) => {
   try {
     const userData = await controllers.getUserData(req.auth.userId);
+    if (userData.days === null) {
+      userData.days = [];
+    }
     res.json(userData);
   } catch (error) {
     console.error(error);
