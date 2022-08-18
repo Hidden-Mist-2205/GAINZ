@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+/* eslint-disable max-len */
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import Userfront from '@userfront/core';
 import axios from 'axios';
-import { pageState, completedWorkoutsState } from './workoutsAtom';
-import MG from '../styles/MyGainz_style/MG';
+import { pageState } from './workoutsAtom';
 import GS from '../styles/GeneralStyles';
+import Container from '../styles/ContainerStyles/Container_style';
 import Workout from './Workout';
 
 export default function MyGainz() {
   const [page, setPage] = useRecoilState(pageState);
-  const [completedWorkouts, setCompletedWorkouts] = useRecoilState(completedWorkoutsState);
+  const [completedWorkouts, setCompletedWorkouts] = useState([]);
 
   useEffect(() => {
     axios.get('/getCompletedWorkouts', {
@@ -19,8 +20,8 @@ export default function MyGainz() {
       },
     })
       .then((res) => {
-        const sor = [...res.data]?.sort((a, b) => (a.times_completed > b.times_completed ? -1 : 1));
-        setCompletedWorkouts(sor || []);
+        const sorted = [...res.data]?.sort((a, b) => (a.times_completed > b.times_completed ? -1 : 1));
+        setCompletedWorkouts(sorted || []);
       })
       .catch((err) => {
         console.error('error getting workouts: ', err);
@@ -51,17 +52,19 @@ export default function MyGainz() {
   };
 
   return (
-    <MG.Body>
+    <>
       <GS.PageHeader>My Gainz</GS.PageHeader>
-      <MG.WOHeader>Completed Workouts</MG.WOHeader>
-      <Workout />
-      {completedWorkouts.length / 4 >= 1 ? (
-        <MG.NavBtn>
-          <MG.Previous onClick={handlePrevious}>{'<'}</MG.Previous>
-          <MG.Page>{page.page}</MG.Page>
-          <MG.Next onClick={handleNext}>{'>'}</MG.Next>
-        </MG.NavBtn>
-      ) : null}
-    </MG.Body>
+      <Container.WOHeader>Completed Workouts</Container.WOHeader>
+      <Container.WOBody>
+        {completedWorkouts && <Workout workouts={completedWorkouts} />}
+        {completedWorkouts.length / 4 >= 1 ? (
+          <Container.NavBtn>
+            <Container.Previous onClick={handlePrevious}>{'<'}</Container.Previous>
+            <Container.PageNumber>{page.page}</Container.PageNumber>
+            <Container.Next onClick={handleNext}>{'>'}</Container.Next>
+          </Container.NavBtn>
+        ) : null}
+      </Container.WOBody>
+    </>
   );
 }

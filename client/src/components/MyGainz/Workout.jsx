@@ -1,27 +1,22 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { completedWorkoutsState, pageState } from './workoutsAtom';
-import MG from '../styles/MyGainz_style/MG';
+import { pageState } from './workoutsAtom';
+import Container from '../styles/ContainerStyles/Container_style';
 import WorkoutPanel from './WorkoutPanel';
 
-export default function Workout() {
-  const completedWorkouts = useRecoilValue(completedWorkoutsState);
+export default function Workout({ workouts }) {
   const page = useRecoilValue(pageState);
-  const displayedWorkouts = completedWorkouts ? completedWorkouts.slice(page.start, page.end) : [];
+  const displayedWorkouts = workouts ? workouts.slice(page.start, page.end) : [];
   return (displayedWorkouts.length > 0
     ? (
-      <MG.WOBody>
-        {displayedWorkouts.map((workout) => <WorkoutPanel key={workout.workout_id} workout={workout} />)}
-      </MG.WOBody>
+      displayedWorkouts.map((workout) => <WorkoutPanel key={workout.workout_id} workout={workout} />)
     )
     : (
-      <MG.WOBody>
-        <MG.NoWorkouts>
-          It looks like you have not worked out yet. Head to the
-          <MG.LibraryLink href="/UserLibrary"> &nbsp;Library!&nbsp;</MG.LibraryLink>
-        </MG.NoWorkouts>
-      </MG.WOBody>
+      <Container.NoWorkouts>
+        It looks like you have not worked out yet. Head to the
+        <Container.LibraryLink href="/UserLibrary"> &nbsp;Library!&nbsp;</Container.LibraryLink>
+      </Container.NoWorkouts>
     )
   );
 }
