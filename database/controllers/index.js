@@ -7,7 +7,7 @@ module.exports = {
       (user_id, user_name, email, zip_code, phone_num, avatar_url, fitness_goal, zoom_profile)
     VALUES
       (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.avatar}, ${usr.goal}, ${usr.zoom})
-    ON CONFLICT user_id
+    ON CONFLICT (user_id)
     DO UPDATE
     SET user_name = ${usr.username},
         email = ${usr.email},
@@ -16,7 +16,6 @@ module.exports = {
         avatar_url = ${usr.avatar},
         fitness_goal = ${usr.goal},
         zoom_profile = ${usr.zoom}
-    WHERE user_id = ${usr.userId}
   `;
   },
   async getAllUserData(userID) {
