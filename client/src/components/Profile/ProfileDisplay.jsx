@@ -2,13 +2,14 @@ import React from 'react';
 
 import ProfileText from './ProfileText';
 import WorkoutDays from './WorkoutDays';
-import { FormContainer, FormFlexColumn } from './Profile.styled';
+import { ProfileContainer, FormFlexColumn } from './Profile.styled';
 
 export default function ProfileDisplay({ userInfo }) {
   return (
-    <FormContainer>
+    <ProfileContainer>
       <FormFlexColumn>
-        <div>
+        <h3>Your Profile:</h3>
+        <div id="profileImage">
           <img src={userInfo.image} alt="profile" />
         </div>
         <ProfileText text={userInfo.user_name} />
@@ -16,10 +17,11 @@ export default function ProfileDisplay({ userInfo }) {
         <ProfileText text={userInfo.phone_num} />
         <ProfileText text={userInfo.zip_code} />
         <ProfileText text={userInfo.fitness_goal} />
+        <ProfileText text={userInfo.zoom_profile} />
       </FormFlexColumn>
       <FormFlexColumn>
         <WorkoutDays days={userInfo.days} />
       </FormFlexColumn>
-    </FormContainer>
+    </ProfileContainer>
   );
 }
