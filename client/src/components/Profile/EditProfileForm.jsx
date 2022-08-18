@@ -1,19 +1,20 @@
 import React from 'react';
 
 import { FormContainer, FormFlexColumn } from './Profile.styled';
+import EditWorkoutDays from './EditWorkoutDays';
 
 export default function EditProfileForm({
-  editProfileInfo,
-  setEditProfileInfo,
+  userInfo,
+  setUserInfo,
   editDaysAvailable,
   setEditDaysAvailable,
 }) {
-  const handleChange = (e) => {
+  const handleCheckboxChange = (e) => {
     if (e.target.checked) {
       setEditDaysAvailable([...editDaysAvailable, e.target.value]);
     } else {
       const freshArray = editDaysAvailable.filter(
-        (val) => val !== e.target.value
+        (val) => val !== e.target.value,
       );
       setEditDaysAvailable([...freshArray]);
     }
@@ -30,13 +31,8 @@ export default function EditProfileForm({
               required
               id="editUsername"
               className="formField"
-              value={editProfileInfo.username}
-              onChange={(e) =>
-                setEditProfileInfo({
-                  ...editProfileInfo,
-                  username: e.target.value,
-                })
-              }
+              value={userInfo.user_name}
+              onChange={(e) => setUserInfo({ ...userInfo, user_name: e.target.value })}
             />
           </label>
 
@@ -47,10 +43,10 @@ export default function EditProfileForm({
               required
               id="editEmail"
               className="formField"
-              value={editProfileInfo.email}
+              value={userInfo.email}
               onChange={(e) =>
-                setEditProfileInfo({
-                  ...editProfileInfo,
+                setUserInfo({
+                  ...userInfo,
                   email: e.target.value,
                 })
               }
@@ -65,10 +61,10 @@ export default function EditProfileForm({
               required
               id="editZip"
               className="formField"
-              value={editProfileInfo.zipcode}
+              value={userInfo.zipcode}
               onChange={(e) =>
-                setEditProfileInfo({
-                  ...editProfileInfo,
+                setUserInfo({
+                  ...userInfo,
                   zipcode: e.target.value,
                 })
               }
@@ -82,10 +78,10 @@ export default function EditProfileForm({
               required
               id="editTel"
               className="formField"
-              value={editProfileInfo.phoneNumber}
+              value={userInfo.phoneNumber}
               onChange={(e) =>
-                setEditProfileInfo({
-                  ...editProfileInfo,
+                setUserInfo({
+                  ...userInfo,
                   phoneNumber: e.target.value,
                 })
               }
@@ -99,9 +95,9 @@ export default function EditProfileForm({
               required
               id="editZoom"
               className="formField"
-              value={editProfileInfo.zoom}
+              value={userInfo.zoom}
               onChange={(e) =>
-                setEditProfileInfo({ ...editProfileInfo, zoom: e.target.value })
+                setUserInfo({ ...userInfo, zoom: e.target.value })
               }
             />
           </label>
@@ -113,10 +109,10 @@ export default function EditProfileForm({
               required
               id="editGoal"
               className="formField"
-              value={editProfileInfo.goal}
+              value={userInfo.goal}
               onChange={(e) =>
-                setEditProfileInfo({
-                  ...editProfileInfo,
+                setUserInfo({
+                  ...userInfo,
                   fitnessGoal: e.target.value,
                 })
               }
@@ -124,83 +120,7 @@ export default function EditProfileForm({
           </label>
         </FormFlexColumn>
 
-        <FormFlexColumn>
-          <fieldset>
-            <legend>Days You Work Out</legend>
-            <div>
-              <label htmlFor="monday">Monday</label>
-              <input
-                type="checkbox"
-                id="monday"
-                value="Monday"
-                className="formCheckbox"
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div>
-              <label htmlFor="tuesday">Tuesday</label>
-              <input
-                type="checkbox"
-                id="tuesday"
-                value="Tuesday"
-                className="formCheckbox"
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div>
-              <label htmlFor="wednesday">Wednesday</label>
-              <input
-                type="checkbox"
-                id="wednesday"
-                value="Wednesday"
-                className="formCheckbox"
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div>
-              <label htmlFor="thursday">Thursday</label>
-              <input
-                type="checkbox"
-                id="thursday"
-                value="Thursday"
-                className="formCheckbox"
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div>
-              <label htmlFor="friday">Friday</label>
-              <input
-                type="checkbox"
-                id="friday"
-                value="Friday"
-                className="formCheckbox"
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div>
-              <label htmlFor="saturday">Saturday</label>
-              <input
-                type="checkbox"
-                id="saturday"
-                value="Saturday"
-                className="formCheckbox"
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
-            <div>
-              <label htmlFor="sunday">
-                Sunday
-                <input
-                  type="checkbox"
-                  id="sunday"
-                  value="Sunday"
-                  className="formCheckbox"
-                  onChange={(e) => handleChange(e)}
-                />
-              </label>
-            </div>
-          </fieldset>
-        </FormFlexColumn>
+        <EditWorkoutDays userDays={userInfo.days} handleChange={handleCheckboxChange}/>
       </FormContainer>
     </form>
   );
