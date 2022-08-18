@@ -47,7 +47,7 @@ export default function PageListItem({ data }) {
         <Container.WODescription>{data.description}</Container.WODescription>
         <GS.Button onClick={routeChange}> Start </GS.Button>
       </Container.WOItem>
-      {showDropdown && <PageItemDropdown />}
+      {showDropdown && <PageItemDropdown exercises={data.steps} />}
     </>
   );
 }
