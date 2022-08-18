@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ProfileDropdown from './ProfileDropdown';
+import LibraryDropdown from './LibraryDropdown';
 import Nav from './styles/NavStyle';
 
 export default function NavBar() {
-// UserIcon dropdown and route to myProfile & logout
+  const [userIconIsHovering, setUserIconIsHovering] = useState(false);
+  const [userIconHeight, setUserIconHeight] = useState('60px');
+  const [libraryIsHovering, setLibraryIsHovering] = useState(false);
+  const [LibraryHeight, setLibraryHeight] = useState('20px');
+  const [LibraryMarginTop, setLibraryMarginTop] = useState('5px');
+
+  const onLibraryMouseOver = () => {
+    setLibraryIsHovering(true);
+    setLibraryHeight('130px');
+    setLibraryMarginTop('115px');
+  };
+  const onLibraryMouseOut = () => {
+    setLibraryIsHovering(false);
+    setLibraryHeight('20px');
+    setLibraryMarginTop('5px');
+  };
+
+  const onUserIconMouseOver = () => {
+    setUserIconIsHovering(true);
+    setUserIconHeight('150px');
+  };
+  const onUserIconMouseOut = () => {
+    setUserIconIsHovering(false);
+    setUserIconHeight('60px');
+  };
 
   return (
     <Nav.Container>
@@ -15,26 +41,37 @@ export default function NavBar() {
         <Nav.MenuItem to="/MyGainz">
           My Gainz
         </Nav.MenuItem>
-        <Nav.MenuItem to="/ExerciseLibrary">
-          Exercise Library
-        </Nav.MenuItem>
-        <Nav.MenuItem to="/WorkoutLibrary">
-          Workout Library
-        </Nav.MenuItem>
+
+        <Nav.LibrarySelectionContainer
+          onMouseOver={() => onLibraryMouseOver()}
+          onMouseOut={() => onLibraryMouseOut()}
+          height={LibraryHeight}
+          marginTop={LibraryMarginTop}
+        >
+          <Nav.MenuItem to="/WorkoutLibrary">
+            Library
+          </Nav.MenuItem>
+          {libraryIsHovering && (
+            <LibraryDropdown />
+          )}
+        </Nav.LibrarySelectionContainer>
+
         <Nav.MenuItem to="/FindWorkoutBuddy">
           Find Workout Buddy
         </Nav.MenuItem>
 
-        <Nav.MenuItem to="/StartWorkout">
-          Start Workout
-        </Nav.MenuItem>
-        <Nav.MenuItem to="/Profile">
-          My Profile
-        </Nav.MenuItem>
-
       </Nav.Sections>
 
-      <Nav.UserIcon />
+      <Nav.UserIconContainer
+        onMouseOver={() => onUserIconMouseOver()}
+        onMouseOut={() => onUserIconMouseOut()}
+        height={userIconHeight}
+      >
+        <Nav.UserIcon />
+        {userIconIsHovering && (
+          <ProfileDropdown />
+        )}
+      </Nav.UserIconContainer>
     </Nav.Container>
   );
 }

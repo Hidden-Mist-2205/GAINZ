@@ -4,9 +4,9 @@ module.exports = {
   async addNewUser(usr) {
     await sql`
     insert into users
-      (user_id, user_name, email, zip_code, phone_num, fitness_goal, zoom_profile)
+      (user_id, user_name, email, zip_code, phone_num, avatar_url, fitness_goal, zoom_profile)
     values
-      (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.goal}, ${usr.zoom})
+      (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.avatar}, ${usr.goal}, ${usr.zoom})
     returning user_id
   `;
   },

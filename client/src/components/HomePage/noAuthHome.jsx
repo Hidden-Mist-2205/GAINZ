@@ -19,28 +19,65 @@ const HomeBackground = styled.div`
 
 const HomeOverlay = styled.div`
 background-color: rgba(0, 0, 0, 0.7);
-background-color: black;
 width: 100vw;
 height: 100%;
-position: absolute;
+display: flex;
+z-index: 10;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: #ffffff;
+font-size: 35px;
+`;
+
+const HomeOutlineButton = styled(GS.OutlinedBtn)`
+min-width: 180px;
+margin-right: 10px;
+`;
+const HomeSolidButton = styled(GS.Button)`
+min-width: 180px;
+`;
+
+const HomeNavSection = styled(Nav.Sections)`
+width: 30%;
+right: 5%;
+left: unset;
+justify-content: flex-end;
+`;
+
+const SloganWrapper = styled.div`
+width: max;
+height: max;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+`;
+
+const HomePageWrapper = styled.div`
+font-family: Trebuchet MS;
 `;
 
 export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <HomePageWrapper>
       <Nav.Container>
         <Nav.Logo> ⚛︎ GAINZ</Nav.Logo>
-        <Nav.Sections>
-          <GS.OutlinedBtn onClick={() => navigate('/login')}>Login</GS.OutlinedBtn>
-          <GS.Button onClick={() => navigate('/signUp')}>Register</GS.Button>
-        </Nav.Sections>
+        <HomeNavSection>
+          <HomeOutlineButton onClick={() => navigate('/login')}>Login</HomeOutlineButton>
+          <HomeSolidButton onClick={() => navigate('/signUp')}>Register</HomeSolidButton>
+        </HomeNavSection>
       </Nav.Container>
       <HomeBackground>
-        <h1>Make Major Gainz.</h1>
-        <GS.Button onClick={() => navigate('/signUp')}>Get Started</GS.Button>
+        <HomeOverlay>
+          <SloganWrapper>
+            <h1>Make Major Gainz.</h1>
+            <HomeSolidButton onClick={() => navigate('/signUp')}>Get Started</HomeSolidButton>
+          </SloganWrapper>
+        </HomeOverlay>
       </HomeBackground>
-    </>
+    </HomePageWrapper>
   );
 }

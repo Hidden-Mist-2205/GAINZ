@@ -1,18 +1,19 @@
 import React from 'react';
 import Userfront from '@userfront/react';
 import {
-  Link,
   Navigate,
   useLocation,
 } from 'react-router-dom';
-
+import SU from '../styles/Signup_Style/SU';
 import SignupForm from './customSignup';
+import LoginForm from './customLogin';
+import PasswordResetForm from './customResetForm';
 
-import {
-  // SignupForm,
-  LoginForm,
-  PasswordResetForm,
-} from './Userfront.js';
+// import {
+//   // SignupForm,
+//   // LoginForm,
+//   // PasswordResetForm,
+// } from './Userfront.js';
 
 Userfront.init('rbvr4mqb');
 
@@ -24,23 +25,13 @@ function Login() {
     );
   }
   return (
-    <div id="login">
-      <LoginForm />
-      <div className="authFooter">
-        <Link to="/signup">Sign Up</Link>
-      </div>
-    </div>
+    <LoginForm />
   );
 }
 
 function Signup() {
   return (
-    <div id="signup">
-      <SignupForm />
-      <div className="authFooter">
-        <Link to="/login">Login</Link>
-      </div>
-    </div>
+    <SignupForm />
   );
 }
 
