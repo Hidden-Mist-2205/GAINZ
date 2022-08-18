@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ProfileText from './ProfileText';
-import UserWorkoutDays from './UserWorkoutDays';
+import WorkoutDays from './WorkoutDays';
 import { FormContainer, FormFlexColumn } from './Profile.styled';
 
 export default function ProfileDisplay({ userInfo }) {
@@ -16,7 +16,7 @@ export default function ProfileDisplay({ userInfo }) {
         <ProfileText text={userInfo.fitnessGoal} />
       </FormFlexColumn>
       <FormFlexColumn>
-        <UserWorkoutDays days={userInfo.daysAvailable} />
+        <WorkoutDays days={userInfo.daysAvailable} />
       </FormFlexColumn>
     </FormContainer>
   );

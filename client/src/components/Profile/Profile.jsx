@@ -10,24 +10,22 @@ import ActionButton from '../UserLibrary/Buttons/ActionButton';
 export default function Profile() {
   const [userInfo, setUserInfo] = useState({});
   const [editProfile, setEditProfile] = React.useState(true);
-  const [editProfileInfo, setEditProfileInfo] = useState({
-    username: '',
-    email: '',
-    zipcode: '',
-    phoneNumber: '',
-    zoom: '',
-    fitnessGoal: '',
-  });
   const [editDaysAvailable, setEditDaysAvailable] = useState([]);
 
   useEffect(() => {
-    axios.get('/getUserInfo', {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${Userfront.tokens.accessToken}`,
-      },
-    })
-      .then((res) => setUserInfo(res.data));
+    axios
+      .get('/getUserInfo', {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${Userfront.tokens.accessToken}`,
+        },
+      })
+      .then((res) => {
+        setUserInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   const setEditButton = () => {
     setEditProfile(!editProfile);
@@ -39,8 +37,8 @@ export default function Profile() {
   return editProfile ? (
     <ProfileContainer>
       <EditProfileForm
-        editProfileInfo={editProfileInfo}
-        setEditProfileInfo={setEditProfileInfo}
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
         editDaysAvailable={editDaysAvailable}
         setEditDaysAvailable={setEditDaysAvailable}
       />
