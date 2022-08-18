@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import GS from '../GeneralStyles';
 
 const SU = {
   TextInput: styled.input`
-  width: 90%;
-  padding: 12px 20px;
+  width: 95%;
+  padding: 5px;
   margin: 5px;
   border-radius: 3px;
   border: 0px;
@@ -21,13 +22,13 @@ const SU = {
   margin: 5px;
   display: block;
   font-weight: 200;
+  font-size: 14px;
   `,
   WrapperDiv: styled.div`
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   color: white;
   width: 490px;
   margin: auto;
-  margin-top: 50px;
   padding: 20px;
   background-color: white;
   display: flex;
@@ -35,11 +36,13 @@ const SU = {
   align-items: center;
   justify-content: center;
   background-color: #272727;
-  border-radius: 5px;
   `,
   CheckBoxDiv: styled.div`
-  display: flex;
-  flex-direction: row;
+  text-align: center;
+  font-size: 14px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   `,
   FormBottom: styled.div`
   display: flex;
@@ -47,6 +50,28 @@ const SU = {
   align-items: space-between;
   justify-content: center;
   padding: 5px;
+  width: 70%;
+  margin-top: 20px;
+  `,
+  PageWrapper: styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  `,
+  MiniButton: styled(GS.OutlinedBtn)`
+  width: 100%;
+  height: 30px;
+  font-size: 10px;
+  margin: 5px;
+  padding: unset;
+  `,
+  CheckboxContainer: styled.div`
+  display: flex;
+  `,
+  SubmitButton: styled(GS.Button)`
+  height: unset;
   `,
 };
 
