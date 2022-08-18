@@ -30,7 +30,7 @@ export default function PasswordResetForm() {
           <SU.InputDiv>
             <label htmlFor="password">
               New Password:
-              <SU.TextInput required id="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+              <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
             </label>
           </SU.InputDiv>
           <SU.InputDiv>
