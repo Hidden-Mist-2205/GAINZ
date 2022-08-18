@@ -77,9 +77,8 @@ export default function CountDownTimer({ currStepIndex, setCurrStep, steps, setO
           onComplete={() => {
             const reset = () => {
               setKey(prevKey => prevKey + 1);
-              OnClickNextStep();
-              if (autoModeOn) {
-                setTimeout(() => OnClickNextStep(), 3000);
+              if (autoModeOn === true) {
+                OnClickNextStep();
               }
             };
             setTimeout(() => reset(), 5000);
