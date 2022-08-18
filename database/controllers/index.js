@@ -8,6 +8,16 @@ module.exports = {
     values
       (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.avatar}, ${usr.goal}, ${usr.zoom})
     returning user_id
+    ON CONFLICT user_id
+    DO UPDATE
+    SET user_name = ${usr.username},
+        email = ${usr.email},
+        zip_code = ${usr.zip},
+        phone_num = ${usr.phoneNumber},
+        avatar_url = ${usr.avatar},
+        fitness_goal = ${usr.goal},
+        zoom_profile = ${usr.zoom}
+    WHERE user_id = ${usr.userId}
   `;
   },
   async getAllUserData(userID) {
