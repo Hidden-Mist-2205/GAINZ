@@ -3,7 +3,7 @@ import React from 'react';
 export default function SearchBar({ controlledValue, changeHandler }) {
   return (
     <input
-      type="text"
+      type="search"
       placeholder="Search"
       className="searchBar"
       value={controlledValue}

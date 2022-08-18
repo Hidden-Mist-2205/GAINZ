@@ -16,7 +16,7 @@ const M = {
     max-width: 1000px;
     max-height: 700px;
     width: 50%;
-    height: 80%;
+    height: 85%;
     box-shadow: 0 5px 16pxrgba(0,0,0,0.2);
     background: #272727;
     color: #000;
@@ -24,7 +24,7 @@ const M = {
     position: fixed;
     z-index: 1000;
     border-radius: 5px;
-    overflow: auto;
+    overflow-y: auto;
     &::-webkit-scrollbar {
         width: 10px;
         background-color: #272727;
@@ -66,11 +66,11 @@ const M = {
     float: left;
     display: inline;
     height: 46px;
-    width: 300px;
+    width: 100px;
     font-size: 20px;
     color: white;
   `,
-  Exercise: styled.select`
+  Select: styled.select`
     float: right;
     margin-bottom: 20px;
     display: inline;
@@ -79,16 +79,7 @@ const M = {
     width: 300px;
     background: rgba(217, 217, 217, 0.15);
   `,
-  Category: styled.select`
-    float: right;
-    margin-bottom: 20px;
-    color: white;
-    display: inline;
-    height: 46px;
-    width: 300px;
-    background: rgba(217, 217, 217, 0.15);
-  `,
-  Url: styled.input`
+  Input: styled.input`
     float: right;
     margin-bottom: 20px;
     display: inline;
@@ -96,11 +87,11 @@ const M = {
     width: 300px;
     background: rgba(217, 217, 217, 0.15);
 `,
-  Description: styled.textarea`
+  Description: styled.input`
     float: right;
     margin-bottom: 50px;
     display: inline;
-    height: 100px;
+    height: 46px;
     width: 300px;
     background: rgba(217, 217, 217, 0.15);
   `,
@@ -108,10 +99,27 @@ const M = {
   `,
   Option: styled.option`
     color: white;
-    background: grey;
-    /* background: rgba(217, 217, 217, 0.15); */
+    /* background: grey; */
+    background: rgba(217, 217, 217);
     width:;
     height:100%;
+  `,
+  Exercise: styled.div`
+    display: flex;
+    color: white;
+    width: 60%;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-around;
+  `,
+  InputColumn: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+  `,
+  Stuff: styled.div`
+    display: flex;
   `,
 };
 export default M;

@@ -9,7 +9,7 @@ const DB = {
     margin-left: auto;
   `,
   WOBody: styled.div`
-    width: 90%;
+    width: 85%;
     background: rgba(217, 217, 217, 0.15);
     height: fit-content;
     padding-top: 15px;
@@ -22,7 +22,10 @@ const DB = {
         background-color: #272727;
         border: none;
     }
-  `,
+    `,
+  WOBorder: styled.div`
+    min-height: 500px;
+    `,
   Header: styled.h1`
     width: 100%;
     height: 10%;
@@ -35,7 +38,6 @@ const DB = {
     background: rgba(217, 217, 217, 0.15);
     color: white;
     width: 25%;
-    min-width: 205px;
     min-height: 75px;
     font-size: 18px;
     border: none;
@@ -80,7 +82,8 @@ const DB = {
     }
 `,
   WOName: styled.div`
-    width: 188px;
+    width: 25%;
+    min-width: 136px;
     height: 36px;
     font-style: normal;
     font-weight: 700;
@@ -92,7 +95,7 @@ const DB = {
     }
   `,
   WOExName: styled.div`
-    width: 188px;
+    min-width: 136px;
     height: 36px;
     font-style: normal;
     font-weight: 700;

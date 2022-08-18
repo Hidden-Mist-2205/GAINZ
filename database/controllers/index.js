@@ -4,11 +4,20 @@ module.exports = {
   async addNewUser(usr) {
     await sql`
     insert into users
-      (user_id, user_name, email, zip_code, phone_num, fitness_goal, zoom_profile)
+      (user_id, user_name, email, zip_code, phone_num, avatar_url, fitness_goal, zoom_profile)
     values
-      (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.goal}, ${usr.zoom})
+      (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.avatar}, ${usr.goal}, ${usr.zoom})
     returning user_id
   `;
+  },
+  async getAllUserData(userID) {
+    const userData = await sql`
+      SELECT
+      *
+      FROM users
+      WHERE user_id = ${userID}
+    `;
+    return userData[0];
   },
   async getUserData(userID) {
     const userData = await sql`
@@ -198,11 +207,13 @@ module.exports = {
       description,
       created_by,
       main_area,
+      is_favorited,
       (SELECT json_agg(step)
       FROM (
         SELECT
         s.step_num,
         s.reps,
+        s.sets,
         s.unit,
         s.weight,
         (SELECT
@@ -214,6 +225,7 @@ module.exports = {
         FROM exercises e
         WHERE e.exercise_id = s.exercise_id)
         FROM steps s
+        WHERE s.workout_id = uw.workout_id
         ) AS step
       ) AS Steps
     FROM
@@ -225,20 +237,22 @@ module.exports = {
   `;
     return favoritedWorkout;
   },
-  async getFavoritedExercise(userId) {
-    await sql`
+  async getFavoritedExercises(userId) {
+    const getFavoritedExercises = await sql`
     SELECT
       e.exercise_id AS exerciseId,
       e."name",
       e.area,
-      e.gif_url,
-      ue.is_favorited
+      e.gif_url AS gifUrl,
+      e.equipment,
+      ue.is_favorited AS favorited
     FROM exercises e
     LEFT JOIN
     users_exercises ue
     ON e.exercise_id = ue.exercise_id
     WHERE ue.is_favorited = true AND ue.user_id = ${userId}
     `;
+    return getFavoritedExercises;
   },
   async toggleFavoritedWorkout(workoutId, userId) {
     await sql`

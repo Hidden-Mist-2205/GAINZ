@@ -19,7 +19,10 @@ export default function ExerciseLibraryPage() {
       .catch((err) => console.log(err));
   }, []);
 
-  const searchExercises = (searchInput) => { console.log(searchInput); };
+  const searchExercises = (searchInput) => {
+    const filteredExercises = exercises.filter(exercise => exercise.name.includes(searchInput));
+    setExercises(filteredExercises);
+  };
 
   return (
     <>

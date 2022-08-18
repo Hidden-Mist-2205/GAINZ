@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const WOEx = {
   Body: styled.div`
-    max-width: 50%;
+    max-width: 70%;
     min-width: 555px;
     min-height: 155px;
     margin-left: 8%;
@@ -21,6 +21,7 @@ const WOEx = {
   `,
   Name: styled.div`
     font-size: 24px;
+    min-width: 40%;
 
   `,
   Set: styled.div`
@@ -30,7 +31,18 @@ const WOEx = {
   Rep: styled.div`
     font-size: 15px;
     padding-left: 100px;
-  `,
+    `,
+  GifBody: styled.div`
+    width: fit-content;
+    background-color: #272727;
+    margin-left: 7%;
+    `,
+  GIF: styled.img`
+  min-width: 280;
+  max-width: 280px;
+  margin: auto;
+  padding: 20px;
+`,
 };
 
 export default WOEx;
