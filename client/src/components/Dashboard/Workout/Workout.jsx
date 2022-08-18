@@ -15,7 +15,7 @@ export default function Workout({ allFavWorkouts }) {
         ))}
       </DB.WOBorder>
       <DB.NavBtn>
-        <DB.Previous onClick={page}>{start !== 0 ? '<' : null}</DB.Previous>
+        <DB.Previous name="back" onClick={page}>{start !== 0 ? '<' : null}</DB.Previous>
         <DB.Next name="foward" onClick={page}>{end <= allFavWorkouts.length ? '>' : null}</DB.Next>
       </DB.NavBtn>
     </DB.WOBody>
