@@ -38,14 +38,20 @@ export default function ExerciseLibrary() {
         <GS.Button onClick={(e) => searchExercises(e, searchInput)}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        {(exercises || []).slice(start, end).map((exercise) => (
-          <ExerciseList data={exercise} key={exercise.exercise_id} />
+        {(exercises || []).slice(start, end).map((workout) => (
+          <ExerciseList data={workout} key={workout.id} />
         ))}
-        <Container.NavBtn>
-          <Container.Previous onClick={page}>{start !== 0 ? '<' : null}</Container.Previous>
-          <Container.PageNumber>{exercises.length >= 4 ? pageNumber : null}</Container.PageNumber>
-          <Container.Next name="forward" onClick={page}>{end <= exercises.length ? '>' : null}</Container.Next>
-        </Container.NavBtn>
+        {exercises.length >= 4 && (
+          <Container.NavBtn>
+            {start !== 0 && (
+              <Container.Previous onClick={page}>{'<'}</Container.Previous>
+            )}
+            <Container.PageNumber>{pageNumber}</Container.PageNumber>
+            {end <= exercises.length
+              ? <Container.Next name="forward" onClick={page}>{'>'}</Container.Next>
+              : <Container.Next />}
+          </Container.NavBtn>
+        )}
       </Container.WOBody>
     </>
   );

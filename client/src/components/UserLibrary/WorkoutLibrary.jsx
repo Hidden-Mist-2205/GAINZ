@@ -43,11 +43,17 @@ export default function WorkoutLibrary() {
         {(workouts || []).slice(start, end).map((workout) => (
           <WorkoutListItem data={workout} key={workout.id} />
         ))}
-        <Container.NavBtn>
-          <Container.Previous onClick={page}>{start !== 0 ? '<' : null}</Container.Previous>
-          <Container.PageNumber>{workouts.length >= 4 ? pageNumber : null}</Container.PageNumber>
-          <Container.Next name="forward" onClick={page}>{end <= workouts.length ? '>' : null}</Container.Next>
-        </Container.NavBtn>
+        {workouts.length >= 4 && (
+          <Container.NavBtn>
+            {start !== 0 && (
+              <Container.Previous onClick={page}>{'<'}</Container.Previous>
+            )}
+            <Container.PageNumber>{pageNumber}</Container.PageNumber>
+            {end <= workouts.length
+              ? <Container.Next name="forward" onClick={page}>{'>'}</Container.Next>
+              : <Container.Next />}
+          </Container.NavBtn>
+        )}
       </Container.WOBody>
     </>
   );
