@@ -9,40 +9,41 @@ import ActionButton from '../UserLibrary/Buttons/ActionButton';
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState({});
-  const [editProfile, setEditProfile] = React.useState(true);
-  const [editProfileInfo, setEditProfileInfo] = useState({
-    username: '',
-    email: '',
-    zipcode: '',
-    phoneNumber: '',
-    zoom: '',
-    fitnessGoal: '',
-  });
-  const [editDaysAvailable, setEditDaysAvailable] = useState([]);
+  const [daysAvailable, setDaysAvailable] = useState([]);
+  const [editProfile, setEditProfile] = React.useState(false);
 
   useEffect(() => {
-    axios.get('/getUserInfo', {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${Userfront.tokens.accessToken}`,
-      },
-    })
-      .then((res) => setUserInfo(res.data));
+    axios
+      .get('/getUserInfo', {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${Userfront.tokens.accessToken}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUserInfo(res.data);
+        setDaysAvailable(res.data.days || []);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
   const setEditButton = () => {
     setEditProfile(!editProfile);
   };
   const saveProfileEdit = () => {
+    // POST to db
     setEditProfile(!editProfile);
   };
 
   return editProfile ? (
     <ProfileContainer>
       <EditProfileForm
-        editProfileInfo={editProfileInfo}
-        setEditProfileInfo={setEditProfileInfo}
-        editDaysAvailable={editDaysAvailable}
-        setEditDaysAvailable={setEditDaysAvailable}
+        userInfo={userInfo}
+        setUserInfo={setUserInfo}
+        daysAvailable={daysAvailable}
+        setDaysAvailable={setDaysAvailable}
       />
       <ActionButton text="Save Changes" clickHandler={saveProfileEdit} />
     </ProfileContainer>

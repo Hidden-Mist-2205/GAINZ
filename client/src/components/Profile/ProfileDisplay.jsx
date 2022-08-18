@@ -1,23 +1,27 @@
 import React from 'react';
 
 import ProfileText from './ProfileText';
-import UserWorkoutDays from './UserWorkoutDays';
-import { FormContainer, FormFlexColumn } from './Profile.styled';
+import WorkoutDays from './WorkoutDays';
+import { ProfileContainer, FormFlexColumn } from './Profile.styled';
 
 export default function ProfileDisplay({ userInfo }) {
   return (
-    <FormContainer>
+    <ProfileContainer>
       <FormFlexColumn>
-        <img src={userInfo.image} alt="profile" />
+        <h3>Your Profile:</h3>
+        <div id="profileImage">
+          <img src={userInfo.image} alt="profile" />
+        </div>
         <ProfileText text={userInfo.user_name} />
         <ProfileText text={userInfo.email} />
-        <ProfileText text={userInfo.phoneNumber} />
-        <ProfileText text={userInfo.zipcode} />
-        <ProfileText text={userInfo.fitnessGoal} />
+        <ProfileText text={userInfo.phone_num} />
+        <ProfileText text={userInfo.zip_code} />
+        <ProfileText text={userInfo.fitness_goal} />
+        <ProfileText text={userInfo.zoom_profile} />
       </FormFlexColumn>
       <FormFlexColumn>
-        <UserWorkoutDays days={userInfo.daysAvailable} />
+        <WorkoutDays days={userInfo.days} />
       </FormFlexColumn>
-    </FormContainer>
+    </ProfileContainer>
   );
 }

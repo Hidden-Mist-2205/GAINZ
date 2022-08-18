@@ -22,7 +22,7 @@ module.exports = {
   async getUserData(userID) {
     const userData = await sql`
       SELECT
-      u.user_name,
+      *,
       (SELECT array_agg(days)
       FROM (
         SELECT ad.day
