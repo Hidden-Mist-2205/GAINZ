@@ -59,7 +59,28 @@ async function putFavoriteExercise(exerciseId) {
   });
   return data;
 }
+async function postNewWorkout(workout) {
+  const data = axios.post('/postNewWorkout', { data: workout }, {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${Userfront.tokens.accessToken}`,
+    },
+  });
+  return data;
+}
+async function getAllCategories(category) {
+  const data = await axios.get('/getAllCategories', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${Userfront.tokens.accessToken}`,
+    },
+    params: {
+      data: category,
+    },
+  });
+  return data;
+}
 export {
   getWorkouts, getExercises, getAllFavWorkouts, getAllFavExercise, putFavoriteWorkout,
-  putFavoriteExercise,
+  putFavoriteExercise, getAllCategories, postNewWorkout,
 };

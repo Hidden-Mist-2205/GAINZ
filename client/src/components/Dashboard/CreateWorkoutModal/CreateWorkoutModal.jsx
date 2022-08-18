@@ -7,16 +7,23 @@ import GS from '../../styles/GeneralStyles';
 import AddedExerciseList from './AddedExerciseList';
 import SelectCategory from './SelectCategory';
 import allExerciseState from './exerciseAtom';
-import { getExercises } from '../../../requests/server';
+import { getExercises, getAllCategories, postNewWorkout } from '../../../requests/server';
 
 export default function Dashboard({ handleModal }) {
   const [allExercise, setAllExercise] = useRecoilState(allExerciseState);
+  const exerciseCategory = ['chest', 'back', 'shoulders', 'waist', 'upper arms', 'lower arms', 'upper legs', 'lower legs', 'cardio'];
+  const workoutCategory = ['legs', 'waist', 'arms', 'shoulders', 'chest', 'back'];
+  // const category = [{ category: 'main_area', table: 'workouts' }, { category: 'area', table: 'exercises' }];
   useEffect(() => {
     getExercises()
       .then((res) => {
         setAllExercise(res.data);
       })
       .catch((err) => console.log(err));
+    // getAllCategories(category)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
   }, []);
   const [exerciseToAdd, setExerciseToAdd] = useState([]);
   const [steps, setSteps] = useState({
@@ -24,7 +31,8 @@ export default function Dashboard({ handleModal }) {
     name: '',
     reps: '',
     sets: '',
-    mainArea: '',
+    gifUrl: '',
+    area: '',
   });
 
   const [workoutInput, setWorkoutInput] = useState({
@@ -32,6 +40,7 @@ export default function Dashboard({ handleModal }) {
     description: '',
     videoUrl: '',
     mainArea: '',
+    secondArea: '',
     steps: [],
   });
   const handleExerciseInputs = (e) => {
@@ -49,7 +58,7 @@ export default function Dashboard({ handleModal }) {
       }));
     }
   };
-  const handleFavoriteInputs = (e) => {
+  const handleWorkoutInputs = (e) => {
     const { name, value } = e.target;
     setWorkoutInput((prevValues) => ({
       ...prevValues,
@@ -63,7 +72,8 @@ export default function Dashboard({ handleModal }) {
       name: '',
       reps: '',
       sets: '',
-      mainArea: '',
+      gifUrl: '',
+      area: '',
     });
     console.log(workoutInput);
   };
@@ -72,6 +82,17 @@ export default function Dashboard({ handleModal }) {
     const current = workoutInput;
     current.steps = exerciseToAdd;
     console.log('wheres this', current);
+    postNewWorkout(current);
+    setWorkoutInput({
+      name: '',
+      description: '',
+      videoUrl: '',
+      mainArea: '',
+      secondArea: '',
+      steps: [],
+    });
+    setExerciseToAdd([]);
+    handleModal(e);
   };
 
   return (
@@ -86,63 +107,103 @@ export default function Dashboard({ handleModal }) {
           </DB.Header>
           {exerciseToAdd.length > 0 && <AddedExerciseList exerciseToAdd={exerciseToAdd} />}
           <M.Stuff>
-          <M.InputColumn>
-            <M.Column>
-              <M.Label>Category</M.Label>
-              <SelectCategory mainArea={steps.mainArea} handleExerciseInputs={handleExerciseInputs} />
-            </M.Column>
-            <M.Column>
-              <M.Label>Exercise</M.Label>
-              <M.Input
-                type="search"
-                list="exerciselist"
-                name="exerciseId"
-                value={steps.name}
-                onChange={handleExerciseInputs}
-              />
-              <datalist id="exerciselist">
-                {allExercise.filter((exercise) => exercise.area === steps.mainArea).map((exercise) => (
-                  <option value={exercise.name} />
-                ))}
-              </datalist>
-            </M.Column>
-            <M.Column>
-              <M.Label># of Sets</M.Label>
-              <M.Input
-                name="sets"
-                value={steps.sets}
-                onChange={handleExerciseInputs}
-              />
-            </M.Column>
-            <M.Column>
-              <M.Label># of Reps</M.Label>
-              <M.Input
-                name="reps"
-                value={steps.reps}
-                onChange={handleExerciseInputs}
-              />
-            </M.Column>
-          </M.InputColumn>
-          <M.InputColumn>
-            <M.Column>
-              <M.Label>Media Url</M.Label>
-              <M.Input
-                name="videoUrl"
-                type="text"
-                value={workoutInput.videoUrl}
-                onChange={handleFavoriteInputs}
-              />
-            </M.Column>
-            <M.Column>
-              <M.Label>Description</M.Label>
-              <M.Description
-                name="mainArea"
-                type="text"
-                value={workoutInput.mainArea}
-                onChange={handleFavoriteInputs}
-              />
-            </M.Column>
-          </M.InputColumn>
+            <M.InputColumn>
+              <M.Column>
+                <M.Label>Excercise Category</M.Label>
+                <SelectCategory
+                  mainArea={steps.area}
+                  name="area"
+                  handleExerciseInputs={handleExerciseInputs}
+                  categoryList={exerciseCategory}
+                />
+              </M.Column>
+              <M.Column>
+                <M.Label>Exercise Name</M.Label>
+                <M.Input
+                  type="search"
+                  list="exerciselist"
+                  name="exerciseId"
+                  value={steps.name}
+                  onChange={handleExerciseInputs}
+                />
+                <datalist id="exerciselist">
+                  {allExercise.filter((exercise) => exercise.area === steps.area).map((exercise) => (
+                    <option value={exercise.name} />
+                  ))}
+                </datalist>
+              </M.Column>
+              <M.Column>
+                <M.Label># of Sets</M.Label>
+                <M.Input
+                  name="sets"
+                  value={steps.sets}
+                  onChange={handleExerciseInputs}
+                />
+              </M.Column>
+              <M.Column>
+                <M.Label># of Reps</M.Label>
+                <M.Input
+                  name="reps"
+                  value={steps.reps}
+                  onChange={handleExerciseInputs}
+                />
+              </M.Column>
+              <M.Column>
+                <M.Label>Exercise Url</M.Label>
+                <M.Input
+                  name="gifUrl"
+                  type="text"
+                  value={steps.gifUrl}
+                  onChange={handleExerciseInputs}
+                />
+              </M.Column>
+            </M.InputColumn>
+            <M.InputColumn>
+              <M.Column>
+                <M.Label>Workout Category</M.Label>
+                <SelectCategory
+                  mainArea={workoutInput.mainArea}
+                  name="mainArea"
+                  handleExerciseInputs={handleWorkoutInputs}
+                  categoryList={workoutCategory}
+                />
+              </M.Column>
+              <M.Column>
+                <M.Label>Secondary Category</M.Label>
+                <SelectCategory
+                  mainArea={workoutInput.secondArea}
+                  name="secondArea"
+                  handleExerciseInputs={handleWorkoutInputs}
+                  categoryList={workoutCategory}
+                />
+              </M.Column>
+              <M.Column>
+                <M.Label>Workout Name</M.Label>
+                <M.Input
+                  name="name"
+                  value={workoutInput.name}
+                  onChange={handleWorkoutInputs}
+                />
+              </M.Column>
+              <M.Column>
+                <M.Label>Workout Url</M.Label>
+                <M.Input
+                  name="videoUrl"
+                  type="text"
+                  value={workoutInput.videoUrl}
+                  onChange={handleWorkoutInputs}
+                />
+              </M.Column>
+              <M.Column>
+                <M.Label>Workout Description</M.Label>
+                <M.Input
+                  name="description"
+                  type="text"
+                  value={workoutInput.description}
+                  onChange={handleWorkoutInputs}
+                />
+              </M.Column>
+            </M.InputColumn>
           </M.Stuff>
 
           <M.Column>
@@ -158,6 +219,6 @@ export default function Dashboard({ handleModal }) {
           </M.Column>
         </M.Form>
       </M.PopUp>
-    </M.Background >
+    </M.Background>
   );
 }

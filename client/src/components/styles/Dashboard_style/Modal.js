@@ -15,7 +15,7 @@ const M = {
   PopUp: styled.div`
     max-width: 1000px;
     max-height: 700px;
-    width: 50%;
+    width: 60%;
     height: 85%;
     box-shadow: 0 5px 16pxrgba(0,0,0,0.2);
     background: #272727;
@@ -66,8 +66,8 @@ const M = {
     float: left;
     display: inline;
     height: 46px;
-    width: 100px;
-    font-size: 20px;
+    width: 140px;
+    font-size: 15px;
     color: white;
   `,
   Select: styled.select`
@@ -87,14 +87,6 @@ const M = {
     width: 300px;
     background: rgba(217, 217, 217, 0.15);
 `,
-  Description: styled.input`
-    float: right;
-    margin-bottom: 50px;
-    display: inline;
-    height: 46px;
-    width: 300px;
-    background: rgba(217, 217, 217, 0.15);
-  `,
   Column: styled.div`
   `,
   Option: styled.option`
@@ -115,7 +107,10 @@ const M = {
   InputColumn: styled.div`
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
+    align-content: flex-start;
+    justify-content: flex-start;
+    width: 50%;
+    padding-left: 20px;
     justify-content: flex-start;
   `,
   Stuff: styled.div`

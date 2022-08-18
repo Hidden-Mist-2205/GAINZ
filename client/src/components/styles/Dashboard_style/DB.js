@@ -82,7 +82,7 @@ const DB = {
     }
 `,
   WOName: styled.div`
-    width: 25%;
+    width: 30%;
     min-width: 136px;
     height: 36px;
     font-style: normal;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -114,7 +115,7 @@ app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
 app.get('/getAllExercises', authenticateToken, async (req, res) => {
   try {
     const { count, limit } = req.query;
-    console.log(count, limit);
+    // console.log(count, limit);
     const exercises = await controllers.getAllExercises(count, limit);
     res.json(exercises);
   } catch (error) {
@@ -162,12 +163,32 @@ app.get('/getFavoritedExercises', authenticateToken, async (req, res) => {
     console.error(error);
   }
 });
+app.get('/getAllCategories', authenticateToken, async (req, res) => {
+  try {
+    // console.log(req.query.data);
+    // const userData = req.query.data.map((item) => {
+    //   const data = JSON.parse(item);
+    //   console.log(data.category, data.table);
+    //   return controllers.getAllCategories(data.category, data.table);
+    // });
+    // await Promise.all(userData)
+    //   .then((r) => {
+    //     console.log(r);
+    //   });
+    // res.json(userData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
 app.post('/postNewWorkout', authenticateToken, async (req, res) => {
   try {
-    const createWorkout = await controllers.addNewWorkout(req.body, req.auth.userId);
+    console.log(req.body);
+    const createWorkout = await controllers.addNewWorkout(req.body.data, req.auth.userId);
     const workoutId = createWorkout[0].workout_id;
     await controllers.addUserWorkout(req.auth.userId, workoutId);
-    req.body.steps.forEach(async (step, index) => {
+    req.body.data.steps.forEach(async (step, index) => {
       await controllers.addSteps(step, workoutId, index);
     });
     res.status(201).send();
