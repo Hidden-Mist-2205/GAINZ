@@ -56,10 +56,17 @@ export default function WorkoutLibrary() {
     setDisplayedWorkouts(filterByCategory);
   };
 
+  const handleReset = (e) => {
+    e.preventDefault();
+    setPoints([0, 4, 1]);
+    setDisplayedWorkouts(workouts);
+  };
+
   return (
     <>
       <GS.PageHeader> Workout Library </GS.PageHeader>
       <Container.SearchBarContainer>
+        <GS.Button onClick={handleReset}>Reset</GS.Button>
         <Container.SearchBar
           type="text"
           placeholder="Search"
@@ -67,7 +74,7 @@ export default function WorkoutLibrary() {
           onChange={(e) => setSearchInput(e.target.value)}
         />
         <Container.ChangeCategory onChange={handleCategory}>
-          {cats.map((cat) => <option value={cat} label={cat} />)}
+          {cats.map((cat) => <option key={cat} value={cat} label={cat} />)}
         </Container.ChangeCategory>
         <GS.Button onClick={(e) => searchWorkouts(e, searchInput)}>Search</GS.Button>
       </Container.SearchBarContainer>

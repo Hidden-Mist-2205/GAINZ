@@ -23,11 +23,11 @@ const Container = {
     width: 100%;
     height: 10%;
     justify-content: center;
-    align-items: center
-    border: 1px solid white;
+    align-items: center;
   `,
   SearchBar: styled.input`
     margin-right: 20px;
+    margin-left: 20px;
     width: 30%;
     height: 45px;
     border-radius: 5px;
