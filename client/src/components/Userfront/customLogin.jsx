@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Userfront from '@userfront/react';
 import GS from '../styles/GeneralStyles';
 import SU from '../styles/Signup_Style/SU';
 import Nav from '../styles/NavStyle';
+import PasswordResetModal from './passwordResetModal';
 
 export default function LoginForm() {
   const [emailUsername, setEmailUsername] = useState('');
   const [pswd, setPswd] = useState('');
+  const [display, setDisplay] = useState(false);
   const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,12 +18,13 @@ export default function LoginForm() {
       emailOrUsername: emailUsername,
       password: pswd,
     }).catch((error) => {
-      console.log(error);
+      alert(error);
     });
   }
 
   return (
     <SU.PageWrapper>
+      {display ? <PasswordResetModal setDisplay={setDisplay} /> : null}
       <SU.WrapperDiv>
         {/* <Nav.Logo> ⚛︎ GAINZ</Nav.Logo> */}
         <h1>Login</h1>
@@ -42,7 +45,7 @@ export default function LoginForm() {
         </SU.Form>
         <SU.FormBottom>
           <SU.MiniButton onClick={() => navigate('/signup')}>Sign Up</SU.MiniButton>
-          <SU.MiniButton onClick={() => navigate('/password-reset')}> Forgot Password?</SU.MiniButton>
+          <SU.MiniButton onClick={() => setDisplay(true)}> Forgot Password?</SU.MiniButton>
         </SU.FormBottom>
       </SU.WrapperDiv>
     </SU.PageWrapper>

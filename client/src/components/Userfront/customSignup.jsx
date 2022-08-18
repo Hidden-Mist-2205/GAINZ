@@ -4,6 +4,7 @@ import Userfront from '@userfront/react';
 import Axios from 'axios';
 import GS from '../styles/GeneralStyles';
 import SU from '../styles/Signup_Style/SU';
+import PasswordResetModal from './passwordResetModal';
 
 Userfront.init('rbvr4mqb');
 
@@ -17,7 +18,7 @@ export default function SignupForm() {
   const [fitnessGoal, setFitnessGoal] = useState('');
   const [zoomLink, setZoomLink] = useState('');
   const [daysAvailable, setDaysAvailable] = useState([]);
-
+  const [display, setDisplay] = useState(false);
   const navigate = useNavigate();
 
   async function uploadImageHandler(imageFile) {
@@ -75,6 +76,7 @@ export default function SignupForm() {
 
   return (
     <SU.PageWrapper>
+      {display ? <PasswordResetModal setDisplay={setDisplay} /> : null}
       <SU.WrapperDiv>
         <h2>Sign Up</h2>
         <SU.Form onSubmit={(e) => { createAccount(e); }}>
@@ -134,7 +136,7 @@ export default function SignupForm() {
         </SU.Form>
         <SU.FormBottom>
           <SU.MiniButton onClick={() => navigate('/login')}>Login</SU.MiniButton>
-          <SU.MiniButton onClick={() => navigate('/password-reset')}>Forgot Password?</SU.MiniButton>
+          <SU.MiniButton onClick={() => setDisplay(true)}>Forgot Password?</SU.MiniButton>
         </SU.FormBottom>
       </SU.WrapperDiv>
     </SU.PageWrapper>
