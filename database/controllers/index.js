@@ -3,11 +3,20 @@ const { sql } = require('..');
 module.exports = {
   async addNewUser(usr) {
     await sql`
-    insert into users
+    INSERT INTO users
       (user_id, user_name, email, zip_code, phone_num, avatar_url, fitness_goal, zoom_profile)
-    values
+    VALUES
       (${usr.userId}, ${usr.username}, ${usr.email}, ${usr.zip}, ${usr.phoneNumber}, ${usr.avatar}, ${usr.goal}, ${usr.zoom})
-    returning user_id
+    ON CONFLICT user_id
+    DO UPDATE
+    SET user_name = ${usr.username},
+        email = ${usr.email},
+        zip_code = ${usr.zip},
+        phone_num = ${usr.phoneNumber},
+        avatar_url = ${usr.avatar},
+        fitness_goal = ${usr.goal},
+        zoom_profile = ${usr.zoom}
+    WHERE user_id = ${usr.userId}
   `;
   },
   async getAllUserData(userID) {
@@ -22,7 +31,7 @@ module.exports = {
   async getUserData(userID) {
     const userData = await sql`
       SELECT
-      u.user_name,
+      *,
       (SELECT array_agg(days)
       FROM (
         SELECT ad.day

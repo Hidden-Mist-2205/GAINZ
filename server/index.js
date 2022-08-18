@@ -126,6 +126,9 @@ app.get('/getAllExercises', authenticateToken, async (req, res) => {
 app.get('/getUserInfo', authenticateToken, async (req, res) => {
   try {
     const userData = await controllers.getUserData(req.auth.userId);
+    if (userData.days === null) {
+      userData.days = [];
+    }
     res.json(userData);
   } catch (error) {
     console.error(error);
@@ -183,7 +186,6 @@ app.delete('/deleteWorkout', authenticateToken, async (req, res) => {
 });
 app.put('/putFavoriteWorkout', authenticateToken, async (req, res) => {
   try {
-    console.log(req);
     await controllers.toggleFavoritedWorkout(req.body.workoutId, req.auth.userId);
     res.status(204).send('Favorited');
   } catch (error) {

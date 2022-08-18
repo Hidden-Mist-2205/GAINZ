@@ -3,12 +3,12 @@ import styled from 'styled-components';
 const MG = {
   Body: styled.div`
     margin-right: auto;
-    width: 90%
+    width: 100%
     max-width: 1500px;
     margin-left: auto;
   `,
   WOBody: styled.div`
-    width: 85%;
+    width: 80%;
     min-width: 585px;
     margin: 0 auto;
     border-top: solid #121212;
@@ -43,9 +43,7 @@ const MG = {
     margin-left: auto;
     border-radius: 5px;
     background-color: #272727;
-    -webkit-box-pack: start;
     justify-content: center;
-    -webkit-align-content: center;
     align-items: center;
     justify-content: space-evenly;
   `,
