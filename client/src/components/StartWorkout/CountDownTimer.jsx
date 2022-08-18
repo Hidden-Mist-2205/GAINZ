@@ -6,7 +6,12 @@ import GS from '../styles/GeneralStyles';
 import SI from '../styles/StartWorkout_style/SI';
 import CDT from '../styles/StartWorkout_style/CDT';
 
-export default function CountDownTimer({ currStepIndex, setCurrStep, steps, setOpenModal }) {
+export default function CountDownTimer({
+  currStepIndex,
+  setCurrStep,
+  steps,
+  setOpenModal,
+}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [countDownTime, setCountDownTime] = useState(90);
   const [key, setKey] = useState(0);
