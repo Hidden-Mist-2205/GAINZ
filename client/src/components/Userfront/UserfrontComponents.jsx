@@ -4,16 +4,9 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
-import SU from '../styles/Signup_Style/SU';
 import SignupForm from './customSignup';
 import LoginForm from './customLogin';
 import PasswordResetForm from './customResetForm';
-
-// import {
-//   // SignupForm,
-//   // LoginForm,
-//   // PasswordResetForm,
-// } from './Userfront.js';
 
 Userfront.init('rbvr4mqb');
 

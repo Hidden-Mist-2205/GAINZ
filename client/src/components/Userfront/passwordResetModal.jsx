@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Userfront from '@userfront/core';
-import GS from '../styles/GeneralStyles';
 import SU from '../styles/Signup_Style/SU';
 import ESM from '../styles/StartWorkout_style/ESM';
 

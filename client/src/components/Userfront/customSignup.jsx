@@ -89,9 +89,9 @@ export default function SignupForm() {
           <SU.PageWrapper>
             {display ? <PasswordResetModal setDisplay={setDisplay} /> : null}
             <SU.WrapperDiv>
-              <h2>Sign Up</h2>
               <SU.Form onSubmit={(e) => { createAccount(e); }}>
                 <SU.InputDiv>
+                  <SU.Title>Sign Up</SU.Title>
                   <label htmlFor="username">
                     Username
                     <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
