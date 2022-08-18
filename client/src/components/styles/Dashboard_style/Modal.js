@@ -66,7 +66,7 @@ const M = {
     float: left;
     display: inline;
     height: 46px;
-    width: 300px;
+    width: 100px;
     font-size: 20px;
     color: white;
   `,
@@ -109,13 +109,17 @@ const M = {
     color: white;
     width: 60%;
     margin-bottom: 10px;
-    /* display: -webkit-box; */
-    /* display: -webkit-flex; */
-    /* display: -ms-flexbox; */
-    /* display: flex; */
-    /* flex-direction: row; */
     align-items: center;
     justify-content: space-around;
+  `,
+  InputColumn: styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+  `,
+  Stuff: styled.div`
+    display: flex;
   `,
 };
 export default M;

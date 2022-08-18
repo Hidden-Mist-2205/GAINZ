@@ -26,7 +26,7 @@ export default function ExercisePanel({ handleModal, exercise }) {
           : <DB.WOStar onClick={handleFav}>&#9734;</DB.WOStar>}
         <DB.WOName onClick={handleEPanel}>{exercise.name}</DB.WOName>
         <DB.WOCategory>{exercise.area}</DB.WOCategory>
-        <DB.WODescription>{exercise.description}</DB.WODescription>
+        <DB.WODescription>{exercise.equipment}</DB.WODescription>
         <GS.Button
           // style={{ position: 'relative', top: '25%', left: '42%' }}
           onClick={handleModal}

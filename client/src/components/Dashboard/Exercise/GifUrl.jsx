@@ -3,8 +3,8 @@ import WOEx from '../../styles/Dashboard_style/WOExercisePanel';
 
 export default function GifUrl({ gifurl }) {
   return (
-    <WOEx.Body>
+    <WOEx.GifBody>
       <WOEx.GIF src={gifurl} />
-    </WOEx.Body>
+    </WOEx.GifBody>
   );
 }

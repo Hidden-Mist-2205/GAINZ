@@ -235,6 +235,7 @@ module.exports = {
       e."name",
       e.area,
       e.gif_url AS gifUrl,
+      e.equipment,
       ue.is_favorited AS favorited
     FROM exercises e
     LEFT JOIN

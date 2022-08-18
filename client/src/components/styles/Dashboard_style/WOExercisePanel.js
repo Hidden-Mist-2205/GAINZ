@@ -31,11 +31,17 @@ const WOEx = {
   Rep: styled.div`
     font-size: 15px;
     padding-left: 100px;
-  `,
+    `,
+  GifBody: styled.div`
+    width: fit-content;
+    background-color: #272727;
+    margin-left: 7%;
+    `,
   GIF: styled.img`
-  width: 60%;
+  min-width: 280;
   max-width: 280px;
   margin: auto;
+  padding: 20px;
 `,
 };
 
