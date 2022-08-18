@@ -43,7 +43,10 @@ export default function ExerciseLibraryPage() {
     // setExercises(mockData);
   }, []);
 
-  const searchExercises = (searchInput) => { console.log(searchInput); };
+  const searchExercises = (searchInput) => {
+    const filteredExercises = exercises.filter(exercise => exercise.name.includes(searchInput));
+    setExercises(filteredExercises);
+  };
 
   return (
     <>

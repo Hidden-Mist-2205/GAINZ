@@ -15,7 +15,10 @@ export default function WorkoutLibrary() {
       .catch((err) => console.log(err));
   }, []);
 
-  const searchWorkouts = (searchInput) => { console.log(searchInput); };
+  const searchWorkouts = (searchInput) => {
+    const filteredWorkouts = workouts.filter(workout => workout.name.includes(searchInput));
+    setWorkouts(filteredWorkouts);
+  };
 
   return (
     <>
