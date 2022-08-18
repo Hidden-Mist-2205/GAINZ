@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 
-import PageItemDropdown from './PageItemDropdown';
-import currentWorkoutIDState from '../../currentWorkoutAtom';
+import ExerciseItemDropdown from './ExerciseItemDropdown';
 
 import Container from '../../styles/ContainerStyles/Container_style';
 import GS from '../../styles/GeneralStyles';
 
-export default function PageListItem({ data }) {
+export default function ExerciseList({ data }) {
   const [favorite, setFavorite] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const setCurrentWorkoutID = useSetRecoilState(currentWorkoutIDState);
 
   const onKeyPressHandler = (e) => {
     e.preventDefault();
@@ -19,13 +15,6 @@ export default function PageListItem({ data }) {
   const handleFavorite = (e) => {
     e.preventDefault();
     setFavorite(!favorite);
-  };
-
-  const navigate = useNavigate();
-  const routeChange = () => {
-    const path = '/StartWorkout';
-    setCurrentWorkoutID(data.id);
-    navigate(path);
   };
 
   return (
@@ -36,12 +25,11 @@ export default function PageListItem({ data }) {
           : <Container.WOStar onClick={handleFavorite}>&#9734;</Container.WOStar>}
         <Container.WOName>{data.name}</Container.WOName>
         <Container.WOCategory>
-          {data.main_area}
+          {data.area}
         </Container.WOCategory>
-        <Container.WODescription>{data.description}</Container.WODescription>
-        <GS.Button onClick={routeChange}> Start </GS.Button>
+        <Container.WODescription>{data.equipment}</Container.WODescription>
       </Container.WOItem>
-      {showDropdown && <PageItemDropdown exercises={data.steps} />}
+      {showDropdown && <ExerciseItemDropdown exercise={data} />}
     </>
   );
 }

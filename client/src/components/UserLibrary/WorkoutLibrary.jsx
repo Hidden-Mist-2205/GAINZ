@@ -35,7 +35,6 @@ export default function WorkoutLibrary() {
         <GS.Button onClick={searchWorkouts}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        {/* <PageList items={workouts} actionButton="Start Workout" /> */}
         {workouts && workouts.map((workout) => (
           <PageListItem data={workout} key={workout.id} />
         ))}
