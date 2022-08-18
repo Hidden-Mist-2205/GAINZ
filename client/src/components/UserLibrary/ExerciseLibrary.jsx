@@ -44,12 +44,7 @@ export default function ExerciseLibraryPage() {
   }, []);
 
   const searchExercises = (searchInput) => {
-    const filteredExercises = [];
-    for (let i = 0; i < exercises.length; i++) {
-      if (exercises[i].name.includes(searchInput)) {
-        filteredExercises.push(exercises[i]);
-      }
-    }
+    const filteredExercises = exercises.filter(exercise => exercise.name.includes(searchInput));
     setExercises(filteredExercises);
   };
 
