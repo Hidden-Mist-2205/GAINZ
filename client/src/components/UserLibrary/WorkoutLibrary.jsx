@@ -79,9 +79,16 @@ export default function WorkoutLibrary() {
         <GS.Button onClick={(e) => searchWorkouts(e, searchInput)}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        {(displayedWorkouts || []).slice(start, end).map((workout) => (
+        {displayedWorkouts.length > 0 ? (displayedWorkouts.slice(start, end).map((workout) => (
           <WorkoutListItem data={workout} key={workout.id} />
-        ))}
+        )))
+          : (
+            <Container.WOItem>
+              <Container.NoWorkouts>
+                No workouts found. Try another search!
+              </Container.NoWorkouts>
+            </Container.WOItem>
+          )}
         {displayedWorkouts.length > 4 && (
           <Container.NavBtn>
             {start !== 0 && (
