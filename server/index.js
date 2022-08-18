@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
@@ -26,6 +27,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
+app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

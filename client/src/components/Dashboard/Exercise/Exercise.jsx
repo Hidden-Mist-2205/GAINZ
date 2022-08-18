@@ -15,8 +15,8 @@ export default function Exercise({ handleModal, allExerciseWorkouts }) {
         ))}
       </DB.WOBorder>
       <DB.NavBtn>
-        <DB.Previous onClick={page}>{start !== 0 ? '<' : null}</DB.Previous>
-        <DB.Next name="foward" onClick={page}>{end <= allExerciseWorkouts.length ? '>' : null}</DB.Next>
+        <DB.Previous aria-label="back" onClick={page}>{start !== 0 ? '<' : null}</DB.Previous>
+        <DB.Next aria-label="foward" onClick={page}>{end <= allExerciseWorkouts.length ? '>' : null}</DB.Next>
       </DB.NavBtn>
     </DB.WOBody>
   );

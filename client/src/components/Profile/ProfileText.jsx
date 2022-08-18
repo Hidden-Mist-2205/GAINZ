@@ -1,13 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledProfileText, FormTextBubble } from './Profile.styled';
 
-export default function ProfileText({ text }) {
+export default function ProfileText({ label, text }) {
   return (
-    <StyledProfileText>{text}</StyledProfileText>
+    <FormTextBubble>
+      <StyledProfileText>
+        <span className="label">{`${label}:  `}</span>
+        <span>{text}</span>
+      </StyledProfileText>
+    </FormTextBubble>
   );
 }
-
-const StyledProfileText = styled.p`
-  margin: 0;
-  line-height: 1.8em;
-`;
