@@ -5,7 +5,7 @@ import Nav from './styles/NavStyle';
 
 export default function NavBar() {
   const [userIconIsHovering, setUserIconIsHovering] = useState(false);
-  const [userIconHeight, setUserIconHeight] = useState('60px');
+  const [userIconHeight, setUserIconHeight] = useState('70px');
   const [libraryIsHovering, setLibraryIsHovering] = useState(false);
   const [LibraryHeight, setLibraryHeight] = useState('20px');
   const [LibraryMarginTop, setLibraryMarginTop] = useState('5px');
@@ -27,7 +27,7 @@ export default function NavBar() {
   };
   const onUserIconMouseOut = () => {
     setUserIconIsHovering(false);
-    setUserIconHeight('60px');
+    setUserIconHeight('70px');
   };
 
   return (

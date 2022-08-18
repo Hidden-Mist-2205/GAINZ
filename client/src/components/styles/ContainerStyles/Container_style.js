@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const MG = {
+const Container = {
   Body: styled.div`
     margin-right: auto;
     width: 100%
@@ -18,20 +18,36 @@ const MG = {
     padding-bottom: 10px;
     height: fit-content;
   `,
+  SearchBarContainer: styled.div`
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    align-items: center
+    border: 1px solid white;
+  `,
+  SearchBar: styled.input`
+    margin-right: 20px;
+    width: 30%;
+    height: 45px;
+    border-radius: 5px;
+    background-color: #272727;
+    color: white;
+  `,
   WOHeader: styled.h3`
-  display: inline;
-  width: 484px;
-  height: 5%;
-  margin-left: 7.5%;
-  margin-bottom: 0;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  letter-spacing: -0.015em;
+    display: inline;
+    width: 484px;
+    height: 5%;
+    margin-left: 7.5%;
+    margin-bottom: 0;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.015em;
   `,
   WOPanel: styled.div`
-  width: 100%;
-  min-height: 100px;
+    width: 100%;
+    min-height: 100px;
   `,
   WOItem: styled.div`
     display: flex;
@@ -43,7 +59,7 @@ const MG = {
     margin-left: auto;
     border-radius: 5px;
     background-color: #272727;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     justify-content: space-evenly;
   `,
@@ -62,61 +78,36 @@ const MG = {
     }
   `,
   WOName: styled.div`
-  width: 27%;
-  height: 36px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 36px;
-  cursor: pointer;
-  &:hover {
-    text-shadow: 0 0 3px gold;
-  }
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  `,
-  NoWorkouts: styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 36px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 36px;
-  `,
-  LibraryLink: styled.a`
-    text-decoration: none;
-    color: inherit;
-    &:hover {
-      text-shadow: 0 0 3px gold;
-    }
-  `,
-  WOTimesCompleted: styled.div`
-    width: 18%;
+    width: 27%;
     height: 36px;
     font-style: normal;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 24px;
     line-height: 36px;
+    cursor: pointer;
+    &:hover {
+      text-shadow: 0 0 3px gold;
+    }
     display: flex;
     flex-direction: column;
     justify-content: center;
   `,
-  WOLastCompleted: styled.div`
-    width: 26%;
+  WOCategory: styled.div`
+    width: 15%;
     height: 36px;
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
     line-height: 36px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    color: inherit;
+  `,
+  WODescription: styled.div`
+    width: 23%;
+    height: 36px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 36px;
   `,
   NavBtn: styled.div`
     float: right;
@@ -159,6 +150,26 @@ const MG = {
     display: inline;
     margin-right: 10px;
   `,
+  NoWorkouts: styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 36px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 36px;
+  `,
+  LibraryLink: styled.a`
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-shadow: 0 0 3px gold;
+  }
+  `,
 };
 
-export default MG;
+export default Container;
