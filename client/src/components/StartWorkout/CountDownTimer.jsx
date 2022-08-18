@@ -6,10 +6,11 @@ import GS from '../styles/GeneralStyles';
 import SI from '../styles/StartWorkout_style/SI';
 import CDT from '../styles/StartWorkout_style/CDT';
 
-export default function CountDownTimer({ currStepIndex, setCurrStep, steps }) {
+export default function CountDownTimer({ currStepIndex, setCurrStep, steps, setOpenModal }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [countDownTime, setCountDownTime] = useState(90);
   const [key, setKey] = useState(0);
+  const [autoModeOn, setAutoModeOn] = useState(false);
 
   const formatRemainingTime = (time) => {
     const minutes = Math.floor((time % 3600) / 60);
@@ -40,13 +41,15 @@ export default function CountDownTimer({ currStepIndex, setCurrStep, steps }) {
     const totalSteps = steps.length;
     if (currStepIndex + 1 < totalSteps) {
       setCurrStep(steps[currStepIndex + 1]);
+    } else {
+      setOpenModal(true);
     }
   };
 
   return (
     <>
-      <SI.Header>
-        <SI.H4> Countdown Timer </SI.H4>
+      <SI.Header marginBottom="5px">
+        <SI.H4>Countdown Timer</SI.H4>
         <CDT.ButtonRow>
           <GS.Button
             onClick={OnClickNextStep}
@@ -57,15 +60,29 @@ export default function CountDownTimer({ currStepIndex, setCurrStep, steps }) {
         </CDT.ButtonRow>
       </SI.Header>
 
+      <SI.Header marginBottom="15px">
+        <SI.H4 onClick={() => setAutoModeOn(!autoModeOn)}>
+          AUTO MODE ☞ &nbsp;
+          {autoModeOn ? 'ON' : 'OFF'}
+        </SI.H4>
+      </SI.Header>
+
       <CDT.TimerContainer>
         <CountdownCircleTimer
           key={key}
           isPlaying={isPlaying}
           duration={countDownTime}
           colors={['#AE3139', '#3976e7', '#F7B801']}
-          colorsTime={[22, 15, 0]}
+          colorsTime={[10, 5, 0]}
           onComplete={() => {
-            setTimeout(() => setKey(prevKey => prevKey + 1), 5000);
+            const reset = () => {
+              setKey(prevKey => prevKey + 1);
+              OnClickNextStep();
+              if (autoModeOn) {
+                setTimeout(() => OnClickNextStep(), 3000);
+              }
+            };
+            setTimeout(() => reset(), 5000);
             setIsPlaying(false);
             return { shouldRepeat: true, delay: 5 };
           }}

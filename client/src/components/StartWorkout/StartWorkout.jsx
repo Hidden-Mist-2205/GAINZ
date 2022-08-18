@@ -68,6 +68,7 @@ export default function StartWorkout() {
               currStepIndex={steps.indexOf(currStep)}
               setCurrStep={setCurrStep}
               steps={steps}
+              setOpenModal={setOpenModal}
             />
           </SW.InnerContainer>
           <SW.InnerContainer>
