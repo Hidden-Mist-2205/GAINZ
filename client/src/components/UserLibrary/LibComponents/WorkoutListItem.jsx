@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import Userfront from '@userfront/core';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
@@ -9,16 +11,25 @@ import Container from '../../styles/ContainerStyles/Container_style';
 import GS from '../../styles/GeneralStyles';
 
 export default function WorkoutListItem({ data }) {
-  const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState(data.is_favorited);
   const [showDropdown, setShowDropdown] = useState(false);
   const setCurrentWorkoutID = useSetRecoilState(currentWorkoutIDState);
 
-  const onKeyPressHandler = (e) => {
-    e.preventDefault();
-  };
   const handleFavorite = (e) => {
     e.preventDefault();
-    setFavorite(!favorite);
+    axios.put('/putFavoriteWorkout', { workoutId: data.id }, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.status);
+        setFavorite(!favorite);
+      })
+      .catch((err) => {
+        console.error('error toggling favorite workout: ', err);
+      });
   };
 
   const navigate = useNavigate();

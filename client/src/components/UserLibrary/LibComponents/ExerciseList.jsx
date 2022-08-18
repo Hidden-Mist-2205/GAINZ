@@ -6,7 +6,7 @@ import Container from '../../styles/ContainerStyles/Container_style';
 import GS from '../../styles/GeneralStyles';
 
 export default function ExerciseList({ data }) {
-  const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState(data.favorited);
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleFavorite = (e) => {

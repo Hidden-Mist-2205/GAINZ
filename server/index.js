@@ -183,7 +183,6 @@ app.delete('/deleteWorkout', authenticateToken, async (req, res) => {
 });
 app.put('/putFavoriteWorkout', authenticateToken, async (req, res) => {
   try {
-    console.log(req);
     await controllers.toggleFavoritedWorkout(req.body.workoutId, req.auth.userId);
     res.status(204).send('Favorited');
   } catch (error) {
