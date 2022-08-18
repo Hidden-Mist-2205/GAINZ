@@ -19,8 +19,9 @@ export default function ExerciseLibraryPage() {
       .catch((err) => console.log(err));
   }, []);
 
-  const searchExercises = (searchInput) => {
-    const filteredExercises = exercises.filter(exercise => exercise.name.includes(searchInput));
+  const searchExercises = (e, searchTerm) => {
+    e.preventDefault();
+    const filteredExercises = exercises.filter(exercise => exercise.name.includes(searchTerm));
     setExercises(filteredExercises);
   };
 
@@ -32,9 +33,9 @@ export default function ExerciseLibraryPage() {
           type="text"
           placeholder="Search"
           value={searchInput}
-          onChange={(e) => searchExercises(e.target.value)}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
-        <GS.Button onClick={searchExercises}>Search</GS.Button>
+        <GS.Button onClick={(e) => searchExercises(e, searchInput)}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
         {exercises && exercises.map((exercise) => (

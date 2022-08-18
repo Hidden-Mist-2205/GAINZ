@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import PageItemDropdown from './PageItemDropdown';
+import WorkoutItemDropdown from './WorkoutItemDropdown';
 import currentWorkoutIDState from '../../currentWorkoutAtom';
 
 import Container from '../../styles/ContainerStyles/Container_style';
 import GS from '../../styles/GeneralStyles';
 
-export default function PageListItem({ data }) {
+export default function WorkoutListItem({ data }) {
   const [favorite, setFavorite] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const setCurrentWorkoutID = useSetRecoilState(currentWorkoutIDState);
@@ -41,7 +41,7 @@ export default function PageListItem({ data }) {
         <Container.WODescription>{data.description}</Container.WODescription>
         <GS.Button onClick={routeChange}> Start </GS.Button>
       </Container.WOItem>
-      {showDropdown && <PageItemDropdown exercises={data.steps} />}
+      {showDropdown && <WorkoutItemDropdown exercises={data.steps} />}
     </>
   );
 }

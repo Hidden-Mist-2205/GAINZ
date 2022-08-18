@@ -2,7 +2,7 @@ import React from 'react';
 import ED from '../../styles/ContainerStyles/ExerciseDropdown_style';
 import ExerciseItem from '../../MyGainz/ExerciseItem';
 
-export default function PageItemDropdown({ exercises }) {
+export default function WorkoutItemDropdown({ exercises }) {
   return (
     exercises
       ? (
