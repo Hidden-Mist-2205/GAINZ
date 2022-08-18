@@ -6,11 +6,14 @@ import FlexContainer from '../Styles/FlexContainer.styled';
 
 export default function PageHeader({ page, searchFunction }) {
   const [searchInput, setSearchInput] = useState('');
+  function handleSearch() {
+    searchFunction(searchInput);
+  }
   return (
     <FlexContainer>
       <PageHeading text={page} />
       <SearchBar controlledValue={searchInput} changeHandler={setSearchInput} />
-      <SearchButton handleClick={searchFunction} searchInput={searchInput} />
+      <SearchButton handleClick={handleSearch} />
     </FlexContainer>
   );
 }
