@@ -37,9 +37,7 @@ function Signup() {
 
 function PasswordReset() {
   return (
-    <div id="reset">
-      <PasswordResetForm />
-    </div>
+    <PasswordResetForm />
   );
 }
 

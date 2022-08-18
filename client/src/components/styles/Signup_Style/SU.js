@@ -25,7 +25,6 @@ const SU = {
   font-size: 14px;
   `,
   WrapperDiv: styled.div`
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
   color: white;
   width: 490px;
   margin: auto;
