@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import GS from './styles/GeneralStyles';
-
+import { LogoutButton } from './Userfront/Userfront';
 // import SamplePage from './Dashboard/SamplePage';
 // import FindWorkoutBuddy from './FindWorkoutBuddy/FindWorkoutBuddy';
 // import MyGainz from './MyGainz/MyGainz';
