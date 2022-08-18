@@ -51,7 +51,7 @@ const Nav = {
   UserIconContainer: styled.div`
     position: absolute;
     left: 90%;
-    top: 5px;
+    top: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
