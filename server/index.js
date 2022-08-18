@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 const controllers = require('../database/controllers');
 
 const app = express();
@@ -30,9 +31,39 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+app.post('/sendRequest', authenticateToken, async (req, res) => {
+  const requester = await controllers.getAllUserData(req.auth.userId);
+  const requestee = await controllers.getAllUserData(req.body.toUser);
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.elasticemail.com',
+    port: 2525,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.EMAIL_USER, // generated ethereal user
+      pass: process.env.EMAIL_PASS, // generated ethereal password
+    },
+  });
+
+  // send mail with defined transport object
+  const info = await transporter.sendMail({
+    from: process.env.EMAIL_FROM_ADDRESS, // sender address
+    to: requestee.email, // list of receivers
+    subject: `${requester.user_name} has sent you a request on GAINZ.`, // Subject line
+    text: `
+    ${requester.user_name} would like to connect with you on GAINZ. If you would like to connect with them, see the information below:
+    Email: ${requester.email}
+    Phone Number: ${requester.phone_num}
+    Zoom Profile: ${requester.zoom_profile}
+    `, // plain text body
+  });
+
+  res.send('Request Sent');
+});
+
 app.get('/getAvailableBuddies', authenticateToken, async (req, res) => {
   try {
-    const buddies = await controllers.getAvailableBuddies(req.auth.userId);
+    const buddies = await controllers.getAvailableBuddies(req.auth.userId, req.query.day, req.query.zipCode);
     res.json(buddies);
   } catch (error) {
     console.error(error);
@@ -101,6 +132,17 @@ app.get('/getUserInfo', authenticateToken, async (req, res) => {
     res.status(500).send('Error fetching data');
   }
 });
+
+app.get('/getAllUserInfo', authenticateToken, async (req, res) => {
+  try {
+    const userData = await controllers.getAllUserData(req.auth.userId);
+    res.json(userData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
 app.get('/getFavoritedWorkouts', authenticateToken, async (req, res) => {
   try {
     const favoriteData = await controllers.getFavoritedWorkouts(req.auth.userId);
