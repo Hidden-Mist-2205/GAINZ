@@ -41,15 +41,6 @@ async function getAllFavExercise() {
   });
   return data;
 }
-// async function putFavoriteWorkout(workoutId) {
-//   const data = axios.put('/putFavoriteWorkout', { workoutId }, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       authorization: `Bearer ${Userfront.tokens.accessToken}`,
-//     },
-//   });
-//   return data;
-// }
 async function putFavoriteWorkout(workoutId) {
   const data = axios.put('/putFavoriteWorkout', { workoutId }, {
     headers: {
