@@ -16,12 +16,7 @@ export default function WorkoutLibrary() {
   }, []);
 
   const searchWorkouts = (searchInput) => {
-    const filteredWorkouts = [];
-    for (let i = 0; i < workouts.length; i++) {
-      if (workouts[i].name.includes(searchInput)) {
-        filteredWorkouts.push(workouts[i]);
-      }
-    }
+    const filteredWorkouts = workouts.filter(workout => workout.name.includes(searchInput));
     setWorkouts(filteredWorkouts);
   };
 
