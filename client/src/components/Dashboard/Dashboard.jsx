@@ -24,7 +24,6 @@ export default function Dashboard() {
       });
     getAllFavWorkouts()
       .then((r) => {
-        console.log(r.data);
         setAllFavWorkouts(r.data);
       })
       .catch((err) => {

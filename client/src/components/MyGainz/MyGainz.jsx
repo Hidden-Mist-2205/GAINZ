@@ -20,7 +20,6 @@ export default function MyGainz() {
       },
     })
       .then((res) => {
-        console.log('myGainz workouts: ', res.data);
         const sorted = [...res.data]?.sort((a, b) => (a.times_completed > b.times_completed ? -1 : 1));
         setCompletedWorkouts(sorted || []);
       })
