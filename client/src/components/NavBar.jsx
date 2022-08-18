@@ -8,17 +8,17 @@ export default function NavBar() {
   const [userIconHeight, setUserIconHeight] = useState('70px');
   const [libraryIsHovering, setLibraryIsHovering] = useState(false);
   const [LibraryHeight, setLibraryHeight] = useState('20px');
-  const [LibraryMarginTop, setLibraryMarginTop] = useState('5px');
+  const [LibraryMarginTop, setLibraryMarginTop] = useState('8px');
 
   const onLibraryMouseOver = () => {
     setLibraryIsHovering(true);
     setLibraryHeight('130px');
-    setLibraryMarginTop('115px');
+    setLibraryMarginTop('118px');
   };
   const onLibraryMouseOut = () => {
     setLibraryIsHovering(false);
     setLibraryHeight('20px');
-    setLibraryMarginTop('5px');
+    setLibraryMarginTop('8px');
   };
 
   const onUserIconMouseOver = () => {
