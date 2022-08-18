@@ -21,7 +21,7 @@ const WOEx = {
   `,
   Name: styled.div`
     font-size: 24px;
-    min-width: 40%;
+    min-width: 45%;
 
   `,
   Set: styled.div`

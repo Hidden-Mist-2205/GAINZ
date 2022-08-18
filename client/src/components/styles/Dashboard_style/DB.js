@@ -96,6 +96,7 @@ const DB = {
   `,
   WOExName: styled.div`
     min-width: 136px;
+    max-width:45%;
     height: 36px;
     font-style: normal;
     font-weight: 700;

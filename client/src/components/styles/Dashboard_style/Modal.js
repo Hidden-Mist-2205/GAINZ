@@ -76,7 +76,7 @@ const M = {
     display: inline;
     color: white;
     height: 46px;
-    width: 300px;
+    min-width: 300px;
     background: rgba(217, 217, 217, 0.15);
   `,
   Input: styled.input`
@@ -84,17 +84,19 @@ const M = {
     margin-bottom: 20px;
     display: inline;
     height: 46px;
-    width: 300px;
+    min-width: 300px;
+    color: white;
     background: rgba(217, 217, 217, 0.15);
 `,
   Column: styled.div`
   `,
   Option: styled.option`
     color: white;
-    /* background: grey; */
-    background: rgba(217, 217, 217);
+    font-family: "Trebuchet MS","Roboto","Arial",sans-serif;
+    font-size: 20px;
     width:;
     height:100%;
+    background: rgb(60 59 59);
   `,
   Exercise: styled.div`
     display: flex;
@@ -115,6 +117,30 @@ const M = {
   `,
   Stuff: styled.div`
     display: flex;
+  `,
+  BoxAddedExercise: styled.div`
+    margin-bottom: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-style: dashed;
+  `,
+  BoxAddedItem: styled.div`
+    display: flex;
+    color: white;
+    width: 60%;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+  `,
+  BoxItemDetail: styled.div`
+    width: 50%;
+
   `,
 };
 export default M;

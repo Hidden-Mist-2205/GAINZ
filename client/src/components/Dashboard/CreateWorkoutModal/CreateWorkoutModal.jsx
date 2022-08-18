@@ -7,23 +7,18 @@ import GS from '../../styles/GeneralStyles';
 import AddedExerciseList from './AddedExerciseList';
 import SelectCategory from './SelectCategory';
 import allExerciseState from './exerciseAtom';
-import { getExercises, getAllCategories, postNewWorkout } from '../../../requests/server';
+import { getExercises, postNewWorkout } from '../../../requests/server';
 
 export default function Dashboard({ handleModal }) {
   const [allExercise, setAllExercise] = useRecoilState(allExerciseState);
   const exerciseCategory = ['chest', 'back', 'shoulders', 'waist', 'upper arms', 'lower arms', 'upper legs', 'lower legs', 'cardio'];
   const workoutCategory = ['legs', 'waist', 'arms', 'shoulders', 'chest', 'back'];
-  // const category = [{ category: 'main_area', table: 'workouts' }, { category: 'area', table: 'exercises' }];
   useEffect(() => {
     getExercises()
       .then((res) => {
         setAllExercise(res.data);
       })
       .catch((err) => console.log(err));
-    // getAllCategories(category)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
   }, []);
   const [exerciseToAdd, setExerciseToAdd] = useState([]);
   const [steps, setSteps] = useState({
@@ -105,7 +100,12 @@ export default function Dashboard({ handleModal }) {
           >
             Create Workout
           </DB.Header>
-          {exerciseToAdd.length > 0 && <AddedExerciseList exerciseToAdd={exerciseToAdd} />}
+          {exerciseToAdd.length > 0
+            && (
+              <M.BoxAddedExercise>
+                <AddedExerciseList exerciseToAdd={exerciseToAdd} />
+              </M.BoxAddedExercise>
+            )}
           <M.Stuff>
             <M.InputColumn>
               <M.Column>
@@ -125,6 +125,7 @@ export default function Dashboard({ handleModal }) {
                   name="exerciseId"
                   value={steps.name}
                   onChange={handleExerciseInputs}
+                  style={{ minWidth: '305px' }}
                 />
                 <datalist id="exerciselist">
                   {allExercise.filter((exercise) => exercise.area === steps.area).map((exercise) => (

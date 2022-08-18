@@ -68,19 +68,8 @@ async function postNewWorkout(workout) {
   });
   return data;
 }
-async function getAllCategories(category) {
-  const data = await axios.get('/getAllCategories', {
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: `Bearer ${Userfront.tokens.accessToken}`,
-    },
-    params: {
-      data: category,
-    },
-  });
-  return data;
-}
+
 export {
   getWorkouts, getExercises, getAllFavWorkouts, getAllFavExercise, putFavoriteWorkout,
-  putFavoriteExercise, getAllCategories, postNewWorkout,
+  putFavoriteExercise, postNewWorkout,
 };

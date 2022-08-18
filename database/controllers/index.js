@@ -395,12 +395,6 @@ module.exports = {
     }
     return 'Days Added';
   },
-  async getAllCategories(category, table) {
-    const data = await sql`
-  Select distinct ${category} from ${table}
-  `;
-    return data;
-  },
   // Stretch
   async addNewExercise(/* INFO */) {
     // TODO
