@@ -16,7 +16,7 @@ const M = {
     max-width: 1000px;
     max-height: 700px;
     width: 50%;
-    height: 80%;
+    height: 85%;
     box-shadow: 0 5px 16pxrgba(0,0,0,0.2);
     background: #272727;
     color: #000;
@@ -24,7 +24,7 @@ const M = {
     position: fixed;
     z-index: 1000;
     border-radius: 5px;
-    overflow: auto;
+    overflow-y: auto;
     &::-webkit-scrollbar {
         width: 10px;
         background-color: #272727;
@@ -87,11 +87,11 @@ const M = {
     width: 300px;
     background: rgba(217, 217, 217, 0.15);
 `,
-  Description: styled.textarea`
+  Description: styled.input`
     float: right;
     margin-bottom: 50px;
     display: inline;
-    height: 100px;
+    height: 46px;
     width: 300px;
     background: rgba(217, 217, 217, 0.15);
   `,
@@ -103,6 +103,19 @@ const M = {
     background: rgba(217, 217, 217);
     width:;
     height:100%;
+  `,
+  Exercise: styled.div`
+    display: flex;
+    color: white;
+    width: 60%;
+    margin-bottom: 10px;
+    /* display: -webkit-box; */
+    /* display: -webkit-flex; */
+    /* display: -ms-flexbox; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    align-items: center;
+    justify-content: space-around;
   `,
 };
 export default M;

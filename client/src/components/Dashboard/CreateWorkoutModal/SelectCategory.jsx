@@ -1,10 +1,11 @@
 import React from 'react';
 import M from '../../styles/Dashboard_style/Modal';
 
-export default function SelectCategory({ handleExerciseInputs }) {
+export default function SelectCategory({ handleExerciseInputs, mainArea }) {
   return (
     <M.Select
       name="mainArea"
+      value={mainArea}
       onChange={handleExerciseInputs}
     >
       <M.Option />

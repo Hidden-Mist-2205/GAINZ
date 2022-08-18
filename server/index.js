@@ -151,6 +151,14 @@ app.get('/getFavoritedWorkouts', authenticateToken, async (req, res) => {
     console.error(error);
   }
 });
+app.get('/getFavoritedExercises', authenticateToken, async (req, res) => {
+  try {
+    const favoriteData = await controllers.getFavoritedExercises(req.auth.userId);
+    res.json(favoriteData);
+  } catch (error) {
+    console.error(error);
+  }
+});
 app.post('/postNewWorkout', authenticateToken, async (req, res) => {
   try {
     const createWorkout = await controllers.addNewWorkout(req.body, req.auth.userId);
@@ -175,6 +183,7 @@ app.delete('/deleteWorkout', authenticateToken, async (req, res) => {
 });
 app.put('/putFavoriteWorkout', authenticateToken, async (req, res) => {
   try {
+    console.log(req);
     await controllers.toggleFavoritedWorkout(req.body.workoutId, req.auth.userId);
     res.status(204).send('Favorited');
   } catch (error) {
