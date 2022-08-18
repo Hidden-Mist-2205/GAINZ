@@ -1,24 +1,32 @@
 import React, { useState } from 'react';
 import DB from '../../styles/Dashboard_style/DB';
 import GS from '../../styles/GeneralStyles';
+import GifUrl from './GifUrl';
+import { putFavoriteExercise } from '../../../requests/server';
 
-export default function ExercisePanel({ handleModal }) {
+export default function ExercisePanel({ handleModal, exercise }) {
   const [showEPanel, setEPanel] = useState(false);
-  const [toggleFav, setToggleFav] = useState(false);
+  const [toggleFav, setToggleFav] = useState(exercise.favorited);
   const handleEPanel = () => (
     showEPanel ? setEPanel(false) : setEPanel(true)
   );
-  const handleFav = () => (
-    toggleFav ? setToggleFav(false) : setToggleFav(true)
-  );
+  const handleFav = () => {
+    putFavoriteExercise(exercise.exerciseid)
+      .then(() => {
+        setToggleFav(!toggleFav);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <DB.WOPanel>
       <DB.WOItem>
-        {/* <DB.WOStar onClick={handleFav}>{toggleFav === false ? 'X' : 'O'}</DB.WOStar> */}
-        {toggleFav ? <DB.WOStar>&#9734;</DB.WOStar> : <DB.WOStar>&#9733;</DB.WOStar>}
-        <DB.WOExName onClick={handleEPanel}>Exercise Name</DB.WOExName>
-        <DB.WOCategory>Category</DB.WOCategory>
-        <DB.WODescription>Description</DB.WODescription>
+        {toggleFav
+          ? <DB.WOStar onClick={handleFav}>&#9733;</DB.WOStar>
+          : <DB.WOStar onClick={handleFav}>&#9734;</DB.WOStar>}
+        <DB.WOName onClick={handleEPanel}>{exercise.name}</DB.WOName>
+        <DB.WOCategory>{exercise.area}</DB.WOCategory>
+        <DB.WODescription>{exercise.description}</DB.WODescription>
         <GS.Button
           // style={{ position: 'relative', top: '25%', left: '42%' }}
           onClick={handleModal}
@@ -26,6 +34,7 @@ export default function ExercisePanel({ handleModal }) {
           Create Workout
         </GS.Button>
       </DB.WOItem>
+      {(showEPanel && exercise.gifurl) && <GifUrl gifurl={exercise.gifurl} />}
     </DB.WOPanel>
   );
 }

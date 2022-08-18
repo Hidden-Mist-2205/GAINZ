@@ -198,11 +198,13 @@ module.exports = {
       description,
       created_by,
       main_area,
+      is_favorited,
       (SELECT json_agg(step)
       FROM (
         SELECT
         s.step_num,
         s.reps,
+        s.sets,
         s.unit,
         s.weight,
         (SELECT
@@ -214,6 +216,7 @@ module.exports = {
         FROM exercises e
         WHERE e.exercise_id = s.exercise_id)
         FROM steps s
+        WHERE s.workout_id = uw.workout_id
         ) AS step
       ) AS Steps
     FROM
@@ -225,20 +228,21 @@ module.exports = {
   `;
     return favoritedWorkout;
   },
-  async getFavoritedExercise(userId) {
-    await sql`
+  async getFavoritedExercises(userId) {
+    const getFavoritedExercises = await sql`
     SELECT
       e.exercise_id AS exerciseId,
       e."name",
       e.area,
-      e.gif_url,
-      ue.is_favorited
+      e.gif_url AS gifUrl,
+      ue.is_favorited AS favorited
     FROM exercises e
     LEFT JOIN
     users_exercises ue
     ON e.exercise_id = ue.exercise_id
     WHERE ue.is_favorited = true AND ue.user_id = ${userId}
     `;
+    return getFavoritedExercises;
   },
   async toggleFavoritedWorkout(workoutId, userId) {
     await sql`

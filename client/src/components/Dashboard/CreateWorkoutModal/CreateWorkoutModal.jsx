@@ -14,7 +14,6 @@ export default function Dashboard({ handleModal }) {
   useEffect(() => {
     getExercises()
       .then((res) => {
-        console.log(res.data);
         setAllExercise(res.data);
       })
       .catch((err) => console.log(err));
@@ -37,12 +36,11 @@ export default function Dashboard({ handleModal }) {
   });
   const handleExerciseInputs = (e) => {
     const { name, value } = e.target;
-    const custom = e.target.getAttribute('data-value');
     if (name === 'exerciseId') {
       setSteps((prevValues) => ({
         ...prevValues,
         name: value,
-        exerciseId: custom,
+        exerciseId: Number(Object.keys(allExercise).find((ex) => allExercise[ex].name === value)) + 1,
       }));
     } else {
       setSteps((prevValues) => ({
@@ -52,15 +50,29 @@ export default function Dashboard({ handleModal }) {
     }
   };
   const handleAddExercise = () => {
-    const current = exerciseToAdd;
-    current.push(steps);
-    setExerciseToAdd(current);
-    console.log(current, exerciseToAdd);
+    setExerciseToAdd(exerciseToAdd.concat(steps));
+    setSteps({
+      exerciseId: '',
+      name: '',
+      reps: '',
+      sets: '',
+      mainArea: '',
+    });
   };
+  const handleSubmit = () => {
+    setWorkoutInput((prevValues) => ({
+      ...prevValues,
+      steps: exerciseToAdd,
+    }));
+    console.log('wheres this', workoutInput);
+  };
+
   return (
     <M.Background>
       <M.PopUp>
-        <M.Form>
+        <M.Form onSubmit={
+          handleSubmit
+        }>
           <DB.Header style={{
             color: 'white', 'padding-bottom': '20px', 'text-align': 'center',
           }}
@@ -70,7 +82,7 @@ export default function Dashboard({ handleModal }) {
           {exerciseToAdd.length > 0 && <AddedExerciseList exerciseToAdd={exerciseToAdd} />}
           <M.Column>
             <M.Label>Category</M.Label>
-            <SelectCategory handleExerciseInputs={handleExerciseInputs} />
+            <SelectCategory mainArea={steps.mainArea} handleExerciseInputs={handleExerciseInputs} />
           </M.Column>
           <M.Column>
             <M.Label>Exercise</M.Label>
@@ -78,11 +90,12 @@ export default function Dashboard({ handleModal }) {
               type="search"
               list="exerciselist"
               name="exerciseId"
+              value={steps.name}
               onChange={handleExerciseInputs}
             />
             <datalist id="exerciselist">
               {allExercise.filter((exercise) => exercise.area === steps.mainArea).map((exercise) => (
-                <option value={exercise.name}></option>
+                <option value={exercise.name} />
               ))}
             </datalist>
           </M.Column>
@@ -90,7 +103,7 @@ export default function Dashboard({ handleModal }) {
             <M.Label># of Sets</M.Label>
             <M.Input
               name="sets"
-              value={exerciseToAdd.sets}
+              value={steps.sets}
               onChange={handleExerciseInputs}
             />
           </M.Column>
@@ -98,7 +111,7 @@ export default function Dashboard({ handleModal }) {
             <M.Label># of Reps</M.Label>
             <M.Input
               name="reps"
-              value={exerciseToAdd.reps}
+              value={steps.reps}
               onChange={handleExerciseInputs}
             />
           </M.Column>
