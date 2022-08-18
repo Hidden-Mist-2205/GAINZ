@@ -58,21 +58,19 @@ export default function Dashboard({ handleModal }) {
       sets: '',
       mainArea: '',
     });
+    console.log(steps, exerciseToAdd);
   };
-  const handleSubmit = () => {
-    setWorkoutInput((prevValues) => ({
-      ...prevValues,
-      steps: exerciseToAdd,
-    }));
-    console.log('wheres this', workoutInput);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const current = workoutInput;
+    current.steps = exerciseToAdd;
+    console.log('wheres this', current);
   };
 
   return (
     <M.Background>
       <M.PopUp>
-        <M.Form onSubmit={
-          handleSubmit
-        }>
+        <M.Form onSubmit={handleSubmit}>
           <DB.Header style={{
             color: 'white', 'padding-bottom': '20px', 'text-align': 'center',
           }}
