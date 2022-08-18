@@ -22,6 +22,8 @@ export default function WorkoutLibrary() {
     setWorkouts(filteredWorkouts);
   };
 
+  console.log(workouts);
+
   return (
     <>
       <GS.PageHeader> Workout Library </GS.PageHeader>

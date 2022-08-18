@@ -8,7 +8,7 @@ export default function WorkoutItemDropdown({ exercises }) {
       ? (
         <ED.Body>
           {exercises.map((exercise) => (
-            <ExerciseItem key={exercise.exercise_id} exercise={exercise} />
+            <ExerciseItem key={exercise.id} exercise={exercise} />
           ))}
         </ED.Body>
       ) : (

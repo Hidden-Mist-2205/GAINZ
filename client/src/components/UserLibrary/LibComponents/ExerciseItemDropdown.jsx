@@ -5,7 +5,7 @@ export default function ExerciseItemDropdown({ exercise }) {
   return (
     exercise
       ? (
-        <ED.GifBody style={{ }}>
+        <ED.GifBody>
           <img
             src={exercise.gif_url}
             alt={exercise.name}

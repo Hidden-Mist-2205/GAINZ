@@ -30,11 +30,13 @@ export default function WorkoutListItem({ data }) {
 
   return (
     <>
-      <Container.WOItem onClick={() => setShowDropdown(!showDropdown)} role="button" tabIndex={0} onKeyPress={onKeyPressHandler}>
+      <Container.WOItem>
         {favorite
           ? <Container.WOStar onClick={handleFavorite}>&#9733;</Container.WOStar>
           : <Container.WOStar onClick={handleFavorite}>&#9734;</Container.WOStar>}
-        <Container.WOName>{data.name}</Container.WOName>
+        <Container.WOName onClick={() => setShowDropdown(!showDropdown)}>
+          {data.name}
+        </Container.WOName>
         <Container.WOCategory>
           {data.main_area}
         </Container.WOCategory>

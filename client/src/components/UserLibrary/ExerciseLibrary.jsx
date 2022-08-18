@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
-// import PageHeader from './LibComponents/PageHeader';
-// import PageList from './LibComponents/PageList';
-// import PageContainer from './Styles/PageContainer.styled';
-
 import { getExercises } from '../../requests/server';
 import Container from '../styles/ContainerStyles/Container_style';
 import GS from '../styles/GeneralStyles';
 import ExerciseList from './LibComponents/ExerciseList';
 
-export default function ExerciseLibraryPage() {
+export default function ExerciseLibrary() {
   const [exercises, setExercises] = useState([]);
   const [searchInput, setSearchInput] = useState('');
 
@@ -39,7 +34,7 @@ export default function ExerciseLibraryPage() {
       </Container.SearchBarContainer>
       <Container.WOBody>
         {exercises && exercises.map((exercise) => (
-          <ExerciseList data={exercise} key={exercise.id} />
+          <ExerciseList data={exercise} key={exercise.exercise_id} />
         ))}
       </Container.WOBody>
     </>
