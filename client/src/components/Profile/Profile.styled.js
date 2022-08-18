@@ -12,6 +12,7 @@ const FormFlexColumn = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  padding: 10px;
 `;
 
 export { FormContainer, FormFlexColumn };

@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-export default function WorkoutDayCheckbox({ day, userDays, handleChange }) {
-  const [checked, setChecked] = useState(false);
+export default function WorkoutDayCheckbox({ day, daysAvailable, handleChange }) {
+  const checked = daysAvailable.includes(day);
   const dayProperty = day.toLowerCase();
-
-  useEffect(() => {
-    setChecked(userDays ? userDays.includes(day) : false);
-  }, []);
 
   return (
     <div className="dayCheckbox">
@@ -17,10 +13,7 @@ export default function WorkoutDayCheckbox({ day, userDays, handleChange }) {
         value={day}
         checked={checked}
         className="formCheckbox"
-        onChange={(e) => {
-          setChecked(!e.target.checked);
-          handleChange(e);
-        }}
+        onChange={(e) => handleChange(e)}
       />
     </div>
   );

@@ -8,15 +8,17 @@ export default function ProfileDisplay({ userInfo }) {
   return (
     <FormContainer>
       <FormFlexColumn>
-        <img src={userInfo.image} alt="profile" />
+        <div>
+          <img src={userInfo.image} alt="profile" />
+        </div>
         <ProfileText text={userInfo.user_name} />
         <ProfileText text={userInfo.email} />
-        <ProfileText text={userInfo.phoneNumber} />
-        <ProfileText text={userInfo.zipcode} />
-        <ProfileText text={userInfo.fitnessGoal} />
+        <ProfileText text={userInfo.phone_num} />
+        <ProfileText text={userInfo.zip_code} />
+        <ProfileText text={userInfo.fitness_goal} />
       </FormFlexColumn>
       <FormFlexColumn>
-        <WorkoutDays days={userInfo.daysAvailable} />
+        <WorkoutDays days={userInfo.days} />
       </FormFlexColumn>
     </FormContainer>
   );

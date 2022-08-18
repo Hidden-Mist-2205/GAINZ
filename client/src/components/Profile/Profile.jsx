@@ -9,8 +9,8 @@ import ActionButton from '../UserLibrary/Buttons/ActionButton';
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState({});
-  const [editProfile, setEditProfile] = React.useState(true);
-  const [editDaysAvailable, setEditDaysAvailable] = useState([]);
+  const [daysAvailable, setDaysAvailable] = useState([]);
+  const [editProfile, setEditProfile] = React.useState(false);
 
   useEffect(() => {
     axios
@@ -21,7 +21,9 @@ export default function Profile() {
         },
       })
       .then((res) => {
+        console.log(res.data);
         setUserInfo(res.data);
+        setDaysAvailable(res.data.days || []);
       })
       .catch((err) => {
         console.log(err);
@@ -31,6 +33,7 @@ export default function Profile() {
     setEditProfile(!editProfile);
   };
   const saveProfileEdit = () => {
+    // POST to db
     setEditProfile(!editProfile);
   };
 
@@ -39,8 +42,8 @@ export default function Profile() {
       <EditProfileForm
         userInfo={userInfo}
         setUserInfo={setUserInfo}
-        editDaysAvailable={editDaysAvailable}
-        setEditDaysAvailable={setEditDaysAvailable}
+        daysAvailable={daysAvailable}
+        setDaysAvailable={setDaysAvailable}
       />
       <ActionButton text="Save Changes" clickHandler={saveProfileEdit} />
     </ProfileContainer>

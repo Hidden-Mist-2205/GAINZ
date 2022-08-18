@@ -3,7 +3,7 @@ import WorkoutDayCheckbox from './WorkoutDayCheckbox';
 
 import { FormFlexColumn } from './Profile.styled';
 
-export default function EditWorkoutDays() {
+export default function EditWorkoutDays({ daysAvailable, handleChange }) {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   return (
     <FormFlexColumn>
@@ -13,6 +13,8 @@ export default function EditWorkoutDays() {
           <WorkoutDayCheckbox
             day={day}
             key={day}
+            daysAvailable={daysAvailable}
+            handleChange={handleChange}
           />
         ))}
       </fieldset>
