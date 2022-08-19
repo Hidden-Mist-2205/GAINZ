@@ -69,7 +69,7 @@ const Nav = {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: ${props => props.avatarUrl ? `url(${props.avatarUrl})` : 'unset'};
+    background-image: ${props => props.avatarUrl ? `url(${props.avatarUrl})` : 'url(https://thumbs.dreamstime.com/t/profile-placeholder-image-gray-silhouette-no-photo-person-avatar-default-pic-used-web-design-profile-123478439.jpg)'};
     cursor: pointer;
 
     &:hover {
