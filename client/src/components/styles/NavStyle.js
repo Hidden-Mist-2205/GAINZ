@@ -65,7 +65,11 @@ const Nav = {
     height: 46px;
     border-radius: 50%;
     border: 1px solid white;
-    background-color: #E5E5E5;
+    background-color: ${props => props.avatarUrl ? 'unset' : '#E5E5E5' };
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: ${props => props.avatarUrl ? `url(${props.avatarUrl})` : 'unset'};
     cursor: pointer;
 
     &:hover {

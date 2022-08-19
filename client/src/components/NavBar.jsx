@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProfileDropdown from './ProfileDropdown';
 import LibraryDropdown from './LibraryDropdown';
 import Nav from './styles/NavStyle';
 
-export default function NavBar() {
+export default function NavBar({ avatarUrl }) {
   const [userIconIsHovering, setUserIconIsHovering] = useState(false);
   const [userIconHeight, setUserIconHeight] = useState('70px');
   const [libraryIsHovering, setLibraryIsHovering] = useState(false);
@@ -30,9 +31,11 @@ export default function NavBar() {
     setUserIconHeight('70px');
   };
 
+  const navigate = useNavigate();
+
   return (
     <Nav.Container>
-      <Nav.Logo> ⚛︎ GAINZ</Nav.Logo>
+      <Nav.Logo onClick={() => navigate('/')}> ⚛︎ GAINZ</Nav.Logo>
 
       <Nav.Sections>
         <Nav.MenuItem to="/Dashboard">
@@ -67,7 +70,7 @@ export default function NavBar() {
         onMouseOut={() => onUserIconMouseOut()}
         height={userIconHeight}
       >
-        <Nav.UserIcon />
+        <Nav.UserIcon avatarUrl={avatarUrl} />
         {userIconIsHovering && (
           <ProfileDropdown />
         )}
