@@ -241,6 +241,15 @@ app.put('/updateWorkoutCompletion', authenticateToken, async (req, res) => {
   }
 });
 
+app.get('/getAvatar', authenticateToken, async (req, res) => {
+  try {
+    const picture = await controllers.getAvatarPicture(req.auth.userId);
+    res.send(picture);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });

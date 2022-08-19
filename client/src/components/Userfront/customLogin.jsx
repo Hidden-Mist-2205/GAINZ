@@ -38,7 +38,7 @@ export default function LoginForm() {
           <SU.PageWrapper>
             {display ? <PasswordResetModal setDisplay={setDisplay} /> : null}
             <SU.WrapperDiv>
-              <h2>Login</h2>
+              <SU.Title>Login</SU.Title>
               <SU.Form onSubmit={(e) => { handleSubmit(e); }}>
                 <SU.InputDiv>
                   <label htmlFor="username">
@@ -52,7 +52,7 @@ export default function LoginForm() {
                     <SU.TextInput required id="password" type="password" value={pswd} onChange={((e) => setPswd(e.target.value))} />
                   </label>
                 </SU.InputDiv>
-                <SU.SubmitButton style={{ width: '100%' }} type="submit">Login</SU.SubmitButton>
+                <SU.SubmitButton style={{ width: '98%', marginTop: '20px' }} type="submit">Login</SU.SubmitButton>
               </SU.Form>
               <SU.FormBottom>
                 <SU.MiniButton onClick={() => navigate('/signup')}>Sign Up</SU.MiniButton>
