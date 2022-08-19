@@ -80,14 +80,12 @@ const GS = {
     vertical-align: middle;
     justify-content: center;
     align-items: center;
-
     font-weight: 500;
     font-size: 0.875rem;
     line-height: 1.75;
     letter-spacing: 0.02857em;
     text-transform: uppercase;
     transition: all 0.3s ease 0s;
-
     &:hover {
       box-shadow: 0 0 10px 3px rgb(241 229 229 / 67%);
     }
