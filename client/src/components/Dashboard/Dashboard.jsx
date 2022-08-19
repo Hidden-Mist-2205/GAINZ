@@ -56,14 +56,14 @@ export default function Dashboard() {
       <GS.PageHeader>My Dashboard</GS.PageHeader>
       <Container.Body  ref={animationParent}>
         <M.Column style={{ width: '80%', margin: 'auto' }}>
-          {type === 'Exercise'
+          {/* {type === 'Exercise'
             && (
               <GS.OutlinedBtn
                 style={{ float: 'right' }}
               >
                 Add Exercise
               </GS.OutlinedBtn>
-            )}
+            )} */}
           {type === 'Workout'
             && (
               <GS.OutlinedBtn
