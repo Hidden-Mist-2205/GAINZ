@@ -23,6 +23,9 @@ export default function SignupForm() {
   const navigate = useNavigate();
 
   async function uploadImageHandler(imageFile) {
+    if (!imageFile) {
+      return '';
+    }
     // const img = URL.createObjectURL(imageFile);
     const reader = new FileReader();
 
@@ -46,15 +49,20 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
-
+    let pic;
     try {
-      const pic = await uploadImageHandler(avatar);
+      pic = await uploadImageHandler(avatar);
+    } catch (err) {
+      console.log(err);
+    }
+    try {
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
         email: email,
         password: password,
       });
+      console.log('PIC DATA: ', pic.data.secure_url);
       await Axios({
         method: 'POST',
         url: '/postUser',
@@ -64,7 +72,7 @@ export default function SignupForm() {
           email: email,
           zip: zipcode,
           phoneNumber: phoneNum,
-          avatar: pic.data.secure_url,
+          avatar: (pic.data.secure_url ? pic.data.secure_url : ''),
           goal: fitnessGoal,
           zoom: zoomLink,
           days: daysAvailable,
@@ -140,7 +148,7 @@ export default function SignupForm() {
                 <SU.InputDiv>
                   <label htmlFor="avatar">
                     <h3>Upload Your Profile Picture</h3>
-                    <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+                    <SU.TextInput required id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
                   </label>
                 </SU.InputDiv>
                 <SU.SubmitButton style={{ width: '100%' }} type="submit">Create Account</SU.SubmitButton>

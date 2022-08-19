@@ -29,7 +29,9 @@ export default function GAINZ() {
       authorization: `Bearer ${Userfront.tokens.accessToken}`,
     },
   }).then((res) => {
-    setAvatarUrl(res.data[0].avatar_url);
+    if (res.data[0].avatar_url) {
+      setAvatarUrl(res.data[0].avatar_url);
+    }
   }).catch((err) => {
     console.log(err);
   });
