@@ -62,7 +62,6 @@ export default function SignupForm() {
         email: email,
         password: password,
       });
-      console.log('PIC DATA: ', pic.data.secure_url);
       await Axios({
         method: 'POST',
         url: '/postUser',
