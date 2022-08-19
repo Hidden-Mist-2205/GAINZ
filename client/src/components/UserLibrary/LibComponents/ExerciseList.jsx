@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
+import Userfront from '@userfront/core';
 import ExerciseItemDropdown from './ExerciseItemDropdown';
-
 import Container from '../../styles/ContainerStyles/Container_style';
-import GS from '../../styles/GeneralStyles';
 
 export default function ExerciseList({ data }) {
   const [favorite, setFavorite] = useState(data.favorited);
@@ -11,7 +10,18 @@ export default function ExerciseList({ data }) {
 
   const handleFavorite = (e) => {
     e.preventDefault();
-    setFavorite(!favorite);
+    axios.put('/putFavoriteExercise', { exerciseId: data.exercise_id }, {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${Userfront.tokens.accessToken}`,
+      },
+    })
+      .then(() => {
+        setFavorite(!favorite);
+      })
+      .catch((err) => {
+        console.error('error toggling favorite workout: ', err);
+      });
   };
 
   return (

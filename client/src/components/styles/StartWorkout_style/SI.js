@@ -4,7 +4,7 @@ const SI = {
   Header: styled.div`
     display: flex;
     width: 100%;
-    margin: 0 0 30px 0;
+    margin-bottom: ${props => props.marginBottom};
     color: #aaa;
     align-items: center;
     justify-content: space-between;

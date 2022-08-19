@@ -13,7 +13,7 @@ export default function EndSessionModal({ workout, setOpenModal }) {
 
   const navigate = useNavigate();
   const routeChange = () => {
-    const path = '/Dashboard';
+    const path = '/MyGainz';
     navigate(path);
   };
 
