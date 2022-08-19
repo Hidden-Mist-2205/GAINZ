@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import Userfront from '@userfront/core';
 import axios from 'axios';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Container from '../styles/ContainerStyles/Container_style';
 import GS from '../styles/GeneralStyles';
 import ExercisePanel from './ExercisePanel';
@@ -11,6 +12,7 @@ import currentWorkoutIDState from '../currentWorkoutAtom';
 export default function WorkoutPanel({ workout }) {
   const [favorite, setFavorite] = useState(workout.favorited);
   const [showExercises, setShowExercises] = useState(false);
+  const [animationParent] = useAutoAnimate();
   const setCurrentWorkoutID = useSetRecoilState(currentWorkoutIDState);
 
   const handleFavorite = (e) => {
@@ -22,8 +24,7 @@ export default function WorkoutPanel({ workout }) {
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
     })
-      .then((res) => {
-        console.log('res: ', res);
+      .then(() => {
         setFavorite(!favorite);
       })
       .catch((err) => {
@@ -44,7 +45,7 @@ export default function WorkoutPanel({ workout }) {
   };
 
   return (
-    <Container.WOPanel>
+    <Container.WOPanel ref={animationParent}>
       <Container.WOItem>
         {favorite
           ? <Container.WOStar onClick={handleFavorite}>&#9733;</Container.WOStar>
