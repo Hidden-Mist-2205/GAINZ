@@ -46,8 +46,12 @@ export default function CountDownTimer({
     const totalSteps = steps.length;
     if (currStepIndex + 1 < totalSteps) {
       setCurrStep(steps[currStepIndex + 1]);
+      if (autoModeOn) {
+        setIsPlaying(true);
+      }
     } else {
       setOpenModal(true);
+      setTimeout(() => setIsPlaying(false), 5100);
     }
   };
 
