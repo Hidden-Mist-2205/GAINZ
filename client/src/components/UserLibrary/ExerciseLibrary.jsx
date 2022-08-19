@@ -1,11 +1,13 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { getExercises } from '../../requests/server';
 import Container from '../styles/ContainerStyles/Container_style';
 import GS from '../styles/GeneralStyles';
 import ExerciseList from './LibComponents/ExerciseList';
 
 export default function ExerciseLibrary() {
+  const [animationParent] = useAutoAnimate();
   const [exercises, setExercises] = useState([]);
   const [displayedExercises, setDisplayedExercises] = useState([]);
   const [searchInput, setSearchInput] = useState('');
@@ -76,7 +78,7 @@ export default function ExerciseLibrary() {
         <GS.Button style={{ maxWidth: '80px' }} onClick={(e) => searchExercises(e, searchInput)}>Search</GS.Button>
         <GS.Button style={{ marginLeft: '10px', maxWidth: '80px' }} onClick={handleReset}>Reset</GS.Button>
       </Container.SearchBarContainer>
-      <Container.WOBody>
+      <Container.WOBody ref={animationParent}>
         {displayedExercises.length > 0 ? (displayedExercises.slice(start, end).map((exercise) => (
           <ExerciseList data={exercise} key={exercise.exercise_id} />
         ))) : (

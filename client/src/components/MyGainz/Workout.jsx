@@ -15,7 +15,7 @@ export default function Workout({ workouts }) {
     : (
       <Container.NoWorkouts>
         It looks like you have not worked out yet. Head to the
-        <Container.LibraryLink href="/UserLibrary"> &nbsp;Library!&nbsp;</Container.LibraryLink>
+        <Container.LibraryLink href="/WorkoutLibrary"> &nbsp;Library!&nbsp;</Container.LibraryLink>
       </Container.NoWorkouts>
     )
   );
