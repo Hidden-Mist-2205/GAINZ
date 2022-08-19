@@ -13,7 +13,7 @@ export default function ProfileDisplay({ userInfo }) {
     <ProfileContainer>
       <FormFlexColumn>
         {/* <h3>Your Profile:</h3> */}
-        <ProfileImage />
+        <ProfileImage image={userInfo.avatar_url} />
         <ProfileText label="Username" text={userInfo.user_name} />
         <ProfileText label="Email" text={userInfo.email} />
         <ProfileText label="Phone Number" text={userInfo.phone_num} />

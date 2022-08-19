@@ -6,8 +6,18 @@ const ProfileContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   width: 720px;
+  margin: 18px;
   border-radius: 8px;
   background-color:rgba(217,217,217,0.15);
+`;
+
+const ProfileFormContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 720px;
+  border-radius: 8px;
 `;
 
 const FormContainer = styled.div`
@@ -34,7 +44,7 @@ const FormFlexColumn = styled.div`
 
 const StyledProfileText = styled.p`
   padding-left: 18px;
-  > .label, label {
+  > .label {
     color: darkgray;
   }
   > .value, input {
@@ -63,6 +73,7 @@ const FormDayBubble = styled(FormTextBubble)`
 
 export {
   ProfileContainer,
+  ProfileFormContainer,
   FormContainer,
   FormFlexColumn,
   StyledProfileText,
