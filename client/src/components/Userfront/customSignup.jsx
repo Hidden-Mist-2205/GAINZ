@@ -50,7 +50,7 @@ export default function SignupForm() {
   async function createAccount(e) {
     e.preventDefault();
     if (password.length < 16) {
-      alert('Password must be longer than 10');
+      alert('Password must be longer than 16 characters please');
       return;
     }
     let pic;
@@ -82,7 +82,7 @@ export default function SignupForm() {
         },
       });
     } catch (err) {
-      console.log('There was an error with usefront or your server: ', err);
+      alert(err);
     }
   }
 
