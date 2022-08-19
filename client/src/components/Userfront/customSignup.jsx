@@ -49,6 +49,10 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
+    if (password.length < 16) {
+      alert('Password must be longer than 10');
+      return;
+    }
     let pic;
     try {
       pic = await uploadImageHandler(avatar);
@@ -113,7 +117,7 @@ export default function SignupForm() {
                 <SU.InputDiv>
                   <label htmlFor="password">
                     Password
-                    <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+                    <SU.TextInput required passwordrules="minlength: 16;" id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
                   </label>
                 </SU.InputDiv>
                 <SU.InputDiv>
