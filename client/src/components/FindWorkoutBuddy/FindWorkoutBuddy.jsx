@@ -72,7 +72,7 @@ export default function FindWorkoutBuddy() {
         <GS.Button onClick={(e) => searchBuddies(e, searchTerm)}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        <form style={{display: 'flex', justifyContent: 'center', gap: '1%', marginTop: '25px', alignItems: 'center'}} onSubmit={getFilteredBuddies}>
+        <form style={{display: 'flex', justifyContent: 'center', gap: '4%', marginTop: '25px', alignItems: 'center'}} onSubmit={getFilteredBuddies}>
           <M.Select style={{marginBottom: '0px', width: 'auto'}} name="days" onChange={e => setSelectedDay(e.target.value)}>
             <M.Option required>Monday</M.Option>
             <M.Option>Tuesday</M.Option>
@@ -85,7 +85,7 @@ export default function FindWorkoutBuddy() {
           <label>Local Only
             <input type="checkbox" onChange={() => setLocalOnly(!localOnly)} />
           </label>
-          <button type="submit">Find Buddies</button>
+          <GS.Button type="submit">Find Buddies</GS.Button>
         </form>
         <BuddyList items={buddies} />
       </Container.WOBody>
