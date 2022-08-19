@@ -56,6 +56,12 @@ export default function WorkoutLibrary() {
     setDisplayedWorkouts(filterByCategory);
   };
 
+  const handleReset = (e) => {
+    e.preventDefault();
+    setPoints([0, 4, 1]);
+    setDisplayedWorkouts(workouts);
+  };
+
   return (
     <>
       <GS.PageHeader> Workout Library </GS.PageHeader>
@@ -67,14 +73,22 @@ export default function WorkoutLibrary() {
           onChange={(e) => setSearchInput(e.target.value)}
         />
         <Container.ChangeCategory onChange={handleCategory}>
-          {cats.map((cat) => <option value={cat} label={cat} />)}
+          {cats.map((cat) => <option key={cat} value={cat} label={cat} />)}
         </Container.ChangeCategory>
-        <GS.Button onClick={(e) => searchWorkouts(e, searchInput)}>Search</GS.Button>
+        <GS.Button style={{ maxWidth: '80px' }} onClick={(e) => searchWorkouts(e, searchInput)}>Search</GS.Button>
+        <GS.Button style={{ marginLeft: '10px', maxWidth: '80px' }} onClick={handleReset}>Reset</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        {(displayedWorkouts || []).slice(start, end).map((workout) => (
+        {displayedWorkouts.length > 0 ? (displayedWorkouts.slice(start, end).map((workout) => (
           <WorkoutListItem data={workout} key={workout.id} />
-        ))}
+        )))
+          : (
+            <Container.WOItem>
+              <Container.NoWorkouts>
+                No workouts found. Try another search!
+              </Container.NoWorkouts>
+            </Container.WOItem>
+          )}
         {displayedWorkouts.length > 4 && (
           <Container.NavBtn>
             {start !== 0 && (

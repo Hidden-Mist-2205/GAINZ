@@ -23,8 +23,7 @@ export default function WorkoutListItem({ data }) {
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
     })
-      .then((res) => {
-        console.log(res.status);
+      .then(() => {
         setFavorite(!favorite);
       })
       .catch((err) => {
