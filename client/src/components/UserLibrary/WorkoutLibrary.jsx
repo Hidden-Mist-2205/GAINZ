@@ -66,7 +66,6 @@ export default function WorkoutLibrary() {
     <>
       <GS.PageHeader> Workout Library </GS.PageHeader>
       <Container.SearchBarContainer>
-        <GS.Button onClick={handleReset}>Reset</GS.Button>
         <Container.SearchBar
           type="text"
           placeholder="Search"
@@ -76,7 +75,8 @@ export default function WorkoutLibrary() {
         <Container.ChangeCategory onChange={handleCategory}>
           {cats.map((cat) => <option key={cat} value={cat} label={cat} />)}
         </Container.ChangeCategory>
-        <GS.Button onClick={(e) => searchWorkouts(e, searchInput)}>Search</GS.Button>
+        <GS.Button style={{ maxWidth: '80px' }} onClick={(e) => searchWorkouts(e, searchInput)}>Search</GS.Button>
+        <GS.Button style={{ marginLeft: '10px', maxWidth: '80px' }} onClick={handleReset}>Reset</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
         {displayedWorkouts.length > 0 ? (displayedWorkouts.slice(start, end).map((workout) => (

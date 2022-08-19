@@ -24,11 +24,12 @@ const Container = {
     height: 10%;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
   `,
   SearchBar: styled.input`
     margin-right: 20px;
     margin-left: 20px;
-    width: 30%;
+    width: 35%;
     height: 45px;
     border-radius: 5px;
     background-color: #272727;
