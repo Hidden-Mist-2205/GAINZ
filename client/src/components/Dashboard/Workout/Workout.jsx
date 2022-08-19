@@ -19,6 +19,5 @@ export default function Workout({ allFavWorkouts }) {
         <DB.Next name="foward" onClick={page}>{end <= allFavWorkouts.length ? '>' : null}</DB.Next>
       </DB.NavBtn>
     </DB.WOBody>
-
   );
 }

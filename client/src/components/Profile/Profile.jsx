@@ -10,7 +10,7 @@ import ActionButton from '../UserLibrary/Buttons/ActionButton';
 export default function Profile() {
   const [userInfo, setUserInfo] = useState({});
   const [daysAvailable, setDaysAvailable] = useState([]);
-  const [editProfile, setEditProfile] = React.useState(true);
+  const [editProfile, setEditProfile] = React.useState(false);
 
   useEffect(() => {
     axios
