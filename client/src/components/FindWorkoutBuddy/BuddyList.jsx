@@ -12,7 +12,6 @@ export default function BuddyList({ items }) {
       {items.map((item) => (
         <BuddyListItem data={item} key={item.id} />
       ))}
-      <PageListNav />
     </div>
   );
 }
