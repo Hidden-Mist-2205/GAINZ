@@ -137,6 +137,8 @@ export default function Dashboard({ handleModal }) {
                 <M.Label># of Sets</M.Label>
                 <M.Input
                   name="sets"
+                  type="number"
+                  min="0"
                   value={steps.sets}
                   onChange={handleExerciseInputs}
                 />
@@ -145,6 +147,8 @@ export default function Dashboard({ handleModal }) {
                 <M.Label># of Reps</M.Label>
                 <M.Input
                   name="reps"
+                  type="number"
+                  min="0"
                   value={steps.reps}
                   onChange={handleExerciseInputs}
                 />
