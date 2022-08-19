@@ -1,21 +1,21 @@
 /* eslint-disable max-len */
 import React from 'react';
-import MGEx from '../styles/MyGainz_style/MGExercise';
+import ED from '../styles/ContainerStyles/ExerciseDropdown_style';
 import ExerciseItem from './ExerciseItem';
 
 export default function ExercisePanel({ exercises }) {
   return (
     exercises
       ? (
-        <MGEx.Body>
+        <ED.Body>
           {exercises.map((exercise) => <ExerciseItem key={exercise.exercise_id} exercise={exercise} />)}
-        </MGEx.Body>
+        </ED.Body>
       ) : (
-        <MGEx.Body>
-          <MGEx.NoExercises>
+        <ED.Body>
+          <ED.NoExercises>
             Hmmm... there are no exercises for this workout.
-          </MGEx.NoExercises>
-        </MGEx.Body>
+          </ED.NoExercises>
+        </ED.Body>
       )
   );
 }

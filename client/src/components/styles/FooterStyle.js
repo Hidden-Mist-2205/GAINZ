@@ -14,7 +14,7 @@ const FT = {
     width: 80%;
     height: 50%;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgb(217 217 217 / 50%);
+    borderBottom: 1px solid rgb(217 217 217 / 50%);
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
