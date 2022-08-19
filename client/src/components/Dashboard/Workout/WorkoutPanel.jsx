@@ -1,39 +1,41 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import EditModal from './EditModal';
 import DB from '../../styles/Dashboard_style/DB';
 import GS from '../../styles/GeneralStyles';
 import ExpandExercise from './ExpandExercise';
 import currentWorkoutIDState from '../../currentWorkoutAtom';
-import { putFavoriteWorkout } from '../../../requests/server';
 
-export default function WorkoutPanel({ workout }) {
+export default function WorkoutPanel({ workout, updateFavWorkouts }) {
   const setCurrentWorkoutID = useSetRecoilState(currentWorkoutIDState);
-  const [toggleFav, setToggleFav] = useState(workout.is_favorited);
-  const handleFav = () => {
-    putFavoriteWorkout(workout.workoutid)
-      .then(() => {
-        setToggleFav(!toggleFav);
-      })
-      .catch((err) => console.log(err));
-  };
+  const [showEditModal, setShowEditModal] = useState(false);
   const [showEPanel, setShowEPanel] = useState(false);
   const handleEPanel = () => (
     showEPanel ? setShowEPanel(false) : setShowEPanel(true)
   );
+  const handleEditModal = () => {
+    setShowEditModal(!showEditModal);
+  };
   const navigate = useNavigate();
   const routeChange = () => {
     const path = '/StartWorkout';
-    console.log(workout.workoutid);
     setCurrentWorkoutID(workout.workoutid);
     navigate(path);
   };
   return (
     <DB.WOPanel>
       <DB.WOItem>
-        {toggleFav
-          ? <DB.WOStar onClick={handleFav}>&#9733;</DB.WOStar>
-          : <DB.WOStar onClick={handleFav}>&#9734;</DB.WOStar>}
+        {showEditModal
+          && (
+            <EditModal
+              workout={workout}
+              handleEditModal={handleEditModal}
+              updateFavWorkouts={updateFavWorkouts}
+            />
+          )}
+        <DB.WOStar onClick={handleEditModal}>&#9733;</DB.WOStar>
         <DB.WOName onClick={handleEPanel}>{workout.name}</DB.WOName>
         <DB.WOCategory>{workout.main_area}</DB.WOCategory>
         <DB.WODescription>{workout.description}</DB.WODescription>

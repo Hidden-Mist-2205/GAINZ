@@ -59,6 +59,16 @@ async function putFavoriteExercise(exerciseId) {
   });
   return data;
 }
+async function deleteWorkout(workoutid) {
+  const data = axios.delete('/deleteWorkout', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${Userfront.tokens.accessToken}`,
+    },
+    data: { workoutid },
+  });
+  return data;
+}
 async function postNewWorkout(workout) {
   const data = axios.post('/postNewWorkout', { data: workout }, {
     headers: {
@@ -71,5 +81,5 @@ async function postNewWorkout(workout) {
 
 export {
   getWorkouts, getExercises, getAllFavWorkouts, getAllFavExercise, putFavoriteWorkout,
-  putFavoriteExercise, postNewWorkout,
+  putFavoriteExercise, postNewWorkout, deleteWorkout,
 };

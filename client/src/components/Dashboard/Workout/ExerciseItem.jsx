@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import WOEx from '../../styles/Dashboard_style/WOExercisePanel';
 
 export default function ExerciseItem({ step }) {

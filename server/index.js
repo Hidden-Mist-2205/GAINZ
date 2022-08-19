@@ -181,7 +181,8 @@ app.post('/postNewWorkout', authenticateToken, async (req, res) => {
 });
 app.delete('/deleteWorkout', authenticateToken, async (req, res) => {
   try {
-    await controllers.deleteWorkout(req.query, req.auth.userId);
+    await controllers.deleteWorkout(req.body.workoutid, req.auth.userId);
+    res.status(204).send();
   } catch (error) {
     console.error(error);
     res.status(500).send('Error Deleting Data');

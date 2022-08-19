@@ -73,10 +73,10 @@ const M = {
   Select: styled.select`
     float: right;
     margin-bottom: 20px;
+    width: 60%;
     display: inline;
     color: white;
     height: 46px;
-    min-width: 300px;
     background: rgba(217, 217, 217, 0.15);
   `,
   Input: styled.input`
@@ -84,11 +84,12 @@ const M = {
     margin-bottom: 20px;
     display: inline;
     height: 46px;
-    min-width: 300px;
+    width: 59%;
     color: white;
     background: rgba(217, 217, 217, 0.15);
 `,
   Column: styled.div`
+    width: 100%;
   `,
   Option: styled.option`
     color: white;

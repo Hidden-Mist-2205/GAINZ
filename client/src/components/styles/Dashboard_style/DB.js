@@ -9,7 +9,7 @@ const DB = {
     margin-left: auto;
   `,
   WOBody: styled.div`
-    width: 85%;
+    width: 80%;
     background: rgba(217, 217, 217, 0.15);
     height: fit-content;
     padding-top: 15px;
@@ -17,11 +17,6 @@ const DB = {
     margin: auto;
     border-radius:0 8px 8px 8px;
     overflow-y: fit-content;
-    &::-webkit-scrollbar {
-        width: 10px;
-        background-color: #272727;
-        border: none;
-    }
     `,
   WOBorder: styled.div`
     min-height: 500px;
@@ -153,6 +148,20 @@ const DB = {
     &:hover {
       text-shadow: 0 0 10px white;
     }
+  `,
+  // EditButton: styled.img`
+  //   height: 25px;
+  //   width: 25px;
+  //   &:hover {
+  //     box-shadow: 0 0 10px 3px rgb(241 229 229 / 67%);
+  //     background-color: white;
+  //     border-radius: 10px;
+  //   }
+  // `,
+  EditModalBtn: styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
   `,
 };
 export default DB;
