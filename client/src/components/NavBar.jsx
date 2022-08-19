@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ProfileDropdown from './ProfileDropdown';
 import LibraryDropdown from './LibraryDropdown';
+import NavBarUserIcon from './NavBarUserIcon';
 import Nav from './styles/NavStyle';
 
 export default function NavBar() {
@@ -67,7 +68,8 @@ export default function NavBar() {
         onMouseOut={() => onUserIconMouseOut()}
         height={userIconHeight}
       >
-        <Nav.UserIcon />
+        {/* <Nav.UserIcon /> */}
+        <NavBarUserIcon />
         {userIconIsHovering && (
           <ProfileDropdown />
         )}

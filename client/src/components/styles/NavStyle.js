@@ -60,7 +60,7 @@ const Nav = {
     height: ${props => props.height};
     /* height: 150px; */
   `,
-  UserIcon: styled.div`
+  UserIcon: styled.img`
     width: 46px;
     height: 46px;
     border-radius: 50%;
