@@ -49,10 +49,10 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
-    if (password.length < 16) {
-      alert('Password must be longer than 16 characters please');
-      return;
-    }
+    // if (password.length < 16) {
+    //   alert('Password must be longer than 16 characters please');
+    //   return;
+    // }
     let pic;
     try {
       pic = await uploadImageHandler(avatar);
