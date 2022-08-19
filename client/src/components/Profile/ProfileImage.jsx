@@ -15,8 +15,10 @@ export default function ProfileImage({ image }) {
 const ImageWrapper = styled.div`
   align-self: center;
   padding: 20px;
+  object-fit: contain;
+  /* width: 200px;
+  height: 200px; */
   > img {
-    width: 100px;
-    height: 100px;
+    height: 120px;
   }
 `;
