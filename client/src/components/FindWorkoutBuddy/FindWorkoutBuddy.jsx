@@ -31,19 +31,24 @@ export default function FindWorkoutBuddy() {
 
   const searchBuddies = (e, search) => {
     e.preventDefault();
-    const filteredResults = buddies.filter(buddy => buddy.user_name.includes(search));
+    const filteredResults = buddies.filter((buddy) =>
+      buddy.user_name.includes(search)
+    );
     setBuddies(filteredResults);
   };
 
-  const getFilteredBuddies = async e => {
+  const getFilteredBuddies = async (e) => {
     e.preventDefault();
     if (localOnly && userZipCode) {
-      const buddieList = await axios.get(`/getAvailableBuddies?day=${selectedDay}&zipCode=${userZipCode}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: `Bearer ${Userfront.tokens.accessToken}`,
-        },
-      });
+      const buddieList = await axios.get(
+        `/getAvailableBuddies?day=${selectedDay}&zipCode=${userZipCode}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${Userfront.tokens.accessToken}`,
+          },
+        }
+      );
       if (buddieList.data.length === 0) {
         alert('No available buddies in your area');
         return;
@@ -55,12 +60,15 @@ export default function FindWorkoutBuddy() {
       alert('You have no zipcode in your profile.');
       return;
     }
-    const buddieList = await axios.get(`/getAvailableBuddies?day=${selectedDay}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `Bearer ${Userfront.tokens.accessToken}`,
-      },
-    });
+    const buddieList = await axios.get(
+      `/getAvailableBuddies?day=${selectedDay}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${Userfront.tokens.accessToken}`,
+        },
+      }
+    );
     setBuddies(buddieList.data);
   };
 
@@ -68,12 +76,30 @@ export default function FindWorkoutBuddy() {
     <>
       <GS.PageHeader>Find Workout Buddy</GS.PageHeader>
       <Container.SearchBarContainer>
-        <Container.SearchBar placeholder="Search Buddies" onChange={(e) => setSearchTerm(e.target.value)}/>
-        <GS.Button onClick={(e) => searchBuddies(e, searchTerm)}>Search</GS.Button>
+        <Container.SearchBar
+          placeholder="Search Buddies"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <GS.Button onClick={(e) => searchBuddies(e, searchTerm)}>
+          Search
+        </GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        <form style={{display: 'flex', justifyContent: 'center', gap: '4%', marginTop: '25px', alignItems: 'center'}} onSubmit={getFilteredBuddies}>
-          <M.Select style={{marginBottom: '0px', width: 'auto'}} name="days" onChange={e => setSelectedDay(e.target.value)}>
+        <form
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '3%',
+            marginTop: '25px',
+            alignItems: 'center',
+          }}
+          onSubmit={getFilteredBuddies}
+        >
+          <M.Select
+            style={{ marginBottom: '0px', width: 'auto', minWidth: 'auto' }}
+            name="days"
+            onChange={(e) => setSelectedDay(e.target.value)}
+          >
             <M.Option required>Monday</M.Option>
             <M.Option>Tuesday</M.Option>
             <M.Option>Wednesday</M.Option>
@@ -82,7 +108,14 @@ export default function FindWorkoutBuddy() {
             <M.Option>Saturday</M.Option>
             <M.Option>Sunday</M.Option>
           </M.Select>
-          <label>Local Only
+          <label
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          >
+            Local Only
             <input type="checkbox" onChange={() => setLocalOnly(!localOnly)} />
           </label>
           <GS.Button type="submit">Find Buddies</GS.Button>
