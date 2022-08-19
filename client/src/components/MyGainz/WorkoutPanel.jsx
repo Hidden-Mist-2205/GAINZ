@@ -22,8 +22,7 @@ export default function WorkoutPanel({ workout }) {
         authorization: `Bearer ${Userfront.tokens.accessToken}`,
       },
     })
-      .then((res) => {
-        console.log('res: ', res);
+      .then(() => {
         setFavorite(!favorite);
       })
       .catch((err) => {

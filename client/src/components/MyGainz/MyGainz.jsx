@@ -57,8 +57,8 @@ export default function MyGainz() {
     <>
       <GS.PageHeader>My Gainz</GS.PageHeader>
       <Container.WOHeader>Completed Workouts</Container.WOHeader>
-      <Container.WOBody>
-        {completedWorkouts && <Workout ref={animationParent} workouts={completedWorkouts} />}
+      <Container.WOBody ref={animationParent}>
+        {completedWorkouts && <Workout workouts={completedWorkouts} />}
         {completedWorkouts.length / 4 > 1 ? (
           <Container.NavBtn>
             {page.start !== 0 && <Container.Previous onClick={handlePrevious}>{'<'}</Container.Previous>}
