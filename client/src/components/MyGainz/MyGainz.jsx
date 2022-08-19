@@ -57,11 +57,11 @@ export default function MyGainz() {
       <Container.WOHeader>Completed Workouts</Container.WOHeader>
       <Container.WOBody>
         {completedWorkouts && <Workout workouts={completedWorkouts} />}
-        {completedWorkouts.length / 4 >= 1 ? (
+        {completedWorkouts.length / 4 > 1 ? (
           <Container.NavBtn>
-            <Container.Previous onClick={handlePrevious}>{'<'}</Container.Previous>
+            {page.start !== 0 && <Container.Previous onClick={handlePrevious}>{'<'}</Container.Previous>}
             <Container.PageNumber>{page.page}</Container.PageNumber>
-            <Container.Next onClick={handleNext}>{'>'}</Container.Next>
+            {page.end < completedWorkouts.length ? <Container.Next onClick={handleNext}>{'>'}</Container.Next> : <Container.Next />}
           </Container.NavBtn>
         ) : null}
       </Container.WOBody>
