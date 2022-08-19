@@ -60,12 +60,16 @@ const Nav = {
     height: ${props => props.height};
     /* height: 150px; */
   `,
-  UserIcon: styled.div`
+  UserIcon: styled.img`
     width: 46px;
     height: 46px;
     border-radius: 50%;
     border: 1px solid white;
-    background-color: #E5E5E5;
+    background-color: ${props => props.avatarUrl ? 'unset' : '#E5E5E5' };
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: ${props => props.avatarUrl ? `url(${props.avatarUrl})` : 'url(https://thumbs.dreamstime.com/t/profile-placeholder-image-gray-silhouette-no-photo-person-avatar-default-pic-used-web-design-profile-123478439.jpg)'};
     cursor: pointer;
 
     &:hover {

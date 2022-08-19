@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ProfileContainer, FormFlexColumn, FormTextBubble } from './Profile.styled';
+import { ProfileContainer, FormFlexColumn, ProfileFormContainer } from './Profile.styled';
 import EditWorkoutDays from './EditWorkoutDays';
 import FormInputItem from './FormInputItem';
 
@@ -32,24 +32,27 @@ export default function EditProfileForm({
     ['Zoom', 'zoom_profile', 'text'],
   ];
   return (
-    <form>
-      <ProfileContainer>
-        <FormFlexColumn>
-          {formInputs.map((tuple) => (
-            <FormInputItem
-              userInfo={userInfo}
-              setUserInfo={setUserInfo}
-              label={tuple[0]}
-              property={tuple[1]}
-              type={tuple[2]}
-            />
-          ))}
-        </FormFlexColumn>
-        <EditWorkoutDays
-          daysAvailable={daysAvailable}
-          handleChange={handleCheckboxChange}
-        />
-      </ProfileContainer>
-    </form>
+    <ProfileContainer>
+      <form>
+        <ProfileFormContainer>
+          <FormFlexColumn>
+            <h3>Edit Your Profile:</h3>
+            {formInputs.map((tuple) => (
+              <FormInputItem
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                label={tuple[0]}
+                property={tuple[1]}
+                type={tuple[2]}
+              />
+            ))}
+          </FormFlexColumn>
+          <EditWorkoutDays
+            daysAvailable={daysAvailable}
+            handleChange={handleCheckboxChange}
+          />
+        </ProfileFormContainer>
+      </form>
+    </ProfileContainer>
   );
 }

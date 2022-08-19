@@ -19,7 +19,6 @@ const SU = {
   `,
   InputDiv: styled.div`
   width: 100%;
-  margin: 5px;
   display: block;
   font-weight: 200;
   font-size: 14px;
@@ -50,7 +49,7 @@ const SU = {
   justify-content: center;
   padding: 5px;
   width: 70%;
-  margin-top: 20px;
+  margin-top: 5px;
   `,
   PageWrapper: styled.div`
   display: flex;
@@ -71,6 +70,10 @@ const SU = {
   `,
   SubmitButton: styled(GS.Button)`
   height: unset;
+  `,
+  Title: styled.h2`
+  text-align: center;
+  margin: 0px;
   `,
 };
 

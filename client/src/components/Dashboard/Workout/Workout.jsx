@@ -21,6 +21,5 @@ export default function Workout({ allFavWorkouts, updateFavWorkouts }) {
         <Container.Next name="forward" onClick={page}>{end <= allFavWorkouts.length ? '>' : ' '}</Container.Next>
       </DB.NavBtn>
     </DB.WOBody>
-
   );
 }

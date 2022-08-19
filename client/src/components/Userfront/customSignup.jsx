@@ -23,6 +23,9 @@ export default function SignupForm() {
   const navigate = useNavigate();
 
   async function uploadImageHandler(imageFile) {
+    if (!imageFile) {
+      return '';
+    }
     // const img = URL.createObjectURL(imageFile);
     const reader = new FileReader();
 
@@ -46,9 +49,17 @@ export default function SignupForm() {
 
   async function createAccount(e) {
     e.preventDefault();
-
+    // if (password.length < 16) {
+    //   alert('Password must be longer than 16 characters please');
+    //   return;
+    // }
+    let pic;
     try {
-      const pic = await uploadImageHandler(avatar);
+      pic = await uploadImageHandler(avatar);
+    } catch (err) {
+      console.log(err);
+    }
+    try {
       const signup = await Userfront.signup({
         method: 'password',
         name: username,
@@ -64,14 +75,14 @@ export default function SignupForm() {
           email: email,
           zip: zipcode,
           phoneNumber: phoneNum,
-          avatar: pic.data.secure_url,
+          avatar: (pic.data.secure_url ? pic.data.secure_url : ''),
           goal: fitnessGoal,
           zoom: zoomLink,
           days: daysAvailable,
         },
       });
     } catch (err) {
-      console.log('There was an error with usefront or your server: ', err);
+      alert(err);
     }
   }
 
@@ -89,9 +100,9 @@ export default function SignupForm() {
           <SU.PageWrapper>
             {display ? <PasswordResetModal setDisplay={setDisplay} /> : null}
             <SU.WrapperDiv>
-              <h2>Sign Up</h2>
               <SU.Form onSubmit={(e) => { createAccount(e); }}>
                 <SU.InputDiv>
+                  <SU.Title>Sign Up</SU.Title>
                   <label htmlFor="username">
                     Username
                     <SU.TextInput required id="username" value={username} onChange={((e) => setUsername(e.target.value))} />
@@ -106,7 +117,7 @@ export default function SignupForm() {
                 <SU.InputDiv>
                   <label htmlFor="password">
                     Password
-                    <SU.TextInput required id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
+                    <SU.TextInput required passwordrules="minlength: 16;" id="password" type="password" value={password} onChange={((e) => setPassword(e.target.value))} />
                   </label>
                 </SU.InputDiv>
                 <SU.InputDiv>
@@ -140,7 +151,7 @@ export default function SignupForm() {
                 <SU.InputDiv>
                   <label htmlFor="avatar">
                     <h3>Upload Your Profile Picture</h3>
-                    <SU.TextInput id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
+                    <SU.TextInput required id="avatar" type="file" onChange={e => setAvatarUrl(e.target.files[0])} />
                   </label>
                 </SU.InputDiv>
                 <SU.SubmitButton style={{ width: '100%' }} type="submit">Create Account</SU.SubmitButton>
