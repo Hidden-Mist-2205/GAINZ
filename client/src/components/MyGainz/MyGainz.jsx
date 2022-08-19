@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { useRecoilState } from 'recoil';
 import Userfront from '@userfront/core';
 import axios from 'axios';
@@ -9,6 +10,7 @@ import Container from '../styles/ContainerStyles/Container_style';
 import Workout from './Workout';
 
 export default function MyGainz() {
+  const [animationParent] = useAutoAnimate();
   const [page, setPage] = useRecoilState(pageState);
   const [completedWorkouts, setCompletedWorkouts] = useState([]);
 
@@ -56,7 +58,7 @@ export default function MyGainz() {
       <GS.PageHeader>My Gainz</GS.PageHeader>
       <Container.WOHeader>Completed Workouts</Container.WOHeader>
       <Container.WOBody>
-        {completedWorkouts && <Workout workouts={completedWorkouts} />}
+        {completedWorkouts && <Workout ref={animationParent} workouts={completedWorkouts} />}
         {completedWorkouts.length / 4 > 1 ? (
           <Container.NavBtn>
             {page.start !== 0 && <Container.Previous onClick={handlePrevious}>{'<'}</Container.Previous>}
