@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Userfront from '@userfront/react';
 
+
 import EditProfileForm from './EditProfileForm';
 import ProfileDisplay from './ProfileDisplay';
 import ActionButton from '../UserLibrary/Buttons/ActionButton';
@@ -11,6 +12,25 @@ export default function Profile() {
   const [userInfo, setUserInfo] = useState({});
   const [daysAvailable, setDaysAvailable] = useState([]);
   const [editProfile, setEditProfile] = React.useState(false);
+
+  const addUserInfo = () => {
+    const newUser = {
+      userId: Userfront.user.userId,
+      username: userInfo.user_name,
+      email: userInfo.email,
+      zip: userInfo.zip_code,
+      phoneNumber: userInfo.phone_num,
+      avatar: userInfo.avatar_url,
+      goal: userInfo.fitness_goal,
+      zoom: userInfo.zoom_profile,
+      days: daysAvailable,
+    };
+    axios.post('/postUser', {
+      body: newUser,
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     axios
@@ -33,7 +53,7 @@ export default function Profile() {
     setEditProfile(!editProfile);
   };
   const saveProfileEdit = () => {
-    // POST to db
+    addUserInfo();
     setEditProfile(!editProfile);
   };
 
