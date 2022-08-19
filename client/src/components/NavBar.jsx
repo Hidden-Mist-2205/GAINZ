@@ -3,7 +3,7 @@ import ProfileDropdown from './ProfileDropdown';
 import LibraryDropdown from './LibraryDropdown';
 import Nav from './styles/NavStyle';
 
-export default function NavBar() {
+export default function NavBar({ avatarUrl }) {
   const [userIconIsHovering, setUserIconIsHovering] = useState(false);
   const [userIconHeight, setUserIconHeight] = useState('70px');
   const [libraryIsHovering, setLibraryIsHovering] = useState(false);
@@ -67,7 +67,7 @@ export default function NavBar() {
         onMouseOut={() => onUserIconMouseOut()}
         height={userIconHeight}
       >
-        <Nav.UserIcon />
+        <Nav.UserIcon avatarUrl={avatarUrl} />
         {userIconIsHovering && (
           <ProfileDropdown />
         )}

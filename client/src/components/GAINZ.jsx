@@ -1,5 +1,7 @@
-import React, { lazy } from 'react';
+import React, { lazy, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Userfront from '@userfront/react';
+import axios from 'axios';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import GS from './styles/GeneralStyles';
@@ -20,9 +22,20 @@ const ExerciseLibrary = lazy(() => import('./UserLibrary/ExerciseLibrary'));
 const WorkoutLibrary = lazy(() => import('./UserLibrary/WorkoutLibrary'));
 
 export default function GAINZ() {
+  const [avatarUrl, setAvatarUrl] = useState('');
+  axios.get('getAvatar', {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${Userfront.tokens.accessToken}`,
+    },
+  }).then((res) => {
+    setAvatarUrl(res.data[0].avatar_url);
+  }).catch((err) => {
+    console.log(err);
+  });
   return (
     <GS.Background>
-      <NavBar />
+      <NavBar avatarUrl={avatarUrl} />
       <React.Suspense fallback={<span>Loading...</span>}>
         <Routes>
           <Route path="/" element={<Dashboard />} />

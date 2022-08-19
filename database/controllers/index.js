@@ -400,4 +400,12 @@ module.exports = {
   async addNewExercise(/* INFO */) {
     // TODO
   },
+  async getAvatarPicture(userId) {
+    const pictureUrl = await sql`
+      SELECT avatar_url
+      FROM users
+      WHERE user_id = ${userId}
+    `;
+    return pictureUrl;
+  },
 };
