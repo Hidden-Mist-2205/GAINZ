@@ -69,8 +69,8 @@ const GS = {
     width: 12%;
     height: 52px;
     min-width: 64px;
-    background-color: #272727;
-    color: #AE3139;
+    background-color: #AE3139;
+    color: white;
     position: relative;
     box-sizing: border-box;
     border: 1px solid #AE3139;

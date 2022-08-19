@@ -95,6 +95,7 @@ module.exports = {
           WHERE e.exercise_id = s.exercise_id)
         FROM steps s
         WHERE s.workout_id = w.workout_id
+        ORDER BY s.step_num ASC
         ) AS steps
       ) AS steps
     FROM workouts w
@@ -234,6 +235,7 @@ module.exports = {
         WHERE e.exercise_id = s.exercise_id)
         FROM steps s
         WHERE s.workout_id = uw.workout_id
+        ORDER BY s.step_num ASC
         ) AS step
       ) AS Steps
     FROM

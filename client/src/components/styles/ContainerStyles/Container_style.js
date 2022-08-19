@@ -23,12 +23,13 @@ const Container = {
     width: 100%;
     height: 10%;
     justify-content: center;
-    align-items: center
-    border: 1px solid white;
+    align-items: center;
+    margin-bottom: 10px;
   `,
   SearchBar: styled.input`
     margin-right: 20px;
-    width: 30%;
+    margin-left: 20px;
+    width: 35%;
     height: 45px;
     border-radius: 5px;
     background-color: #272727;
@@ -38,7 +39,7 @@ const Container = {
     display: inline;
     width: 484px;
     height: 5%;
-    margin-left: 7.5%;
+    margin-left: 10%;
     margin-bottom: 0;
     font-style: normal;
     font-weight: 700;
@@ -100,6 +101,9 @@ const Container = {
     font-size: 15px;
     line-height: 36px;
     color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `,
   WODescription: styled.div`
     width: 23%;
@@ -108,6 +112,9 @@ const Container = {
     font-weight: 700;
     font-size: 15px;
     line-height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   `,
   NavBtn: styled.div`
     padding-bottom: 10px;
@@ -166,6 +173,14 @@ const Container = {
     &:hover {
       text-shadow: 0 0 3px gold;
     }
+  `,
+  ChangeCategory: styled.select`
+    margin-right: 20px;
+    width: 10%;
+    height: 45px;
+    border-radius: 5px;
+    background-color: #272727;
+    color: white;
   `,
 };
 

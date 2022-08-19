@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+import {
+  FormDayBubble,
+} from './Profile.styled';
 
 export default function WorkoutDayCheckbox({ day, daysAvailable, handleChange }) {
   const checked = daysAvailable.includes(day);
   const dayProperty = day.toLowerCase();
 
   return (
-    <div className="dayCheckbox">
+    <FormDayBubble className="dayCheckbox">
       <label htmlFor={dayProperty}>{day}</label>
       <input
         type="checkbox"
@@ -15,6 +19,6 @@ export default function WorkoutDayCheckbox({ day, daysAvailable, handleChange })
         className="formCheckbox"
         onChange={(e) => handleChange(e)}
       />
-    </div>
+    </FormDayBubble>
   );
 }

@@ -66,14 +66,14 @@ export default function Dashboard() {
         <DB.Tabs
           name="Workout"
           onClick={handleType}
-          style={{ 'border-right': 'solid #121212', 'border-bottom': exerciseTabLine }}
+          style={{ 'borderRight': 'solid #121212', 'borderBottom': exerciseTabLine }}
         >
           Favorite Workout
         </DB.Tabs>
         <DB.Tabs
           name="Exercise"
           onClick={handleType}
-          style={{ 'border-bottom': workoutTabLine }}
+          style={{ 'borderBottom': workoutTabLine }}
         >
           Favorite Exercise
         </DB.Tabs>

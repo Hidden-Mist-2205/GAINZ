@@ -1,29 +1,15 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Userfront from '@userfront/react';
-import ActionButton from '../UserLibrary/Buttons/ActionButton';
-import FavoriteButton from '../UserLibrary/Buttons/FavoriteButton';
-import PageItemDropdown from '../UserLibrary/LibComponents/PageItemDropdown';
-import PageItemName from '../UserLibrary/LibComponents/PageItemName';
-import FlexContainer from '../UserLibrary/Styles/FlexContainer.styled';
-
-//import PageItemName from './PageItemName';
-import PageItemCategory from '../UserLibrary/LibComponents/PageItemCategory';
-import PageItemDescription from '../UserLibrary/LibComponents/PageItemDescription';
 import axios from 'axios';
-//import PageItemDropdown from './PageItemDropdown';
-//import { FavoriteButton, ActionButton } from '../Buttons/button_index';
-
-//import FlexContainer from '../Styles/FlexContainer.styled';
+import ActionButton from '../UserLibrary/Buttons/ActionButton';
+import Container from '../styles/ContainerStyles/Container_style';
 
 Userfront.init('rbvr4mqb');
 
-export default function BuddyListItem({ data, actionButton }) {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const onKeyPressHandler = (e) => {
-    e.preventDefault();
-  };
+export default function BuddyListItem({ data }) {
+  const [actionButton, setActionButton] = useState('Request Info');
   const sendRequest = async () => {
+    setActionButton('Sending');
     try {
       const response = await axios.post('/sendRequest', { toUser: data.user_id }, {
         headers: {
@@ -31,32 +17,23 @@ export default function BuddyListItem({ data, actionButton }) {
           authorization: `Bearer ${Userfront.tokens.accessToken}`,
         },
       });
+      setActionButton('Request Sent!');
       return response;
     } catch (error) {
       console.error(error);
+      setActionButton('Send Error');
     }
   };
   return (
-    <>
-      <PageItem /*onClick={() => setShowDropdown(!showDropdown)} role="button" tabIndex={0} onKeyPress={onKeyPressHandler}*/>
-        <FavoriteButton />
-        <PageItemName text={data.user_name} />
-        <PageItemCategory text={data?.zip_code} />
-        <PageItemDescription text={data?.fitness_goal} />
-        {actionButton && <ActionButton text={actionButton} clickHandler={sendRequest} />}
-      </PageItem>
-      {showDropdown && <PageItemDropdown />}
-    </>
+    <Container.WOItem>
+      <Container.WOName>
+        {data.user_name}
+      </Container.WOName>
+      <Container.WOCategory>
+        {data.zip_code}
+      </Container.WOCategory>
+      <Container.WODescription>{data.fitness_goal}</Container.WODescription>
+      {actionButton && <ActionButton text={actionButton} clickHandler={sendRequest} />}
+    </Container.WOItem>
   );
 }
-
-const PageItem = styled(FlexContainer)`
-  width: 95%;
-  height: 100px;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  margin-right: auto;
-  margin-left: auto;
-  border-radius: 5px;
-  background-color: #272727;
-`;

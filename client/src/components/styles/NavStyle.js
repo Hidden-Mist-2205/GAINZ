@@ -10,7 +10,7 @@ const Nav = {
     position: sticky;
     top: 0;
     z-index: 2;
-    border-bottom: 5px solid #121212;
+    borderBottom: 5px solid #121212;
   `,
   Logo: styled.div`
     position: relative;
