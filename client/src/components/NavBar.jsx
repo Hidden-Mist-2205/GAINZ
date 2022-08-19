@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileDropdown from './ProfileDropdown';
 import LibraryDropdown from './LibraryDropdown';
-import NavBarUserIcon from './NavBarUserIcon';
 import Nav from './styles/NavStyle';
 
 export default function NavBar({ avatarUrl }) {
