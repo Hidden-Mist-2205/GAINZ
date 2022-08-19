@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Userfront from '@userfront/core';
 import DB from '../styles/Dashboard_style/DB';
 import GS from '../styles/GeneralStyles';
 import Workout from './Workout/Workout';
@@ -6,6 +7,8 @@ import Exercise from './Exercise/Exercise';
 import CreateWorkoutModal from './CreateWorkoutModal/CreateWorkoutModal';
 import M from '../styles/Dashboard_style/Modal';
 import { getAllFavExercise, getAllFavWorkouts } from '../../requests/server';
+import Container from '../styles/ContainerStyles/Container_style';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function Dashboard() {
   const [type, setType] = useState('Workout');
@@ -13,23 +16,17 @@ export default function Dashboard() {
   const [[exerciseTabLine, workoutTabLine], setShowTabLine] = useState(['none', 'solid #121212']);
   const [allExerciseWorkouts, setAllExerciseWorkouts] = useState([]);
   const [allFavWorkouts, setAllFavWorkouts] = useState([]);
-
+  const [animationParent] = useAutoAnimate();
   useEffect(() => {
     getAllFavExercise()
       .then((r) => {
-        setAllExerciseWorkouts(r.data);
+        const current = r.data || [];
+        setAllExerciseWorkouts(current);
       })
       .catch((err) => {
         console.log(err);
       });
-    getAllFavWorkouts()
-      .then((r) => {
-        console.log(r.data);
-        setAllFavWorkouts(r.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    updateFavWorkouts();
   }, []);
   const handleModal = () => (
     showModal ? setShowModal(false) : setShowModal(true)
@@ -43,45 +40,58 @@ export default function Dashboard() {
       setType('Exercise');
     }
   };
+  const updateFavWorkouts = () => {
+    getAllFavWorkouts()
+      .then((r) => {
+        const current = r.data || [];
+        current.sort((a, b) => (a.created_by === Userfront.user.userId ? -1 : 0));
+        setAllFavWorkouts(r.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
-    <DB.Body>
+    <>
       <GS.PageHeader>My Dashboard</GS.PageHeader>
-      <M.Column style={{ width: '85%', margin: 'auto' }}>
-        {type === 'Exercise'
-          && (
-            <GS.OutlinedBtn
-              style={{ float: 'right' }}
-            >
-              Add Exercise
-            </GS.OutlinedBtn>
-          )}
-        {type === 'Workout'
-          && (
-            <GS.OutlinedBtn
-              style={{ float: 'right' }}
-              onClick={handleModal}
-            >
-              Create WorkOut
-            </GS.OutlinedBtn>
-          )}
-        <DB.Tabs
-          name="Workout"
-          onClick={handleType}
-          style={{ 'borderRight': 'solid #121212', 'borderBottom': exerciseTabLine }}
-        >
-          Favorite Workout
-        </DB.Tabs>
-        <DB.Tabs
-          name="Exercise"
-          onClick={handleType}
-          style={{ 'borderBottom': workoutTabLine }}
-        >
-          Favorite Exercise
-        </DB.Tabs>
-      </M.Column>
-      {type === 'Workout' && <Workout allFavWorkouts={allFavWorkouts} />}
-      {type === 'Exercise' && <Exercise allExerciseWorkouts={allExerciseWorkouts} handleModal={handleModal} />}
-      {showModal && <CreateWorkoutModal handleModal={handleModal} />}
-    </DB.Body>
+      <Container.Body  ref={animationParent}>
+        <M.Column style={{ width: '80%', margin: 'auto' }}>
+          {/* {type === 'Exercise'
+            && (
+              <GS.OutlinedBtn
+                style={{ float: 'right' }}
+              >
+                Add Exercise
+              </GS.OutlinedBtn>
+            )} */}
+          {type === 'Workout'
+            && (
+              <GS.OutlinedBtn
+                style={{ float: 'right' }}
+                onClick={handleModal}
+              >
+                Create WorkOut
+              </GS.OutlinedBtn>
+            )}
+          <DB.Tabs
+            name="Workout"
+            onClick={handleType}
+            style={{ borderRight: 'solid #121212', borderBottom: exerciseTabLine }}
+          >
+            Favorite Workout
+          </DB.Tabs>
+          <DB.Tabs
+            name="Exercise"
+            onClick={handleType}
+            style={{ borderBottom: workoutTabLine }}
+          >
+            Favorite Exercise
+          </DB.Tabs>
+        </M.Column>
+        {type === 'Workout' && <Workout allFavWorkouts={allFavWorkouts} updateFavWorkouts={updateFavWorkouts} />}
+        {type === 'Exercise' && <Exercise allExerciseWorkouts={allExerciseWorkouts} handleModal={handleModal} />}
+        {showModal && <CreateWorkoutModal handleModal={handleModal} />}
+      </Container.Body>
+    </>
   );
 }

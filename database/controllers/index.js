@@ -205,9 +205,9 @@ module.exports = {
     )
     `;
   },
-  async deleteWorkout(info) {
+  async deleteWorkout(workoutId, userId) {
     await sql`
-    DELETE FROM workouts WHERE workout_id = ${info.workoutId} AND created_by = ${info.userId}
+    DELETE FROM workouts WHERE workout_id = ${workoutId} AND created_by = ${userId}
     `;
   },
   async getFavoritedWorkouts(userId) {

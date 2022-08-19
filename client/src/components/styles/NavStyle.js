@@ -15,7 +15,7 @@ const Nav = {
   Logo: styled.div`
     position: relative;
     left: 3%;
-    width: 125px;
+    width: 135px;
     height: 40px;
     vertical-align: middle;
     text-align: center;

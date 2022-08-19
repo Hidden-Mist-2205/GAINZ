@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import DB from '../../styles/Dashboard_style/DB';
 import ExercisePanel from './ExercisePanel';
 
 export default function Exercise({ handleModal, allExerciseWorkouts }) {
   const [[start, end], setPoints] = useState([0, 4]);
+  const [animationParent] = useAutoAnimate();
   const page = (e) => (
     e.target.name === 'foward' ? setPoints([start + 4, end + 4]) : setPoints([start - 4, end - 4])
   );
   return (
     <DB.WOBody>
-      <DB.WOBorder>
+      <DB.WOBorder ref={animationParent}>
         {(allExerciseWorkouts || []).map((exercise) => (
           <ExercisePanel handleModal={handleModal} exercise={exercise} />
         ))}

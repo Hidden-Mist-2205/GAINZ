@@ -125,7 +125,7 @@ export default function Dashboard({ handleModal }) {
                   name="exerciseId"
                   value={steps.name}
                   onChange={handleExerciseInputs}
-                  style={{ minWidth: '305px' }}
+                  style={{ width: '60%' }}
                 />
                 <datalist id="exerciselist">
                   {allExercise.filter((exercise) => exercise.area === steps.area).map((exercise) => (
@@ -163,12 +163,13 @@ export default function Dashboard({ handleModal }) {
                 />
               </M.Column>
             </M.InputColumn>
-            <M.InputColumn>
+            <M.InputColumn style={{ paddingRight: '20px' }}>
               <M.Column>
                 <M.Label>Workout Category</M.Label>
                 <SelectCategory
                   mainArea={workoutInput.mainArea}
                   name="mainArea"
+                  required
                   handleExerciseInputs={handleWorkoutInputs}
                   categoryList={workoutCategory}
                 />
@@ -187,6 +188,7 @@ export default function Dashboard({ handleModal }) {
                 <M.Input
                   name="name"
                   value={workoutInput.name}
+                  required
                   onChange={handleWorkoutInputs}
                 />
               </M.Column>
@@ -195,6 +197,7 @@ export default function Dashboard({ handleModal }) {
                 <M.Input
                   name="videoUrl"
                   type="text"
+                  required
                   value={workoutInput.videoUrl}
                   onChange={handleWorkoutInputs}
                 />
@@ -204,6 +207,7 @@ export default function Dashboard({ handleModal }) {
                 <M.Input
                   name="description"
                   type="text"
+                  required
                   value={workoutInput.description}
                   onChange={handleWorkoutInputs}
                 />
@@ -211,7 +215,7 @@ export default function Dashboard({ handleModal }) {
             </M.InputColumn>
           </M.Stuff>
 
-          <M.Column>
+          <M.Column style={{ width: '50%', display: 'flex', justifyContent: 'center' }}>
             <GS.Button
               type="button"
               style={{ width: '192px', 'margin-right': '25px' }}

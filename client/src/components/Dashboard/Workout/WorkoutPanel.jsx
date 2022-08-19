@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import DB from '../../styles/Dashboard_style/DB';
 import GS from '../../styles/GeneralStyles';
 import ExpandExercise from './ExpandExercise';
@@ -10,6 +11,7 @@ import { putFavoriteWorkout } from '../../../requests/server';
 export default function WorkoutPanel({ workout }) {
   const setCurrentWorkoutID = useSetRecoilState(currentWorkoutIDState);
   const [toggleFav, setToggleFav] = useState(workout.is_favorited);
+  const [animationParent] = useAutoAnimate();
   const handleFav = () => {
     putFavoriteWorkout(workout.workoutid)
       .then(() => {
@@ -24,12 +26,11 @@ export default function WorkoutPanel({ workout }) {
   const navigate = useNavigate();
   const routeChange = () => {
     const path = '/StartWorkout';
-    console.log(workout.workoutid);
     setCurrentWorkoutID(workout.workoutid);
     navigate(path);
   };
   return (
-    <DB.WOPanel>
+    <DB.WOPanel ref={animationParent}>
       <DB.WOItem>
         {toggleFav
           ? <DB.WOStar onClick={handleFav}>&#9733;</DB.WOStar>
