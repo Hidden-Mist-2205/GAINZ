@@ -26,7 +26,7 @@ export default function Profile() {
       days: daysAvailable,
     };
     axios.post('/postUser', newUser)
-      .then((res) => console.log('res:', res))
+      .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
