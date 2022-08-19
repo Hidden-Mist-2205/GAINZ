@@ -13,13 +13,12 @@ const DB = {
     background: rgba(217, 217, 217, 0.15);
     height: fit-content;
     padding-top: 15px;
-    min-height:590px;
     margin: auto;
     border-radius:0 8px 8px 8px;
     overflow-y: fit-content;
     `,
   WOBorder: styled.div`
-    min-height: 500px;
+    height: fit-content;
     `,
   Header: styled.h1`
     width: 100%;

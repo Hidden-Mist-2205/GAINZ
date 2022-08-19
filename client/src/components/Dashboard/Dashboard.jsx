@@ -8,6 +8,7 @@ import CreateWorkoutModal from './CreateWorkoutModal/CreateWorkoutModal';
 import M from '../styles/Dashboard_style/Modal';
 import { getAllFavExercise, getAllFavWorkouts } from '../../requests/server';
 import Container from '../styles/ContainerStyles/Container_style';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function Dashboard() {
   const [type, setType] = useState('Workout');
@@ -15,11 +16,12 @@ export default function Dashboard() {
   const [[exerciseTabLine, workoutTabLine], setShowTabLine] = useState(['none', 'solid #121212']);
   const [allExerciseWorkouts, setAllExerciseWorkouts] = useState([]);
   const [allFavWorkouts, setAllFavWorkouts] = useState([]);
-
+  const [animationParent] = useAutoAnimate();
   useEffect(() => {
     getAllFavExercise()
       .then((r) => {
-        setAllExerciseWorkouts(r.data);
+        const current = r.data || [];
+        setAllExerciseWorkouts(current);
       })
       .catch((err) => {
         console.log(err);
@@ -41,8 +43,8 @@ export default function Dashboard() {
   const updateFavWorkouts = () => {
     getAllFavWorkouts()
       .then((r) => {
-        console.log(r.data);
-        r.data.sort((a, b) => (a.created_by === Userfront.user.userId ? -1 : 0));
+        const current = r.data || [];
+        current.sort((a, b) => (a.created_by === Userfront.user.userId ? -1 : 0));
         setAllFavWorkouts(r.data);
       })
       .catch((err) => {
@@ -52,7 +54,7 @@ export default function Dashboard() {
   return (
     <>
       <GS.PageHeader>My Dashboard</GS.PageHeader>
-      <Container.Body>
+      <Container.Body  ref={animationParent}>
         <M.Column style={{ width: '80%', margin: 'auto' }}>
           {type === 'Exercise'
             && (

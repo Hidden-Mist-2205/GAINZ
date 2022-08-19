@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import DB from '../../styles/Dashboard_style/DB';
 import GS from '../../styles/GeneralStyles';
 import GifUrl from './GifUrl';
@@ -7,6 +8,7 @@ import { putFavoriteExercise } from '../../../requests/server';
 export default function ExercisePanel({ handleModal, exercise }) {
   const [showEPanel, setEPanel] = useState(false);
   const [toggleFav, setToggleFav] = useState(exercise.favorited);
+  const [animationParent] = useAutoAnimate();
   const handleEPanel = () => (
     showEPanel ? setEPanel(false) : setEPanel(true)
   );
@@ -19,7 +21,7 @@ export default function ExercisePanel({ handleModal, exercise }) {
   };
 
   return (
-    <DB.WOPanel>
+    <DB.WOPanel ref={animationParent}>
       <DB.WOItem>
         {toggleFav
           ? <DB.WOStar onClick={handleFav}>&#9733;</DB.WOStar>
