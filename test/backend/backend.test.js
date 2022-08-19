@@ -1,5 +1,4 @@
 let request = require('supertest');
-const { sql } = require('../../database');
 const controllers = require('../../database/controllers');
 
 request = request('http://localhost:3000/');

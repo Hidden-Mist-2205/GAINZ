@@ -72,8 +72,8 @@ export default function FindWorkoutBuddy() {
         <GS.Button onClick={(e) => searchBuddies(e, searchTerm)}>Search</GS.Button>
       </Container.SearchBarContainer>
       <Container.WOBody>
-        <form style={{display: 'flex', justifyContent: 'center', gap: '1%', marginTop: '25px'}} onSubmit={getFilteredBuddies}>
-          <M.Select name="days" onChange={e => setSelectedDay(e.target.value)}>
+        <form style={{display: 'flex', justifyContent: 'center', gap: '1%', marginTop: '25px', alignItems: 'center'}} onSubmit={getFilteredBuddies}>
+          <M.Select style={{marginBottom: '0px', width: 'auto'}} name="days" onChange={e => setSelectedDay(e.target.value)}>
             <M.Option required>Monday</M.Option>
             <M.Option>Tuesday</M.Option>
             <M.Option>Wednesday</M.Option>
