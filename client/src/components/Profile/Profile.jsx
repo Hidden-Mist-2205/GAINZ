@@ -25,10 +25,8 @@ export default function Profile() {
       zoom: userInfo.zoom_profile,
       days: daysAvailable,
     };
-    axios.post('/postUser', {
-      body: newUser,
-    })
-      .then((res) => console.log(res))
+    axios.post('/postUser', newUser)
+      .then((res) => console.log('res:', res))
       .catch((err) => console.log(err));
   };
 
