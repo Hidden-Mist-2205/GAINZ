@@ -6,6 +6,7 @@
   "author": "Team Hidden Mist",
   "license": "MIT",
   "dependencies": {
+    "@formkit/auto-animate": "^1.0.0-beta.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
