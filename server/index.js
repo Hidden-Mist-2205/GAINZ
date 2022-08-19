@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 require('dotenv').config();
 const express = require('express');
 const compression = require('compression');
@@ -116,7 +117,6 @@ app.get('/getAllWorkouts', authenticateToken, async (req, res) => {
 app.get('/getAllExercises', authenticateToken, async (req, res) => {
   try {
     const { count, limit } = req.query;
-    console.log(count, limit);
     const exercises = await controllers.getAllExercises(count, limit);
     res.json(exercises);
   } catch (error) {
@@ -164,13 +164,14 @@ app.get('/getFavoritedExercises', authenticateToken, async (req, res) => {
     console.error(error);
   }
 });
+
 app.post('/postNewWorkout', authenticateToken, async (req, res) => {
   try {
-    const createWorkout = await controllers.addNewWorkout(req.body, req.auth.userId);
+    const createWorkout = await controllers.addNewWorkout(req.body.data, req.auth.userId);
     const workoutId = createWorkout[0].workout_id;
     await controllers.addUserWorkout(req.auth.userId, workoutId);
-    req.body.steps.forEach(async (step, index) => {
-      await controllers.addSteps(step, workoutId, index);
+    req.body.data.steps.forEach(async (step, index) => {
+      await controllers.addSteps(step, workoutId, index + 1);
     });
     res.status(201).send();
   } catch (error) {

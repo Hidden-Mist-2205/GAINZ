@@ -24,7 +24,8 @@ export default function WorkoutPanel({ workout }) {
   const navigate = useNavigate();
   const routeChange = () => {
     const path = '/StartWorkout';
-    setCurrentWorkoutID(workout.workout_id);
+    console.log(workout.workoutid);
+    setCurrentWorkoutID(workout.workoutid);
     navigate(path);
   };
   return (

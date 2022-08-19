@@ -59,7 +59,17 @@ async function putFavoriteExercise(exerciseId) {
   });
   return data;
 }
+async function postNewWorkout(workout) {
+  const data = axios.post('/postNewWorkout', { data: workout }, {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${Userfront.tokens.accessToken}`,
+    },
+  });
+  return data;
+}
+
 export {
   getWorkouts, getExercises, getAllFavWorkouts, getAllFavExercise, putFavoriteWorkout,
-  putFavoriteExercise,
+  putFavoriteExercise, postNewWorkout,
 };

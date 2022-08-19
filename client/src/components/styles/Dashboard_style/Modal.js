@@ -15,7 +15,7 @@ const M = {
   PopUp: styled.div`
     max-width: 1000px;
     max-height: 700px;
-    width: 50%;
+    width: 60%;
     height: 85%;
     box-shadow: 0 5px 16pxrgba(0,0,0,0.2);
     background: #272727;
@@ -66,8 +66,8 @@ const M = {
     float: left;
     display: inline;
     height: 46px;
-    width: 100px;
-    font-size: 20px;
+    width: 140px;
+    font-size: 15px;
     color: white;
   `,
   Select: styled.select`
@@ -76,7 +76,7 @@ const M = {
     display: inline;
     color: white;
     height: 46px;
-    width: 300px;
+    min-width: 300px;
     background: rgba(217, 217, 217, 0.15);
   `,
   Input: styled.input`
@@ -84,25 +84,19 @@ const M = {
     margin-bottom: 20px;
     display: inline;
     height: 46px;
-    width: 300px;
+    min-width: 300px;
+    color: white;
     background: rgba(217, 217, 217, 0.15);
 `,
-  Description: styled.input`
-    float: right;
-    margin-bottom: 50px;
-    display: inline;
-    height: 46px;
-    width: 300px;
-    background: rgba(217, 217, 217, 0.15);
-  `,
   Column: styled.div`
   `,
   Option: styled.option`
     color: white;
-    /* background: grey; */
-    background: rgba(217, 217, 217);
+    font-family: "Trebuchet MS","Roboto","Arial",sans-serif;
+    font-size: 20px;
     width:;
     height:100%;
+    background: rgb(60 59 59);
   `,
   Exercise: styled.div`
     display: flex;
@@ -115,11 +109,38 @@ const M = {
   InputColumn: styled.div`
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
+    align-content: flex-start;
+    justify-content: flex-start;
+    width: 50%;
+    padding-left: 20px;
     justify-content: flex-start;
   `,
   Stuff: styled.div`
     display: flex;
+  `,
+  BoxAddedExercise: styled.div`
+    margin-bottom: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-style: dashed;
+  `,
+  BoxAddedItem: styled.div`
+    display: flex;
+    color: white;
+    width: 60%;
+    margin-bottom: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+  `,
+  BoxItemDetail: styled.div`
+    width: 50%;
+
   `,
 };
 export default M;
