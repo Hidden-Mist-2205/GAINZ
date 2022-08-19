@@ -13,9 +13,9 @@ export default function NavBarUserIcon() {
           authorization: `Bearer ${Userfront.tokens.accessToken}`,
         },
       })
-      .then((res) => {
-        console.log(res.data);
-        setUserInfo(res.data);
+      .then((user) => {
+        console.log(user.data);
+        setUserInfo(user.data);
       })
       .catch((err) => console.log(err));
   }, []);
