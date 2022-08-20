@@ -34,10 +34,10 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
 * Optionally include a diagram
 * How does the tech stack come together?
 
-##Installation
+## Installation
 1. Clone the repo
 ```
-git clone http://
+git clone http://https://github.com/Hidden-Mist-2205/GAINZ.git
 ```
 
 2. Install NPM dependencies
@@ -45,7 +45,23 @@ git clone http://
 npm install
 ```
 
-3. 
+3. Build Webpack
+```
+npm run build
+```
+
+4. Run Server
+```
+npm run start
+```
+
+5. Copy envExample and rename it to .env and fill with data
+
+6. Go to localhost:3000 to use the App
+```
+http://localhost:3000
+```
+
 
 ## Workflow & Key Lessons
 * Your git workflow, style guides, commit guides, etc
