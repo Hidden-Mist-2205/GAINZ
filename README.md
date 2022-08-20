@@ -9,12 +9,13 @@
 ### [Max McKenna](https://github.com/mmckenna34)
 
 ## Introduction
-This project was a brief 1-week sprint where our team tried to complete an MVP for an external user (Barry Swoleman). Add some more stuff here
+This project was a brief 1-week sprint where our team tried to complete an MVP for an external user (Barry Swoleman).
+In recent years many people have been unable to visit the gym in person, and many of them miss the accountability being around other people can provide. The GAINZ application will allow users to access information on other people’s workouts, and find other users of the service who share their interests or workout schedule.
 
-## What does the app do?
-* What problem does it solve? Who uses it?
-* Why was it built?
-* User Inputs and Outputs
+#### Key Features:
+* Users are able to create accounts to do fitness workouts and follow along steps
+* Users are able to find others with similar schedules to connect with and work out together
+* Users can search for and create their own workouts to add to the community list of workouts
 
 ## Tech Stack
 * Front End: JavaScript, ReactJS, Recoil, Styled Components, React Router, Userfront
