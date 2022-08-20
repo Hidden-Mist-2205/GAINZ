@@ -10,7 +10,7 @@
 
 ## Introduction
 This project was a brief 1-week sprint where our team tried to complete an MVP for an external user (Barry Swoleman).
-In recent years many people have been unable to visit the gym in person, and many of them miss the accountability being around other people can provide. The GAINZ application will allow users to access information on other people’s workouts, and find other users of the service who share their interests or workout schedule.
+In recent years many people have been unable to visit the gym in person, and many of them miss the accountability being around other people can provide. The GAINZ application will allow users to access information on other people’s workouts, and find other users of the service who share their interests or workout schedule
 
 #### Key Features:
 * Users are able to create accounts to do fitness workouts and follow along steps
@@ -19,17 +19,25 @@ In recent years many people have been unable to visit the gym in person, and man
 
 ## Tech Stack
 * Front End: JavaScript, ReactJS, Recoil, Styled Components, React Router, Userfront
-* Back End: NodeJS, Express, Sequelize, PostgreSQL, Axios
+* Back End: NodeJS, Express, PostgreSQL, Axios
 * Testing/Utilities: Babel, Webpack, Jest
 
-## Video Demo/Screenshots
-* What were the user stories /  what was MVP (mention Minimal Viable Product
+## Section breakdown (with demo)
+### Welcome Page - Sam Bartlett
+*
+### Dashboard - Al Huynh
+*
+### Library - Max McKenna
+*
+### MyGainz - Max McKenna
+*
+### Start Workout - Wenny Xiong
+*
+### Find Workout Buddy - Patrick O'Shea
+*
+### My Profile - Anthony McGovern
+*
 
-## How does the app work?
-* What happens behind the scenes when the user interacts with it?
-* OR What are all the places the data travels?  What happens to that data?
-* Optionally include a diagram
-* How does the tech stack come together?
 
 ## Installation
 1. Clone the repo
@@ -60,7 +68,6 @@ http://localhost:3000
 ```
 
 ## Additional Features/Future Improvements
-* Future refactoring?
-* Additional dev ops considerations?
-* UI/UX additions?
+* Live chat
+* find a local buddy within number of miles
 
