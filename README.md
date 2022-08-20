@@ -21,10 +21,6 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
 * Back End: NodeJS, Express, Sequelize, PostgreSQL, Axios
 * Testing/Utilities: Babel, Webpack, Jest
 
-## Technical Challenges
-* Why, what was the plan to overcome those challenges?
-* What did you learn?
-
 ## Video Demo/Screenshots
 * What were the user stories /  what was MVP (mention Minimal Viable Product
 
@@ -34,12 +30,33 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
 * Optionally include a diagram
 * How does the tech stack come together?
 
-## Workflow & Key Lessons
-* Your git workflow, style guides, commit guides, etc
-* What did you learn from the process
-* What were key takeaways from stand ups, code reviews, etc
-* Writing tests
-* Link to your trello board, discuss completed tickets
+## Installation
+1. Clone the repo
+```
+git clone http://https://github.com/Hidden-Mist-2205/GAINZ.git
+```
+
+2. Install NPM dependencies
+```
+npm install
+```
+
+3. Build Webpack
+```
+npm run build
+```
+
+4. Run Server
+```
+npm run start
+```
+
+5. Copy envExample and rename it to .env and fill with data
+
+6. Go to localhost:3000 to use the App
+```
+http://localhost:3000
+```
 
 ## Additional Features/Future Improvements
 * Future refactoring?
