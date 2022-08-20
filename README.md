@@ -41,9 +41,25 @@ The login, signup and forgot password forms implement UserFront for authenticati
 * Start button routes you to the start workout page
 * Toggle favorites if created by the user they are able to delete
 ### Library - Max McKenna
-*
+![Workout/Exercise Library Demo](https://i.gyazo.com/2b38949ca7f5865898d13c3c1209f186.gif)
+
+
+* Display all available workouts and exercises
+* Search by name, and filter by their specified category
+* Clicking the Reset button will clear all search filters, displaying the full library
+* Selecting the star icon will favorite a workout/exercise and add it to your dashboard
+* Clicking the title of a workout will reveal a dropdown list of the workout's exercises
+* Clicking the title of an exercise displays a GIF showing the proper technique
+* Clicking the Start button on a workout will direct to the Start Workout page
 ### MyGainz - Max McKenna
-*
+![My Gainz Demo](https://i.gyazo.com/dc8642f9e9dfa7fec6b2c9bdaa16e59e.gif)
+
+
+* Displays all of your previously completed workouts
+* Each workout shows the number of times it has been completed,  and the last date it was completed on
+* Selecting the star icon will favorite a workout/exercise and add it to your dashboard
+* Clicking the title of a workout will reveal a dropdown list of the workout's exercises
+* Workouts are paginated in groups of 4 for readability
 ### Start Workout - Wenny Xiong
 ![Authentication](https://i.gyazo.com/81bd304b20c4f0d15ff9a7ac2f4b2100.gif)
 
