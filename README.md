@@ -24,6 +24,7 @@ In recent years many people have been unable to visit the gym in person, and man
 
 ## Section breakdown (with demo)
 ### Welcome Page - Sam Bartlett
+![Authentication](https://i.gyazo.com/00eb4497e1b053b0a39071d880fbadef.gif)
 *
 ### Dashboard - Al Huynh
 *
@@ -32,6 +33,7 @@ In recent years many people have been unable to visit the gym in person, and man
 ### MyGainz - Max McKenna
 *
 ### Start Workout - Wenny Xiong
+![Authentication](https://i.gyazo.com/81bd304b20c4f0d15ff9a7ac2f4b2100.gif)
 *
 ### Find Workout Buddy - Patrick O'Shea
 *
