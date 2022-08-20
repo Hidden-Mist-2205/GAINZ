@@ -34,6 +34,19 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
 * Optionally include a diagram
 * How does the tech stack come together?
 
+##Installation
+1. Clone the repo
+```
+git clone http://
+```
+
+2. Install NPM dependencies
+```
+npm install
+```
+
+3. 
+
 ## Workflow & Key Lessons
 * Your git workflow, style guides, commit guides, etc
 * What did you learn from the process
