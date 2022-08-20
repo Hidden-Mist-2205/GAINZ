@@ -25,16 +25,37 @@ In recent years many people have been unable to visit the gym in person, and man
 ## Section breakdown (with demo)
 ### Welcome Page - Sam Bartlett
 ![Authentication](https://i.gyazo.com/00eb4497e1b053b0a39071d880fbadef.gif)
-*
+
+
+The login, signup and forgot password forms implement UserFront for authentication within custom React forms that send information to our own database for user matching. Upon entering the app, users are sent to non-authenticated routes (like the landing page seen above) or protected auth-only routes depending on their access token.
+
+
 ### Dashboard - Al Huynh
-*
+![Authentication](https://i.gyazo.com/2cf74f19df9cbd0546647229c0ad4d27.gif)
+
+
+* Display all the workout and exercises that you have favorited
+* On click on the workout title expand and show the list of exercises w/ sets and reps for each workout
+* On click on the exercise title expand and show the gifs
+* Create your own custom workouts
+* Start button routes you to the start workout page
+* Toggle favorites if created by the user they are able to delete
 ### Library - Max McKenna
 *
 ### MyGainz - Max McKenna
 *
 ### Start Workout - Wenny Xiong
 ![Authentication](https://i.gyazo.com/81bd304b20c4f0d15ff9a7ac2f4b2100.gif)
-*
+
+
+* As the UI Owner of this project, I was responsible for create the wireframe and UI designs aligned with client's expectation
+* Start Workout section: have a count down timer where users can enter the time they preferred and able to play, pause and stop
+* Count downtimer also have a auto mode that will automatically go through each step, pause for 5 seconds between steps and end the session when finished
+* On the right user will see the detailed instruction with a GIF
+* When finished, the complete count and last completed time will update in My Gainz section
+
+
+
 ### Find Workout Buddy - Patrick O'Shea
 *
 ### My Profile - Anthony McGovern
