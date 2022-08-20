@@ -21,10 +21,6 @@ This project was a brief 1-week sprint where our team tried to complete an MVP f
 * Back End: NodeJS, Express, Sequelize, PostgreSQL, Axios
 * Testing/Utilities: Babel, Webpack, Jest
 
-## Technical Challenges
-* Why, what was the plan to overcome those challenges?
-* What did you learn?
-
 ## Video Demo/Screenshots
 * What were the user stories /  what was MVP (mention Minimal Viable Product
 
@@ -61,14 +57,6 @@ npm run start
 ```
 http://localhost:3000
 ```
-
-
-## Workflow & Key Lessons
-* Your git workflow, style guides, commit guides, etc
-* What did you learn from the process
-* What were key takeaways from stand ups, code reviews, etc
-* Writing tests
-* Link to your trello board, discuss completed tickets
 
 ## Additional Features/Future Improvements
 * Future refactoring?
