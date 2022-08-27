@@ -73,7 +73,7 @@ The login, signup and forgot password forms implement UserFront for authenticati
 
 
 ### Find Workout Buddy - Patrick O'Shea
-![Find A Buddy](https://gyazo.com/5e568fe7409eb008c75d993d2ca23115)
+![Find A Buddy](https://i.gyazo.com/5e568fe7409eb008c75d993d2ca23115.gif)
 
 * Find a workout buddy based on available day and optionally zipcode
 * List will show all users who meet criteria in the database with their profile information
