@@ -31,7 +31,7 @@ The login, signup and forgot password forms implement UserFront for authenticati
 
 
 ### Dashboard - Al Huynh
-![Authentication](https://i.gyazo.com/2cf74f19df9cbd0546647229c0ad4d27.gif)
+![Dashboard](https://i.gyazo.com/2cf74f19df9cbd0546647229c0ad4d27.gif)
 
 
 * Display all the workout and exercises that you have favorited
@@ -61,7 +61,7 @@ The login, signup and forgot password forms implement UserFront for authenticati
 * Clicking the title of a workout will reveal a dropdown list of the workout's exercises
 * Workouts are paginated in groups of 4 for readability
 ### Start Workout - Wenny Xiong
-![Authentication](https://i.gyazo.com/81bd304b20c4f0d15ff9a7ac2f4b2100.gif)
+![Start Workout](https://i.gyazo.com/81bd304b20c4f0d15ff9a7ac2f4b2100.gif)
 
 
 * As the UI Owner of this project, I was responsible for create the wireframe and UI designs aligned with client's expectation
@@ -73,7 +73,14 @@ The login, signup and forgot password forms implement UserFront for authenticati
 
 
 ### Find Workout Buddy - Patrick O'Shea
-*
+![Find A Buddy](https://i.gyazo.com/5e568fe7409eb008c75d993d2ca23115.gif)
+
+* Find a workout buddy based on available day and optionally zipcode
+* List will show all users who meet criteria in the database with their profile information
+* Can search list for username
+* Select a buddy by clicking the request info button which will send an email to the user with your contact information
+
+
 ### My Profile - Anthony McGovern
 *
 
